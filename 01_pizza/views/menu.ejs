@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Paris Pizza</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link href="css/business-casual.css">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic">
+
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+
+    <title>Rapide Pizza</title>
+
+
+
+
+    <style>
+        body {
+            position: relative;
+        }
+    </style>
+
+    <!--it's for scrolling -->
+    <script>
+        $(document).ready(function() {
+            // Add scrollspy to <body>
+            $('body').scrollspy({
+                target: ".navbar",
+                offset: 50
+            });
+
+            // Add smooth scrolling on all links inside the navbar
+            $("#myNavbar a").on('click', function(event) {
+                // Make sure this.hash has a value before overriding default behavior
+                if (this.hash !== "") {
+                    // Prevent default anchor click behavior
+                    event.preventDefault();
+
+                    // Store hash
+                    var hash = this.hash;
+
+                    // Using jQuery's animate() method to add smooth page scroll
+                    // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 800, function() {
+
+                        // Add hash (#) to URL when done scrolling (default click behavior)
+                        window.location.hash = hash;
+                    });
+                }
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span>                        
+                       
+      </button>
+                <a class="navbar-brand" href="#">Pizza paris </a>
+            </div>
+            <div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#entre">Entree</a></li>
+                        <li><a href="#pizza">Pizza</a></li>
+                        <li><a href="#boisson">Boissons</a></li>
+                        <li><a href="#menu">Menu</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="entre" class="container-fluid">
+        <div class="row">
+            <div class="box">
+                <% let i;
+                for (i = 0; i < entre.length; i++) { %>
+                    <div class="col-lg-3">
+
+
+                        <img src="img/bread.png" width="100%">
+
+                        <h1>
+                            <%= entre[i].entre_name %>
+                        </h1>
+                        <p>
+                            <%= entre[i].entre_prix %>£
+                        </p>
+
+                        <input type="number" min="0" max="500">
+
+
+                        <button type="button" class="btn btn-info">Ajouter</button>
+
+                    </div>
+                    <% } %>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="clearfix" style="margin : 10px"></div>
+
+
+
+
+
+
+    <div id="pizza" class="container-fluid">
+
+        <div class="row">
+            <% let j;
+            for (j = 0; j < entre.length; j++) { %>
+                <div class="box">
+                    <div class="col-lg-3">
+
+
+                        <img src="img/slide-1.jpg" width="100%">
+
+                        <h1>
+                            <%= Pizza[j].pizza_name %>
+                        </h1>
+                        <p>
+                            <%= Pizza[j].pizza_desc %>
+                        </p>
+                        <p>
+                            <%= Pizza[j].pizza_prix %>£
+                        </p>
+
+                        <select name="select">
+      <option value="value1">Normale</option>
+      <option value="value2" selected>Large</option>
+    </select>
+                        <select name="select">
+      <option value="value1">Classique</option>
+      <option value="value2" selected>Fine</option>
+    </select>
+                        <input type="number" min="0" max="500">
+                        <button type="button" class="btn btn-info">Ajouter</button>
+                    </div>
+                    <% } %>
+
+                        <div class="clearfix" style="margin : 10px"></div>
+
+
+                </div>
+        </div>
+
+    </div>
+    <div id="boisson" class="container-fluid">
+
+        <div class="row">
+            <div class="box">
+                <% let k;
+                for (k = 0; k < boisson.length; k++) { %>
+                    <div class="col-lg-3">
+                        <img src="img/coca.png" width="100%">
+                        <h1>
+                            <%= boisson[k].b_name %>
+                        </h1>
+                        <p>
+                            <%= boisson[k].b_prix %>£
+                        </p>
+                        <input type="number" min="0" max="500">
+                        <button type="button" class="btn btn-info">Ajouter</button>
+                    </div>
+                    <% } %>
+
+                        <div id="menu" class="container-fluid">
+
+                            <div class="row">
+                                <div class="box">
+                                    <!--faire le menu -->
+                                    <div class="row">
+                                        <div class="box">
+                                            <div class="col-lg-6">
+                                                <img src="img/menu_pizza_boisson.jpg" style="max-height: 200px;">
+                                                <h1>Extra Menu </h1>
+                                                <p>1 entrée, 1 pizza Médium, 1 boisson</p>
+                                                <p>15,00 €</p>
+
+                                                <button type="button" class="btn btn-info">Ajouter</button>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <img src="img/menu_pizza_boisson.jpg" style="max-height: 200px;">
+                                                <h1>Mega Menu</h1>
+                                                <p>2 entrées, 2 pizzas Médium, 1 boisson d’au moins 1l</p>
+                                                <p>20,00 €</p>
+                                                <button type="button" class="btn btn-info">Ajouter</button>
+                                            </div>
+                                            <div class="clearfix" style="margin : 10px"></div>
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!--put the style into a file .css-->
+                                <style>
+                                    body {
+                                        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+                                        background: url('../bg.jpg') no-repeat center center fixed;
+                                        -webkit-background-size: cover;
+                                        -moz-background-size: cover;
+                                        background-size: cover;
+                                        -o-background-size: cover;
+                                    }
+                                    
+                                    h1,
+                                    h2,
+                                    h3,
+                                    h4,
+                                    h5,
+                                    h6 {
+                                        font-family: "Josefin Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
+                                        font-weight: 700;
+                                        letter-spacing: 1px;
+                                        text-indent: 50px;
+                                        text-align: justify;
+                                        letter-spacing: 3px;
+                                    }
+                                    
+                                    p {
+                                        font-size: 1.25em;
+                                        line-height: 1.6;
+                                        color: rgb(236, 235, 231);
+                                    }
+                                    
+                                    hr {
+                                        max-width: 400px;
+                                        border-color: #999999;
+                                    }
+                                    
+                                    .brand,
+                                    .address-bar {
+                                        display: none;
+                                    }
+                                    
+                                    .navbar-brand {
+                                        text-transform: uppercase;
+                                        font-weight: 900;
+                                        letter-spacing: 2px;
+                                    }
+                                    
+                                    .navbar-nav {
+                                        text-transform: uppercase;
+                                        font-weight: 400;
+                                        letter-spacing: 3px;
+                                    }
+                                    
+                                    .dropdown-menu {
+                                        opacity: 0.9;
+                                    }
+                                    
+                                    .img-full {
+                                        min-width: 100%;
+                                    }
+                                    
+                                    .brand-before,
+                                    .brand-name {
+                                        text-transform: capitalize;
+                                    }
+                                    
+                                    .brand-before {
+                                        margin: 15px 0;
+                                    }
+                                    
+                                    .brand-name {
+                                        margin: 0;
+                                        font-size: 4em;
+                                    }
+                                    
+                                    .tagline-divider {
+                                        margin: 15px auto 3px;
+                                        max-width: 250px;
+                                        border-color: #999999;
+                                    }
+                                    
+                                    .box {
+                                        margin-bottom: 20px;
+                                        padding: 30px 15px;
+                                        background: #fff;
+                                        background: rgb(23, 22, 20);
+                                    }
+                                    
+                                    .intro-text {
+                                        text-transform: uppercase;
+                                        font-size: 1.25em;
+                                        font-weight: 400;
+                                        letter-spacing: 1px;
+                                    }
+                                    
+                                    .img-border {
+                                        float: none;
+                                        margin: 0 auto 0;
+                                        border: #999999 solid 1px;
+                                    }
+                                    
+                                    .img-left {
+                                        float: none;
+                                        margin: 0 auto 0;
+                                    }
+                                    
+                                    footer p {
+                                        margin: 0;
+                                        padding: 50px 0;
+                                    }
+                                    
+                                    @media screen and (min-width:768px) {
+                                        .brand {
+                                            display: inherit;
+                                            margin: 0;
+                                            padding: 30px 0 10px;
+                                            text-align: center;
+                                            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+                                            font-family: "Josefin Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
+                                            font-size: 5em;
+                                            font-weight: 700;
+                                            line-height: normal;
+                                            color: #fff;
+                                        }
+                                        .top-divider {
+                                            margin-top: 0;
+                                        }
+                                        .img-left {
+                                            float: left;
+                                            margin-right: 25px;
+                                        }
+                                        .address-bar {
+                                            display: inherit;
+                                            margin: 0;
+                                            padding: 0 0 40px;
+                                            text-align: center;
+                                            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+                                            text-transform: uppercase;
+                                            font-size: 1.25em;
+                                            font-weight: 400;
+                                            letter-spacing: 3px;
+                                            color: #fff;
+                                        }
+                                        .navbar {
+                                            border-radius: 0;
+                                        }
+                                        .navbar-header {
+                                            display: none;
+                                        }
+                                        .navbar {
+                                            min-height: 0;
+                                        }
+                                        .navbar-default {
+                                            border: none;
+                                            background: #fff;
+                                            background: rgb(165, 16, 16);
+                                        }
+                                        .nav>li>a {
+                                            padding: 35px;
+                                        }
+                                        .navbar-nav>li>a {
+                                            line-height: normal;
+                                        }
+                                        .navbar-nav {
+                                            display: table;
+                                            float: none;
+                                            margin: 0 auto;
+                                            table-layout: fixed;
+                                            font-size: 1em;
+                                        }
+                                    }
+                                    
+                                    @media screen and (min-width:1200px) {
+                                        .box:after {
+                                            content: '';
+                                            display: table;
+                                            clear: both;
+                                        }
+                                    }
+                                    
+                                    .dropbtn {
+                                        background-color: #04AA6D;
+                                        color: white;
+                                        padding: 16px;
+                                        font-size: 16px;
+                                        border: none;
+                                    }
+                                    
+                                    .dropdown {
+                                        position: relative;
+                                        display: inline-block;
+                                    }
+                                    
+                                    .dropdown-content {
+                                        display: none;
+                                        position: absolute;
+                                        background-color: #f1f1f1;
+                                        min-width: 160px;
+                                        box-shadow: 0px 8px 16px 0px rgba(233, 136, 27, 0.701);
+                                        z-index: 1;
+                                    }
+                                    
+                                    .dropdown-content a {
+                                        color: black;
+                                        padding: 12px 16px;
+                                        text-decoration: none;
+                                        display: block;
+                                    }
+                                    
+                                    .dropdown-content a:hover {
+                                        background-color: #ddd;
+                                    }
+                                    
+                                    .dropdown:hover .dropdown-content {
+                                        display: block;
+                                    }
+                                    
+                                    .dropdown:hover .dropbtn {
+                                        background-color: #3e8e41;
+                                    }
+                                    
+                                    h1 {
+                                        color: #cd7f32;
+                                        text-indent: 50px;
+                                        text-align: justify;
+                                        letter-spacing: 3px;
+                                    }
+                                    
+                                    .btn-info {
+                                        color: #cd7f32;
+                                        background-color: rgb(21, 15, 8);
+                                    }
+                                    
+                                    .clearfix {
+                                        color: #cd7f32;
+                                    }
+                                </style>
+
+</body>
