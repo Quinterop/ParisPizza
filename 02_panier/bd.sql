@@ -7,7 +7,8 @@ drop table if exists boisson cascade;
 drop table if exists sauces cascade; 
 drop table if exists livreur cascade; 
 drop table if exists fromages cascade; 
-//* table pour panier*/
+drop table if exists legumes cascade; 
+
 
 
 
@@ -38,13 +39,13 @@ link_img varchar(50)
 
                                     /* il faut changer les descriptions */
 insert into Pizza values (1, 'Pizza Orientale',11,'Raclette de Savoie, potatoes, bacon, oignons sur une base de crème fraîche légère et mozzarella.
-','img/slide1.png');
+','img/slide1.jpg');
 insert into Pizza values (2, 'Pizza Hawaeinne',11,'Raclette de Savoie, potatoes, bacon, oignons sur une base de crème fraîche légère et mozzarella.
-','img/slide2.png');
+','img/slide1.jpg');
 insert into Pizza values (3, 'Pizza Parisienne',11,'Raclette de Savoie, potatoes, bacon, oignons sur une base de crème fraîche légère et mozzarella.
-','img/slide3.png');
+','img/slide1.jpg');
 insert into Pizza values (4, 'Pizza Curry',11,'Raclette de Savoie, potatoes, bacon, oignons sur une base de crème fraîche légère et mozzarella.
-','img/slide4.png');
+','img/slide1.jpg');
 
 
 

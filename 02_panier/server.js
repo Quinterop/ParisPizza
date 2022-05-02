@@ -8,7 +8,7 @@ const pool = new Pool();
 const config = require("dotenv").config()
 const { acceptsEncodings } = require('express/lib/request');
 let app = express();
-const port = 3333;
+const port = 2022;
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
@@ -82,11 +82,72 @@ app.get('/', async function(req, res) {
 
 
 
+app.get('/compose', async function(req, res) {
+
+    const client = await pool.connect();
+    try {
+
+        await client.query('BEGIN')
+        const entre_text = 'select * from Entre'
+        const pizza_text = 'select * from Pizza'
+        const boisson_text = 'select * from boisson'
+        const viandes_text = 'select * from viandes'
+        const legumes_text = 'select * from legumes'
+        const sauces_text = 'select * from sauces'
+
+
+
+
+
+        const result1 = await client.query(entre_text);
+        const result2 = await client.query(pizza_text);
+        const result3 = await client.query(boisson_text);
+        const result4 = await client.query(viandes_text);
+        const result5 = await client.query(legumes_text);
+        const result6 = await client.query(sauces_text);
+
+
+
+
+
+        let all = {
+            entre: result1.rows,
+            Pizza: result2.rows,
+            boisson: result3.rows,
+            viandes: result4.rows,
+            legumes: result5.rows,
+            sauces: result6.rows
+
+        }
+        if (result1.rows.length == 0) {
+            res.render("./compose.ejs", { root: 'root-client' });
+        } else {
+            res.render('compose.ejs', all);
+            //res.render('compose.ejs', all);
+
+        }
+        await client.query('COMMIT')
+    } catch (e) {
+        await client.query('ROLLBACK')
+        throw e
+    } finally {
+        client.release()
+    }
+
+});
+
+
+
 
 app.get('/livraison', async function(req, res, next) {
     res.render('livraison.ejs', '');
 });
 
+
+
+app.get('/compose', async function(req, res, next) {
+    res.render('compose.ejs', '');
+});
 /*app.post('/livraison', async function(req, res) {
 
     const name = body.sign_name;
