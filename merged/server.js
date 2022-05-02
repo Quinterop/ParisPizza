@@ -8,7 +8,7 @@ const pool = new Pool();
 const config = require("dotenv").config()
 const { acceptsEncodings } = require('express/lib/request');
 let app = express();
-const port = 4444;
+const port = 2222;
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
@@ -26,7 +26,7 @@ let viandes;
 let legumes;
 let sauces;
 
-app.get('/', async function (req, res) {
+app.get('/', async function(req, res) {
 
     const client = await pool.connect();
     try {
@@ -83,7 +83,7 @@ app.get('/', async function (req, res) {
 
 
 
-app.get('/livraison', async function (req, res, next) {
+app.get('/livraison', async function(req, res, next) {
     res.render('livraison.ejs', '');
 });
 
@@ -127,7 +127,7 @@ module.exports = router;
 */
 
 
-app.post('/livraison', async function (req, res) {
+app.post('/livraison', async function(req, res) {
 
     const L_name = req.body.username;
     const L_pwd = req.body.pwdl;
