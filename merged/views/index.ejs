@@ -17,6 +17,9 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
+
+
+
     <script src="js/index.js"></script>
     <title>paris pizza</title>
     <link rel="stylesheet" href="index.css">
@@ -177,7 +180,7 @@
                     <% let i; for (i=0; i < entre.length; i++) { %>
                         <div class="col-lg-3">
 
-                            <img src="img/bread.png " width="100% ">
+                            <img src="img/salade.jpg " id="all" width="100% ">
 
                             <h1>
                                 <%= entre[i].entre_name %>
@@ -215,7 +218,7 @@
                         <div class="col-lg-3">
 
 
-                            <img src="img/slide-1.jpg " width="100% ">
+                            <img src="img/slide-1.jpg " id="all" width="100% ">
 
                             <h1>
                                 <%= Pizza[j].pizza_name %>
@@ -259,8 +262,9 @@
                             <p>
                                 <%= boisson[k].b_prix %>£
                             </p>
-                            <input type="number" min="0" max="500">
-                            <a href="#" data-name="<%=boisson[k].b_name%>" data-price="<%= boisson[k].b_prix %>" class="add-to-cart btn btn-info">Ajouter</a>
+                            <input type="number " min="0 " max="500 ">
+                            <a href="# " data-name="<%=boisson[k].b_name%>" data-price="
+                            <%= boisson[k].b_prix %>" class="add-to-cart btn btn-info">Ajouter</a>
                         </div>
                         <% } %>
 
@@ -272,7 +276,7 @@
                                         <div class="row ">
                                             <div class="box ">
                                                 <div class="col-lg-6 ">
-                                                    <img src="img/menu_pizza_boisson.jpg " style="max-height: 200px; ">
+                                                    <img src="img/menu_pizza_boisson.jpg " id="all" style="max-height: 200px; ">
                                                     <h1>Extra Menu </h1>
                                                     <p>1 entrée, 1 pizza Médium, 1 boisson</p>
                                                     <p>15,00 €</p>
@@ -280,10 +284,9 @@
                                                     <button type="button " class="btn btn-info ">Ajouter</button>
                                                 </div>
                                                 <div class="col-lg-6 ">
-                                                    <img src="img/menu_pizza_boisson.jpg " style="max-height: 200px; ">
+                                                    <img src="img/menu_pizza_boisson.jpg " id="all" style="max-height: 200px; ">
                                                     <h1>Mega Menu</h1>
                                                     <p>2 entrées, 2 pizzas Médium, 1 boisson d’au moins 1l</p>
-                                                    <p>20,00 €</p>
                                                     <button type="button " class="btn btn-info ">Ajouter</button>
                                                 </div>
                                                 <div class="clearfix " style="margin : 10px "></div>
@@ -292,116 +295,112 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
-
-                                    <h1>Composer Ta Pizza !!</h1>
-                                    <div id="ctp" class="content">
-                                        <div class="tailleBase component">
-                                            <div class="ribbon">
-                                                <h2>TAILLE &amp; BASE</h2>
-                                                <select id="select" aria-label="taille_sauce ">
+                                <h1>Composer Ta Pizza </h1>
+                                <div id="ctp" class="content">
+                                    <div class="tailleBase component">
+                                        <div class="ribbon">
+                                            <h2>TAILLE &amp; BASE</h2>
+                                            <select id="select" aria-label="taille_sauce ">
                                                     <option value="M">M</option>
                                                     <option value="L">L</option>
                                                 </select>
 
-                                                <select id="select" aria-label="taille_sauce ">
+                                            <select id="select" aria-label="taille_sauce ">
 
                                                     <option value="tomate">Tomates</option>
                                                     <option value="creme fraiche">Crème Fraiche</option>
                                                 </select>
+                                        </div>
+
+                                        <div class="viande component ">
+                                            <div class="ribbon ">
+                                                <h2>LES VIANDES</h2>
                                             </div>
+                                            <div class="text-content ">
+                                                <% for (p=0 ; p < viandes.length; p++) { %>
 
-                                            <div class="viande component ">
-                                                <div class="ribbon ">
-                                                    <h2>LES VIANDES</h2>
-                                                    <div class="textMenu ">M 1,50€ - L 2,00€</div>
-                                                </div>
-                                                <div class="text-content ">
-                                                    <% for (p=0 ; p < viandes.length; p++) { %>
-
-                                                        <div class="ingredients ">
-                                                            <img class=" lazyloaded " id="viandes" width="100 " src=<%=viandes[p].link_img %>
-                                                            <p>
-                                                                <%= viandes[p].v_name %>
-                                                                    <%= viandes[p].v_prix %> $
-                                                            </p>
-                                                        </div>
-                                                        <% } %>
-
-
-
-
-
-                                                </div>
-                                            </div>
-                                            <div class="veggie component ">
-                                                <div class="ribbon ">
-                                                    <h2>LES LÉGUMES</h2>
-                                                    <div class="textMenu ">M 0,70€ - L 0,95€</div>
-                                                </div>
-                                                <div class="text-content ">
-                                                    <% for (p=0 ; p < legumes.length; p++) { %>
-                                                        <div class="ingredients ">
-                                                            <img class=" lazyloaded " id="legumes" width="100 " src=<%=legumes[p].link_img %>
-
-                                                            <p>
-                                                                <%= legumes[p].leg_name %>
-                                                                    <%= legumes[p].leg_prix %> $
-                                                            </p>
-                                                        </div>
-
-                                                        <% } %>
-
-
-
-
-                                                </div>
-                                            </div>
-                                            <div class="fromage component ">
-                                                <div class="ribbon ">
-                                                    <h2>LES FROMAGES</h2>
-                                                    <div class="textMenu ">M 1,00€ - L 1,30€</div>
-                                                </div>
-                                                <div class="text-content ">
-                                                    <div class="ingredients "><noscript><img width="100 "
-                                                                src="https://www.fivepizzaoriginal.com/wp-content/uploads/2021/01/Mozzarella.png "
-                                                                alt="Mozzarella "></noscript><img class=" lazyloaded " width="100
-                                                                                " src="https://www.fivepizzaoriginal.com/wp-content/uploads/2021/01/Mozzarella.png " data-src="https://www.fivepizzaoriginal.com/wp-content/uploads/2021/01/Mozzarella.png "
-                                                            alt="Mozzarella ">
+                                                    <div class="ingredients ">
+                                                        <img class=" lazyloaded " id="viandes" width="100 " src=<%=viandes[p].link_img %>
                                                         <p>
-                                                            fromage
+                                                            <%= viandes[p].v_name %>
+                                                                <%= viandes[p].v_prix %> $
+                                                        </p>
+                                                    </div>
+                                                    <% } %>
+
+
+
+
+
+                                            </div>
+                                        </div>
+                                        <div class="veggie component ">
+                                            <div class="ribbon ">
+                                                <h2>LES LÉGUMES</h2>
+                                            </div>
+                                            <div class="text-content ">
+                                                <% for (p=0 ; p < legumes.length; p++) { %>
+                                                    <div class="ingredients ">
+                                                        <img class=" lazyloaded " id="legumes" width="100 " src=<%=legumes[p].link_img %>
+
+                                                        <p>
+                                                            <%= legumes[p].leg_name %>
+                                                                <%= legumes[p].leg_prix %> $
                                                         </p>
                                                     </div>
 
+                                                    <% } %>
 
-                                                </div>
+
+
+
                                             </div>
-                                            <div class="sauce component ">
-                                                <div class="ribbon ">
-                                                    <h2>LES SAUCES</h2>
-                                                    <div class="textMenu ">M &amp; L 0,30€</div>
+                                        </div>
+                                        <div class="fromage component ">
+                                            <div class="ribbon ">
+                                                <h2>LES FROMAGES</h2>
+                                            </div>
+                                            <div class="text-content ">
+                                                <div class="ingredients "><noscript><img width="100 "
+                                                                src="https://www.fivepizzaoriginal.com/wp-content/uploads/2021/01/Mozzarella.png "
+                                                                alt="Mozzarella "></noscript><img class=" lazyloaded " width="100
+                                                                                " src="https://www.fivepizzaoriginal.com/wp-content/uploads/2021/01/Mozzarella.png " data-src="https://www.fivepizzaoriginal.com/wp-content/uploads/2021/01/Mozzarella.png "
+                                                        alt="Mozzarella ">
+                                                    <p>
+                                                        fromage
+                                                    </p>
                                                 </div>
-                                                <div class="text-content ">
-                                                    <% for (p=0 ; p < sauces.length; p++) { %>
 
-                                                        <div class="ingredients "><noscript><img width="100 "
+
+                                            </div>
+                                        </div>
+                                        <div class="sauce component ">
+                                            <div class="ribbon ">
+                                                <h2>LES SAUCES</h2>
+                                            </div>
+                                            <div class="text-content ">
+                                                <% for (p=0 ; p < sauces.length; p++) { %>
+
+                                                    <div class="ingredients "><noscript><img width="100 "
                                                                     src="https://www.fivepizzaoriginal.com/wp-content/uploads/2021/01/Algerienne.png "
                                                                     alt="sauce algérienne "></noscript><img class="lazyload
                                                                                     " width="100 " src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%2066.666666666667%22%3E%3C/svg%3E " data-src="https://www.fivepizzaoriginal.com/wp-content/uploads/2021/01/Algerienne.png "
-                                                                alt="sauce algérienne ">
-                                                            <p>
-                                                                <%= sauces[p].sc_name %>
-                                                            </p>
-                                                        </div>
+                                                            alt="sauce algérienne ">
+                                                        <p>
+                                                            <%= sauces[p].sc_name %>
+                                                        </p>
+                                                    </div>
 
-                                                        <% } %>
+                                                    <% } %>
 
 
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 </body>
 
 </html>

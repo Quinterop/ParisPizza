@@ -57,11 +57,6 @@ h6 {
     letter-spacing: 3px;
 }
 
-#name {
-    margin-top: 200px;
-    color: #cd7f32;
-}
-
 p {
     font-size: 1.25em;
     line-height: 1.6;
@@ -94,8 +89,12 @@ hr {
     opacity: 0.9;
 }
 
-.img-full {
-    min-width: 100%;
+.img {
+    min-width: 500%;
+}
+
+#all {
+    width: 200%;
 }
 
 .brand-before,
