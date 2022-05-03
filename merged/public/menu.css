@@ -4,43 +4,7 @@ body {
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
-    position: relative;
     background-color: #0c0a0a;
-}
-
-.scrolled-down {
-    transform: translateY(-100%);
-    transition: all 0.3s ease-in-out;
-}
-
-.scrolled-up {
-    transform: translateY(0);
-    transition: all 0.3s ease-in-out;
-}
-
-.autohide {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    width: 100%;
-    z-index: 9999;
-}
-
-.carouselMenus {
-    width: 700px;
-    height: 600px;
-    margin: 0 auto;
-    margin-top: 120px;
-}
-
-.carousel-item img {
-    width: auto;
-    height: auto;
-}
-
-.cartdiv {
-    min-width: 400px;
 }
 
 h1,
@@ -186,11 +150,15 @@ hr {
         padding: 35px;
         color: #e1e50a;
     }
+    /***/
+    .bg-warning {
+        background-color: #f5ff07;
+    }
     .navbar-nav>li>a {
         line-height: normal;
     }
     .navbar-nav {
-        /*display: table;*/
+        display: table;
         float: none;
         margin: 0 auto;
         table-layout: fixed;
@@ -207,7 +175,7 @@ hr {
 }
 
 .box_entre {
-    margin-top: 100px;
+    margin-top: 70px;
 }
 
 .dropbtn {
@@ -261,10 +229,6 @@ h1 {
 .btn-info {
     color: #130606;
     background-color: rgb(240, 233, 26);
-}
-
-.btn-danger {
-    font-size: 20;
 }
 
 .clearfix {
@@ -355,15 +319,10 @@ label {
     ;
 }
 
-
-/*****/
-
-.bg-warning {
-    background-color: #f5ff07!important;
-}
-
-.btn-danger {
-    color: #fff;
-    background-color: #0e0e10;
-    border-color: #131212;
+.row {
+    display: -ms-flexbox;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
 }
