@@ -78,14 +78,14 @@ document.addEventListener("DOMContentLoaded", function() {
     var elements_cp = document.getElementsByClassName("add-to-cart_cp");
     for (var i = 0; i < elements_cp.length; i++) {
         elements_cp[i].addEventListener('click', function() {
-            document.getElementById("cm").disabled = false;
+            document.getElementById("cpm").disabled = false;
 
             var name = $(this).data('name');
             ingred.push(name);
 
         })
     }
-    $('#cm').click(function() {
+    $('#cpm').click(function() {
         var m = new pizza_cp(id, ingred);
 
         cmd.push(m);
