@@ -15,6 +15,8 @@ drop table if exists sauces cascade;
 drop table if exists livreur cascade; 
 drop table if exists fromages cascade; 
 drop table if exists legumes cascade; 
+drop table if exists pizza_c cascade; 
+
 
 
 
@@ -29,10 +31,10 @@ entre_name varchar(25) NOT NULL,
 entre_prix integer NOT NULL ,
 link_img varchar(50)
 );
-insert into Entre values (1, 'Salade César',7,'img/bread.png');
+insert into Entre values (1, 'Salade César',7,'img/salade.jpg');
 insert into Entre values (2, 'Croque',3,'img/bread.png');
-insert into Entre values (3, 'chicken Wings',3,'img/bread.png');
-insert into Entre values (4, 'Omlette',3,'img/bread.png');
+insert into Entre values (3, 'chicken Wings',3,'img/wings.jpg');
+insert into Entre values (4, 'Omlette',3,'img/omlette.jpg'); 
 
 
 /******************************************************************************************************************/
@@ -66,8 +68,8 @@ link_img varchar(50)
 
 
 insert into boisson values (1, 'Coca Zero',2,'img/coca.png');
-insert into boisson values (2, 'Coca',2,'img/coca.png');
-insert into boisson values (3, 'Fanta',2,'img/coca.png');
+insert into boisson values (2, 'Coca',2,'img/zero.png');
+insert into boisson values (3, 'Fanta',2,'img/fanta.png');
 insert into boisson values (4, 'IceTea',2,'img/coca.png');
 
 
@@ -84,9 +86,9 @@ create table viandes(
 
 
 insert into viandes values (1, 'Nugguets',1,'img/nuggets.jpg');
-insert into viandes values (2, 'Poulet ',1,'img/poulet.jpg');
-insert into viandes values (3, 'Tenders ',1,'img/poulet.jpg');
-insert into viandes  values (4, 'Merguez ',1,'img/merguez.jpg');
+insert into viandes values (2, 'Poulet',1,'img/poulet.jpg');
+insert into viandes values (3, 'Tenders',1,'img/poulet.jpg');
+insert into viandes  values (4, 'Merguez',1,'img/merguez.jpg');
 
 
 
@@ -99,10 +101,10 @@ create table legumes(
 
 
 
-insert into legumes values (1, 'Basilic',1,'img/Basilic.jpg');
-insert into legumes values (2, 'Poivron ',1,'img/poivron.jpg');
-insert into legumes values (3, ' Piment Rouge',1,'img/piment.jpg');
-insert into legumes  values (4, 'Champignons ',1,'img/champ.jpg');
+insert into legumes values (1, 'Basilic',1,'img/basilic.jpg');
+insert into legumes values (2, 'Poivron',1,'img/poivrons.jpg');
+insert into legumes values (3, 'Piment Rouge',1,'img/piment.jpg');
+insert into legumes  values (4, 'Champignons',1,'img/champ.jpg');
 
 
 create table sauces(
@@ -115,29 +117,29 @@ create table sauces(
 
 
 
-insert into sauces values (1, 'Harrissa',1,'harrissa.jpg');
-insert into sauces values (2, 'Curry',1,'curry.jpg');
-insert into sauces values (3, 'Mayonaise',1,'mayo.jpg');
-insert into sauces  values (4, 'Ketchup ',1,'ketchup.jpg');
-insert into sauces  values (5, 'Moutard ',1,'moutard.jpg');
-insert into sauces  values (6, 'Samourai ',1,'samourai.jpg');
-insert into sauces  values (7, 'Chinoise ',1,'chinoise.jpg');
+insert into sauces values (1, 'Harrissa',1,'img/harissa.jpg');
+insert into sauces values (2, 'Curry',1,'img/curry.jpg');
+insert into sauces values (3, 'Mayonaise',1,'img/mayo.jpg');
+insert into sauces  values (4, 'Ketchup',1,'img/ketchup.jpg');
+insert into sauces  values (5, 'Moutard',1,'img/moutard.jpg');
+insert into sauces  values (6, 'Samourai',1,'img/samourai.jpg');
+insert into sauces  values (7, 'Chinoise',1,'img/chinoise.jpg');
 
 
 create table fromages(
     f_id integer primary key,
     f_name varchar(30) NOT NULL,
     f_prix integer NOT NULL ,
-    link_img varchar(50) NOT NULL
+    link varchar(50) NOT NULL
 
 );
 
 
 
-insert into fromages values (1, 'parmesan',1,'parmesan.jpg'); 
-insert into fromages values (2, 'mozzarella',1,'mozza.jpg'); 
-insert into fromages values (3, 'burrata',1,'burrata.jpg');  
-insert into fromages values (4, 'roquefort',1,'roquefort.jpg');
+insert into fromages values (1, 'parmesan',1,'img/parmesan.jpg'); 
+insert into fromages values (2, 'mozzarella',1,'img/mozza.jpg'); 
+insert into fromages values (3, 'burrata',1,'img/burrata.jpg');  
+insert into fromages values (4, 'roquefort',1,'img/roquefort.jpg');
 
 
 
@@ -174,3 +176,16 @@ creat table commande (
 
 
 )*/
+create table pizza_c (
+    id integer primary key,
+    vd_id integer not null , 
+    lg_id integer not null, 
+    fg_id integer not null,
+    sc_id integer not null, 
+    foreign key (vd_id) references  viandes(v_id), 
+    foreign key (lg_id) references legumes(leg_id),
+    foreign key (sc_id) references sauces (sc_id),
+    foreign key (fg_id) references fromages(f_id)
+); 
+
+insert into pizza_c values (1,1,1,1,1);

@@ -28,16 +28,15 @@ body {
 }
 
 .carouselMenus {
-    width: 100px;
+    width: 700px;
     height: 600px;
     margin: 0 auto;
-    margin-top: 200px;
+    margin-top: 120px;
 }
 
 .carousel-item img {
     width: auto;
     height: auto;
-    margin-right: 100px;
 }
 
 .cartdiv {
@@ -89,7 +88,7 @@ hr {
 }
 
 #all {
-    width: 100%;
+    width: 200%;
 }
 
 .brand-before,
@@ -290,7 +289,7 @@ h2,
 label {
     font-weight: bold;
     font-size: 35px;
-    color: #f3efef
+    color: #999999
 }
 
 .boxs {
@@ -315,7 +314,7 @@ label {
 .text-content div {
     display: flex;
     height: 150px;
-    width: 200px;
+    width: 150px;
     cursor: pointer;
     overflow: hidden;
     flex-wrap: wrap;
@@ -338,7 +337,8 @@ label {
     width: 100%;
 }
 
-#select {
+#select1,
+#select2 {
     color: rgb(229, 233, 9);
     background-color: rgb(15, 14, 14);
     margin-left: 150px;
@@ -365,54 +365,4 @@ label {
 p {
     color: #fff;
     font-size: medium;
-}
-
-#total {
-    color: #fff;
-}
-
-.container_fluid {
-    border: 3px solid;
-}
-
-.bordureJaune {
-    border: 3px solid yellow;
-    padding: 10px;
-}
-
-#cm {
-    margin-left: 900px;
-}
-
-html,
-body {
-    height: 100%;
-}
-
-.wrap {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-/* CSS */
-
-#cpm {
-    background-color: #fff000;
-    border-radius: 12px;
-    color: #000;
-    cursor: pointer;
-    font-weight: bold;
-    padding: 10px 15px;
-    text-align: center;
-    transition: 200ms;
-    width: 100%;
-    box-sizing: border-box;
-    border: 0;
-    font-size: 16px;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
 }
