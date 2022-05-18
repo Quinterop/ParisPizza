@@ -38,6 +38,7 @@ body {
     width: auto;
     height: auto;
     margin-right: 100px;
+    cursor: pointer;
 }
 
 .cartdiv {
@@ -143,13 +144,16 @@ hr {
         line-height: normal;
         color: #fff;
     }
+
     .top-divider {
         margin-top: 0;
     }
+
     .img-left {
         float: right;
         margin-right: 25px;
     }
+
     .address-bar {
         display: inherit;
         margin: 0;
@@ -162,27 +166,34 @@ hr {
         letter-spacing: 3px;
         color: #fff;
     }
+
     .navbar {
         border-radius: 0;
     }
+
     .navbar-header {
         display: none;
     }
+
     .navbar {
         min-height: 0;
     }
+
     .navbar-default {
         border: none;
         background: #fff;
         background: rgb(165, 16, 16);
     }
+
     .nav>li>a {
         padding: 35px;
         color: #e1e50a;
     }
+
     .navbar-nav>li>a {
         line-height: normal;
     }
+
     .navbar-nav {
         /*display: table;*/
         float: none;
@@ -353,7 +364,7 @@ label {
 /*****/
 
 .bg-warning {
-    background-color: #f5ff07!important;
+    background-color: #f5ff07 !important;
 }
 
 .btn-danger {
@@ -413,3 +424,15 @@ body {
     -webkit-user-select: none;
     touch-action: manipulation;
 }
+
+label {
+    font-size: small;
+}
+
+/*
+.modal.fade:not(.in).right .modal-dialog {
+    -webkit-transform: translate3d(70%, 0, 0);
+    transform: translate3d(70%, 0, 0);
+}
+DECALE LES MODALS VERS LA DROITE
+*/

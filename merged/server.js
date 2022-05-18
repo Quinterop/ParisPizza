@@ -28,7 +28,7 @@ let sauces;
 let fromages;
 let pizza_composee;
 
-app.get('/', async function(req, res) {
+app.get('/', async function (req, res) {
 
     const client = await pool.connect();
     try {
@@ -68,7 +68,7 @@ app.get('/', async function(req, res) {
 
 
 
-app.get('/compose', async function(req, res) {
+app.get('/compose', async function (req, res) {
 
     const client = await pool.connect();
     try {
@@ -119,19 +119,19 @@ app.get('/compose', async function(req, res) {
 
 
 
-app.get('/livraison', async function(req, res, next) {
+app.get('/livraison', async function (req, res, next) {
     res.render('livraison.ejs', '');
 });
 
 
 
-app.get('/compose', async function(req, res, next) {
+app.get('/compose', async function (req, res, next) {
     res.render('compose.ejs', '');
 });
 
 
 
-app.post('/livraison', async function(req, res) {
+app.post('/livraison', async function (req, res) {
 
     const L_name = req.body.username;
     const L_pwd = req.body.pwdl;
@@ -172,7 +172,7 @@ app.post('/livraison', async function(req, res) {
 
 });
 
-app.listen(port, '127.0.1.1', () => {
+app.listen(port, '127.0.0.1', () => {
     console.log(`App running on port ${port}.`)
 })
 

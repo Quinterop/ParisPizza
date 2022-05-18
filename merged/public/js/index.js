@@ -4,7 +4,7 @@ var cmd = [];
 var pizza_cpr = "";
 
 
-$('body').scrollspy({ target: '#navspied' });
+//$('body').scrollspy({ target: '#navspied' }); TODO FIX
 
 function clickScroll(n) {
     document.getElementById(n).scrollIntoView({
@@ -13,7 +13,20 @@ function clickScroll(n) {
     autoScrolledTimer = Date.now();
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+function carouselClick(c) {
+    if (c != null) {
+        //alert(c);
+        mod = document.getElementById(c);
+
+        let myModal = new bootstrap.Modal(document.getElementById(c), {});
+        myModal.show();
+    }
+
+}
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
     el_autohide = document.querySelector('.autohide');
 
     navbar_height = document.querySelector('.navbar').offsetHeight;
@@ -21,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (el_autohide) {
         var last_scroll_top = 0;
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             let scroll_top = window.scrollY;
             if (scroll_top < last_scroll_top) {
                 el_autohide.classList.remove('scrolled-down');
@@ -37,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // if
     var elements = document.getElementsByClassName("add-to-cart");
     for (var i = 0; i < elements.length; i++) {
-        elements[i].addEventListener('click', function() {
+        elements[i].addEventListener('click', function () {
             event.preventDefault();
             var name = $(this).data('name');
             var price = Number($(this).data('price'));
@@ -55,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var elements_cp = document.getElementsByClassName("add-to-cart_cp");
     for (var i = 0; i < elements_cp.length; i++) {
-        elements_cp[i].addEventListener('click', function() {
+        elements_cp[i].addEventListener('click', function () {
             event.preventDefault();
             var name = $(this).data('name');
             var price = Number($(this).data('price'));
@@ -77,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var ingred = [];
     var elements_cp = document.getElementsByClassName("add-to-cart_cp");
     for (var i = 0; i < elements_cp.length; i++) {
-        elements_cp[i].addEventListener('click', function() {
+        elements_cp[i].addEventListener('click', function () {
             document.getElementById("cpm").disabled = false;
 
             var name = $(this).data('name');
@@ -85,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         })
     }
-    $('#cpm').click(function() {
+    $('#cpm').click(function () {
         var m = new pizza_cp(id, ingred);
 
         cmd.push(m);
@@ -98,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 
-    $('.show-cart').on("click", ".delete-item", function(event) {
+    $('.show-cart').on("click", ".delete-item", function (event) {
         var name = $(this).data('name')
         shoppingCart.removeItemFromCartAll(name);
         displayCart();
@@ -107,14 +120,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     // -1
-    $('.show-cart').on("click", ".minus-item", function(event) {
-            var name = $(this).data('name')
-            shoppingCart.removeItemFromCart(name);
-            displayCart();
-            displayCartModal();
-        })
-        // +1
-    $('.show-cart').on("click", ".plus-item", function(event) {
+    $('.show-cart').on("click", ".minus-item", function (event) {
+        var name = $(this).data('name')
+        shoppingCart.removeItemFromCart(name);
+        displayCart();
+        displayCartModal();
+    })
+    // +1
+    $('.show-cart').on("click", ".plus-item", function (event) {
         var name = $(this).data('name')
         shoppingCart.addItemToCart(name);
         displayCart();
@@ -122,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function() {
     })
 
     // Item count input
-    $('.show-cart').on("change", ".item-count", function(event) {
+    $('.show-cart').on("change", ".item-count", function (event) {
         var name = $(this).data('name');
         var count = Number($(this).val());
         shoppingCart.setCountForItem(name, count);
@@ -130,20 +143,23 @@ document.addEventListener("DOMContentLoaded", function() {
         displayCartModal();
     });
 
+
+
 });
 // DOMContentLoaded 
 
-
-$(document).ready(function() {
+/*
+$(document).ready(function () {
     // Add scrollspy to <body>
     $('body').scrollspy({
         target: ".navbar",
         offset: 50
     });
 });
+*/ // TODO FIX
 
 function onclick(e) {
-    entree.set(e, );
+    entree.set(e,);
 }
 
 
@@ -151,24 +167,24 @@ function onclick(e) {
 /*
 // Add smooth scrolling on all links inside the navbar
 $("#myNavbar a").on('click', function (event) {
-  // Make sure this.hash has a value before overriding default behavior
-  if (this.hash !== "") {
-    // Prevent default anchor click behavior
-    event.preventDefault();
-    
-    // Store hash
-    var hash = this.hash;
-    
-    // Using jQuery's animate() method to add smooth page scroll
-    // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-    $('html, body').animate({
-      scrollTop: $(hash).offset().top
-    }, 800, function () {
-      
-      // Add hash (#) to URL when done scrolling (default click behavior)
-      window.location.hash = hash;
-    });
-  }
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+        // Prevent default anchor click behavior
+        event.preventDefault();
+        
+        // Store hash
+        var hash = this.hash;
+        
+        // Using jQuery's animate() method to add smooth page scroll
+        // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+        $('html, body').animate({
+            scrollTop: $(hash).offset().top
+        }, 800, function () {
+            
+            // Add hash (#) to URL when done scrolling (default click behavior)
+            window.location.hash = hash;
+        });
+    }
 });
 });
 */
@@ -177,7 +193,7 @@ $("#myNavbar a").on('click', function (event) {
 // Shopping Cart API
 // ************************************************
 
-var shoppingCart = (function() {
+var shoppingCart = (function () {
     // =============================
     // Private methods and propeties
     // =============================
@@ -211,7 +227,7 @@ var shoppingCart = (function() {
     var obj = {};
 
     // Add to cart
-    obj.addItemToCart = function(name, price, count) {
+    obj.addItemToCart = function (name, price, count) {
         emptyCart = false;
         for (var item in cart) {
             if (cart[item].name === name) {
@@ -229,7 +245,7 @@ var shoppingCart = (function() {
 
 
     // Set count from item
-    obj.setCountForItem = function(name, count) {
+    obj.setCountForItem = function (name, count) {
         for (var i in cart) {
             if (cart[i].name === name) {
                 cart[i].count = count;
@@ -240,7 +256,7 @@ var shoppingCart = (function() {
     };
 
     // Remove item from cart
-    obj.removeItemFromCart = function(name) {
+    obj.removeItemFromCart = function (name) {
         for (var item in cart) {
             if (cart[item].name === name) {
                 cart[item].count--;
@@ -254,7 +270,7 @@ var shoppingCart = (function() {
     }
 
     // Remove all items from cart
-    obj.removeItemFromCartAll = function(name) {
+    obj.removeItemFromCartAll = function (name) {
         for (var item in cart) {
             if (cart[item].name === name) {
                 cart.splice(item, 1);
@@ -265,14 +281,14 @@ var shoppingCart = (function() {
     }
 
     // Clear cart
-    obj.clearCart = function() {
+    obj.clearCart = function () {
         cart = [];
         saveCart();
         emptyCart = true;
     }
 
     // Count cart 
-    obj.totalCount = function() {
+    obj.totalCount = function () {
         var totalCount = 0;
         for (var item in cart) {
             totalCount += cart[item].count;
@@ -286,7 +302,7 @@ var shoppingCart = (function() {
     }
 
     // Total cart
-    obj.totalCart = function() {
+    obj.totalCart = function () {
         var totalCart = 0;
         for (var item in cart) {
             totalCart += cart[item].price * cart[item].count;
@@ -295,7 +311,7 @@ var shoppingCart = (function() {
     }
 
     // List cart
-    obj.listCart = function() {
+    obj.listCart = function () {
         var cartCopy = [];
         for (i in cart) {
             item = cart[i];
@@ -339,7 +355,7 @@ function addToCart() {
 
 
 // Clear items
-$('.clear-cart').click(function() {
+$('.clear-cart').click(function () {
     shoppingCart.clearCart();
     displayCart();
 });
@@ -394,7 +410,7 @@ function displayCartModal() {
 
 // Delete item button
 
-$('.show-cart').on("click", ".delete-item", function(event) {
+$('.show-cart').on("click", ".delete-item", function (event) {
     var name = $(this).data('name')
     shoppingCart.removeItemFromCartAll(name);
     displayCart();
@@ -403,20 +419,20 @@ $('.show-cart').on("click", ".delete-item", function(event) {
 
 
 // -1
-$('.show-cart').on("click", ".minus-item", function(event) {
-        var name = $(this).data('name')
-        shoppingCart.removeItemFromCart(name);
-        displayCart();
-    })
-    // +1
-$('.show-cart').on("click", ".plus-item", function(event) {
+$('.show-cart').on("click", ".minus-item", function (event) {
+    var name = $(this).data('name')
+    shoppingCart.removeItemFromCart(name);
+    displayCart();
+})
+// +1
+$('.show-cart').on("click", ".plus-item", function (event) {
     var name = $(this).data('name')
     shoppingCart.addItemToCart(name);
     displayCart();
 })
 
 // Item count input
-$('.show-cart').on("change", ".item-count", function(event) {
+$('.show-cart').on("change", ".item-count", function (event) {
     var name = $(this).data('name');
     var count = Number($(this).val());
     shoppingCart.setCountForItem(name, count);
@@ -424,3 +440,56 @@ $('.show-cart').on("change", ".item-count", function(event) {
 });
 
 displayCart();
+
+
+$(document).ready(function () {
+
+    //For Card Number formatted input
+    var cardNum = document.getElementById('cr_no');
+    cardNum.onkeyup = function (e) {
+        if (this.value == this.lastValue) return;
+        var caretPosition = this.selectionStart;
+        var sanitizedValue = this.value.replace(/[^0-9]/gi, '');
+        var parts = [];
+
+        for (var i = 0, len = sanitizedValue.length; i < len; i += 4) {
+            parts.push(sanitizedValue.substring(i, i + 4));
+        }
+
+        for (var i = caretPosition - 1; i >= 0; i--) {
+            var c = this.value[i];
+            if (c < '0' || c > '9') {
+                caretPosition--;
+            }
+        }
+        caretPosition += Math.floor(caretPosition / 4);
+
+        this.value = this.lastValue = parts.join(' ');
+        this.selectionStart = this.selectionEnd = caretPosition;
+    }
+
+    //For Date formatted input
+    var expDate = document.getElementById('exp');
+    expDate.onkeyup = function (e) {
+        if (this.value == this.lastValue) return;
+        var caretPosition = this.selectionStart;
+        var sanitizedValue = this.value.replace(/[^0-9]/gi, '');
+        var parts = [];
+
+        for (var i = 0, len = sanitizedValue.length; i < len; i += 2) {
+            parts.push(sanitizedValue.substring(i, i + 2));
+        }
+
+        for (var i = caretPosition - 1; i >= 0; i--) {
+            var c = this.value[i];
+            if (c < '0' || c > '9') {
+                caretPosition--;
+            }
+        }
+        caretPosition += Math.floor(caretPosition / 2);
+
+        this.value = this.lastValue = parts.join('/');
+        this.selectionStart = this.selectionEnd = caretPosition;
+    }
+
+});
