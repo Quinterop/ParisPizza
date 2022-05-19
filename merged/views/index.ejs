@@ -63,9 +63,10 @@
 
                     <div class="dropdown"></div>
                     <button onclick="window.location.href='http://127.0.1.1:4444/livraison';" type="button"
-                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Connexion
-                    </button> --
+                        class="btn btn-danger" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        Livreur
+                    </button>
                     <div class="dropdown float-right cart">
 
                         <button class="btn  btn-danger dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -82,86 +83,88 @@
                                     class="total-count btn btn-info cart"></span>)</a>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
-
         </nav>
-
-        <div id="carouselMenus" class="carousel slide " data-ride="carousel" data-interval="900">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselMenus" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselMenus" data-slide-to="1"></li>
-                <li data-target="#carouselMenus" data-slide-to="2"></li>
-            </ol>
+    </div>
 
 
-            <div class="carousel-inner" onclick="carouselClick()">
 
-                <div class="carousel-item active" onclick="carouselClick('menu1')">
-                    <img src="https://lapizzadenico.com/pzdn-uploads/2022/02/Site_MenuRacing_ReseauxSociaux3-1440x600.jpg"
-                        class="d-block img-fluid">
-                    <div class="carousel-caption d-none d-md-block">
-                    </div>
+
+
+
+    <div id="carouselMenus" class="carousel slide " data-ride="carousel" data-interval="900">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselMenus" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselMenus" data-slide-to="1"></li>
+            <li data-target="#carouselMenus" data-slide-to="2"></li>
+        </ol>
+
+
+        <div class="carousel-inner" onclick="carouselClick()">
+
+            <div class="carousel-item active" onclick="carouselClick('menu1')">
+                <img src="https://lapizzadenico.com/pzdn-uploads/2022/02/Site_MenuRacing_ReseauxSociaux3-1440x600.jpg"
+                    class="d-block img-fluid">
+                <div class="carousel-caption d-none d-md-block">
                 </div>
+            </div>
 
-                <div class="carousel-item" onclick="carouselClick('menu2')">
-                    <img src="https://slanz.in/wp-content/uploads/2017/06/istock-488884742-1440x600.jpg"
-                        class="d-block img-fluid">
-                    <div class="carousel-caption d-none d-md-block">
-
-                    </div>
-                </div>
-
-                <div class="carousel-item" onclick="carouselClick('menu3')">
-                    <img src="https://sortinositaliankitchen.com/media/4284/carousel-sortinos_0001_studio-session-074.png?mode=crop&width=480&anchor=middlecenter&scale=both"
-                        class="d-block img-fluid">
-                    <div class="carousel-caption d-none d-md-block">
-
-                    </div>
+            <div class="carousel-item" onclick="carouselClick('menu2')">
+                <img src="https://slanz.in/wp-content/uploads/2017/06/istock-488884742-1440x600.jpg"
+                    class="d-block img-fluid">
+                <div class="carousel-caption d-none d-md-block">
 
                 </div>
+            </div>
 
+            <div class="carousel-item" onclick="carouselClick('menu3')">
+                <img src="https://sortinositaliankitchen.com/media/4284/carousel-sortinos_0001_studio-session-074.png?mode=crop&width=480&anchor=middlecenter&scale=both"
+                    class="d-block img-fluid">
+                <div class="carousel-caption d-none d-md-block">
 
+                </div>
 
             </div>
-            <a class="carousel-control-prev" href="#carouselMenus" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselMenus" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+
 
 
         </div>
-        <div class="modal fade right" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Panier</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <table class="show-cart table">
+        <a class="carousel-control-prev" href="#carouselMenus" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselMenus" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
 
-                        </table>
-                        <div>Total price: <span class="total-cart"></span> €</div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addressModal"
-                            data-dismiss="modal">Order now</button>
-                    </div>
+
+    </div>
+    <div class="modal fade right" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Panier</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="show-cart table">
+
+                    </table>
+                    <div>Total price: <span class="total-cart"></span> €</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addressModal"
+                        data-dismiss="modal">Order now</button>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <div id="menu1" class="modal fade" tabindex="-1" role="dialog">
@@ -210,13 +213,45 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
+                    <h5 class="modal-title">Menu Full</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>33333333333</p>
+                    <h3>1 pizza,1 entrée,1 boisson</h3>
+                    <label for="pizza">Choisir pizza</label>
+                    <select name="pizza">
+                        <% for(var h=0;h<Pizza.length;h++){ %>
+
+                            <option value="<%= Pizza[h].pizza_name %>">
+                                <%= Pizza[h].pizza_name %>
+                            </option>
+
+                            <% } %>
+                    </select>
+
+                    <label for="entre">Choisir entre</label>
+                    <select name="entre">
+                        <% for(var h=0;h<entre.length;h++){ %>
+
+                            <option value="<%= entre[h].entre_name %>">
+                                <%= entre[h].entre_name %>
+                            </option>
+
+                            <% } %>
+                    </select>
+
+                    <label for="pizza">Choisir pizza</label>
+                    <select name="pizza">
+                        <% for(var h=0;h<boisson.length;h++){ %>
+
+                            <option value="<%= boisson[h].b_name %>">
+                                <%= boisson[h].b_name %>
+                            </option>
+
+                            <% } %>
+                    </select>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -233,7 +268,7 @@
             <div class="row">
 
                 <% let i; for (i=0; i < entre.length; i++) { %>
-                    <div class="col-sm-3 bordureJaune">
+                    <div class="col-lg-3">
 
                         <img src="img/salade.jpg " id="all" width="100% ">
 
@@ -244,7 +279,7 @@
                             <%= entre[i].entre_prix %>$
                         </p>
 
-                        <input type="number" min="0" max="500">
+                        <input type="number" min="0" max="500" id="<%= entre[i].entre_name %>">
 
 
 
@@ -284,15 +319,15 @@
                             <%= Pizza[j].pizza_prix %>£
                         </p>
 
-                        <select name="select ">
-                            <option value="value1 ">Normale</option>
-                            <option value="value2 " selected>Large</option>
+                        <select name="select" id="<%='taille'+Pizza[j].pizza_name%>">
+                            <option value="normale">Normale</option>
+                            <option value="large" selected>Large</option>
                         </select>
-                        <select name="select ">
-                            <option value="value1">Classique</option>
-                            <option value="value2" selected>Fine</option>
+                        <select name="select" id="<%='croute'+Pizza[j].pizza_name%>">
+                            <option value="classique">Classique</option>
+                            <option value="fine" selected>Fine</option>
                         </select>
-                        <input type="number" min="0" max="500">
+                        <input type="number" min="0" max="500" id="<%= Pizza[j].pizza_name %>">
                         <a href="#" data-name="<%=Pizza[j].pizza_name%>" data-price="<%= Pizza[j].pizza_prix %>"
                             class="add-to-cart btn btn-info">Ajouter</a>
                     </div>
@@ -308,7 +343,7 @@
 
             <div class="row ">
                 <% let k; for (k=0; k < boisson.length; k++) { %>
-                    <div class="col-sm-3 bordureJaune">
+                    <div class="col-lg-3 ">
                         <img src="img/coca.png " width="100% ">
                         <h1>
                             <%= boisson[k].b_name %>
@@ -316,42 +351,42 @@
                         <p>
                             <%= boisson[k].b_prix %>£
                         </p>
-                        <input type="number " min="0 " max="500 ">
+                        <input type="number " min="0 " max="500" id="<%=boisson[k].b_name%>">
                         <a href="# " data-name="<%=boisson[k].b_name%>" data-price="
-                                        <%= boisson[k].b_prix %>" class="add-to-cart btn btn-info">Ajouter</a>
+                                            <%= boisson[k].b_prix %>"
+                            class="add-to-cart btn btn-info <%=boisson[k].b_name%>">Ajouter</a>
                     </div>
                     <% } %>
 
+            </div>
+        </div>
+
+        <div id="menu " class="container ">
+
+            <div class="row ">
+                <!--faire le menu -->
+                <div class="row ">
+                    <div class="col-lg-6 bordureJaune ">
+                        <img src="img/menu_pizza_boisson.jpg " id="all" style="max-height: 200px; ">
+                        <h1>Extra Menu </h1>
+                        <p>1 entrée, 1 pizza Médium, 1 boisson</p>
+                        <p>15,00 €</p>
+
+                        <button type="button " class="btn btn-info ">Ajouter</button>
+                    </div>
+                    <div class="col-lg-6 bordureJaune ">
+                        <img src="img/menu_pizza_boisson.jpg " id="all" style="max-height: 200px; ">
+                        <h1>Mega Menu</h1>
+                        <p>2 entrées, 2 pizzas Médium, 1 boisson d’au moins 1l</p>
+                        <button type="button " class="btn btn-info ">Ajouter</button>
+                    </div>
+                    <div class="clearfix " style="margin : 10px "></div>
 
 
-                        <div id="menu " class="container ">
 
-                            <div class="row ">
-                                <!--faire le menu -->
-                                <div class="row ">
-                                    <div class="col-lg-6 bordureJaune ">
-                                        <img src="img/menu_pizza_boisson.jpg " id="all" style="max-height: 200px; ">
-                                        <h1>Extra Menu </h1>
-                                        <p>1 entrée, 1 pizza Médium, 1 boisson</p>
-                                        <p>15,00 €</p>
-
-                                        <button type="button " class="btn btn-info ">Ajouter</button>
-                                    </div>
-                                    <div class="col-lg-6 bordureJaune ">
-                                        <img src="img/menu_pizza_boisson.jpg " id="all" style="max-height: 200px; ">
-                                        <h1>Mega Menu</h1>
-                                        <p>2 entrées, 2 pizzas Médium, 1 boisson d’au moins 1l</p>
-                                        <button type="button " class="btn btn-info ">Ajouter</button>
-                                    </div>
-                                    <div class="clearfix " style="margin : 10px "></div>
+                </div>
 
 
-
-                                </div>
-
-
-                            </div>
-                        </div>
             </div>
         </div>
     </div>

@@ -49,14 +49,40 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     // if
     var elements = document.getElementsByClassName("add-to-cart");
+
     for (var i = 0; i < elements.length; i++) {
         elements[i].addEventListener('click', function () {
             event.preventDefault();
             var name = $(this).data('name');
             var price = Number($(this).data('price'));
+            var amount = document.getElementById(name).value;
 
-            shoppingCart.addItemToCart(name, price, 1);
+
+            if (amount == null) {
+                alert("amount nulle");
+            }
+            //alert(name + " " + price + " " + amount);
+            if (amount == 0) {
+                amount = 1;
+            }
+            if (name.includes("Pizza")) {
+                var taille = document.getElementById('taille' + name).value;
+                var croute = document.getElementById('croute' + name).value;
+                console.log(croute);
+                console.log('croute' + name);
+                console.log(name);
+                if (taille.includes("large")) {
+                    price = Math.round(price * 1.5);
+                }
+                if (croute.includes("fine")) {
+                    price = Math.round(price * 0.9);
+                }
+                shoppingCart.addItemToCart(name, price, amount, taille, croute);
+            } else {
+                shoppingCart.addItemToCart(name, price, amount, null, null);
+            }
             displayCart();
+            console.log('click');
         });
     }
 
@@ -74,14 +100,8 @@ document.addEventListener("DOMContentLoaded", function () {
             var price = Number($(this).data('price'));
 
 
-
-
-
-
             shoppingCart.addItemToCart(name, price, 1);
             displayCart();
-
-
 
         });
 
@@ -121,14 +141,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // -1
     $('.show-cart').on("click", ".minus-item", function (event) {
-        var name = $(this).data('name')
+        var name = $(this).data('name');
         shoppingCart.removeItemFromCart(name);
         displayCart();
         displayCartModal();
     })
     // +1
     $('.show-cart').on("click", ".plus-item", function (event) {
-        var name = $(this).data('name')
+        console.log("plus");
+        var name = $(this).data('name');
         shoppingCart.addItemToCart(name);
         displayCart();
         displayCartModal();
@@ -142,8 +163,6 @@ document.addEventListener("DOMContentLoaded", function () {
         displayCart();
         displayCartModal();
     });
-
-
 
 });
 // DOMContentLoaded 
@@ -200,11 +219,15 @@ var shoppingCart = (function () {
     cart = [];
 
     // Constructor
-    function Item(name, price, count) {
+    function Item(name, price, count, size, croute) {
         this.name = name;
         this.price = price;
         this.count = count;
+        this.size = size;
+        this.croute = croute;
     }
+
+
 
     // Save cart
     function saveCart() {
@@ -227,7 +250,7 @@ var shoppingCart = (function () {
     var obj = {};
 
     // Add to cart
-    obj.addItemToCart = function (name, price, count) {
+    obj.addItemToCart = function (name, price, count, size, croute) {
         emptyCart = false;
         for (var item in cart) {
             if (cart[item].name === name) {
@@ -236,12 +259,10 @@ var shoppingCart = (function () {
                 return;
             }
         }
-        var item = new Item(name, price, count);
+        var item = new Item(name, price, count, size, croute);
         cart.push(item);
         saveCart();
     }
-
-
 
 
     // Set count from item
@@ -251,10 +272,8 @@ var shoppingCart = (function () {
                 cart[i].count = count;
                 break;
             }
-
         }
     };
-
     // Remove item from cart
     obj.removeItemFromCart = function (name) {
         for (var item in cart) {
@@ -368,44 +387,50 @@ function displayCart() {
         output +=
             '<li class="list-group-item d-flex justify-content-between align-items-center">' +
             cartArray[i].name +
-            '<span class="badge badge-primary badge-pill"> ' + cartArray[i].count + ' X ' + cartArray[i].price + ' : ' + cartArray[i].count * cartArray[i].price + ' € </span></li>'
+            '<span class="badge badge-primary badge-pill"> ' + cartArray[i].count + ' </span></li>'
 
     }
     $('.show-cart-drop').html(output);
     $('.total-cart-drop').html(shoppingCart.totalCart());
     $('.total-count-drop').html(shoppingCart.totalCount());
+    $('.total-count').html(shoppingCart.totalCount());
 }
 
 
 
 function displayCartModal() {
     var cartArray = shoppingCart.listCart();
+    console.log(cartArray);
     var output = "";
-    var pizza_cpr = "";
-
     for (var i in cartArray) {
-        output += "<tr>" +
-            "<td>" + cartArray[i].name + "</td>" +
-            "<td>(" + cartArray[i].price + ")</td>" +
-            "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name=" + cartArray[i].name + ">-</button>" +
-            "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>" +
-            "<button class='plus-item btn btn-primary input-group-addon' data-name=" + cartArray[i].name + ">+</button></div></td>" +
-            "<td><button class='delete-item btn btn-danger' data-name=" + cartArray[i].name + ">X</button></td>" +
-            " = " +
-            "</tr>";
-
+        if (cartArray[i].croute == null) {
+            output += "<tr class =\"disCart\">" +
+                "<td>" + cartArray[i].name + "</td>" +
+                "<td>(" + cartArray[i].price + ")</td>" +
+                "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name='" + cartArray[i].name + "'>-</button>" +
+                "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>" +
+                "<button class='plus-item btn btn-primary input-group-addon' data-name='" + cartArray[i].name + "'>+</button></div></td>" +
+                "<td><button class='delete-item btn btn-danger' data-name='" + cartArray[i].name + "'>X</button></td>" +
+                " = " +
+                "<td>" + cartArray[i].total + "</td>" +
+                "</tr>";
+        } else {
+            output += "<tr class =\"disCart\">" +
+                "<td>" + cartArray[i].name + "</td>" +
+                "<td class='croutaille'>" + cartArray[i].croute + " " + cartArray[i].size + "</td>" +
+                "<td>(" + cartArray[i].price + ")</td>" +
+                "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name='" + cartArray[i].name + "'>-</button>" +
+                "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>" +
+                "<button class='plus-item btn btn-primary input-group-addon' data-name='" + cartArray[i].name + "'>+</button></div></td>" +
+                "<td><button class='delete-item btn btn-danger' data-name='" + cartArray[i].name + "'>X</button></td>" +
+                " = " +
+                "<td>" + cartArray[i].total + "</td>" +
+                "</tr>";
+        }
     }
-    for (var i in cmd) {
-        pizza_cpr += "<tr>" + "<td>" + cmd[i].id + ":" + cmd[i].ingred + "</td></tr>" + "<br>";
-    }
-
-
-
-    $('.show-cart').html(pizza_cpr);
-
+    $('.show-cart').html(output);
     $('.total-cart').html(shoppingCart.totalCart());
     $('.total-count').html(shoppingCart.totalCount());
-
 }
 
 // Delete item button
