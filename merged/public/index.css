@@ -8,16 +8,6 @@ body {
     background-color: #0c0a0a;
 }
 
-.scrolled-down {
-    transform: translateY(-100%);
-    transition: all 0.3s ease-in-out;
-}
-
-.scrolled-up {
-    transform: translateY(0);
-    transition: all 0.3s ease-in-out;
-}
-
 .autohide {
     position: fixed;
     top: 0;
@@ -25,13 +15,6 @@ body {
     left: 0;
     width: 100%;
     z-index: 9999;
-}
-
-.carouselMenus {
-    width: 100px;
-    height: 600px;
-    margin: 0 auto;
-    margin-top: 200px;
 }
 
 .carousel-item img {
@@ -57,16 +40,6 @@ h6 {
     text-indent: 50px;
     text-align: justify;
     letter-spacing: 3px;
-}
-
-hr {
-    max-width: 400px;
-    border-color: #e1e50a;
-}
-
-.brand,
-.address-bar {
-    display: none;
 }
 
 .navbar-brand {
@@ -144,16 +117,13 @@ hr {
         line-height: normal;
         color: #fff;
     }
-
     .top-divider {
         margin-top: 0;
     }
-
     .img-left {
         float: right;
         margin-right: 25px;
     }
-
     .address-bar {
         display: inherit;
         margin: 0;
@@ -166,34 +136,27 @@ hr {
         letter-spacing: 3px;
         color: #fff;
     }
-
     .navbar {
         border-radius: 0;
     }
-
     .navbar-header {
         display: none;
     }
-
     .navbar {
         min-height: 0;
     }
-
     .navbar-default {
         border: none;
         background: #fff;
         background: rgb(165, 16, 16);
     }
-
     .nav>li>a {
         padding: 35px;
         color: #e1e50a;
     }
-
     .navbar-nav>li>a {
         line-height: normal;
     }
-
     .navbar-nav {
         /*display: table;*/
         float: none;
@@ -304,16 +267,6 @@ label {
     color: #f3efef
 }
 
-.boxs {
-    width: 120px;
-    height: 30px;
-    border: 1px solid #999;
-    font-size: 18px;
-    color: #bbc91c;
-    background-color: #eee;
-    border-radius: 5px;
-}
-
 
 /************************/
 
@@ -378,10 +331,6 @@ p {
     font-size: medium;
 }
 
-#total {
-    color: #fff;
-}
-
 .container_fluid {
     border: 3px solid;
 }
@@ -429,10 +378,12 @@ label {
     font-size: small;
 }
 
-/*
-.modal.fade:not(.in).right .modal-dialog {
-    -webkit-transform: translate3d(70%, 0, 0);
-    transform: translate3d(70%, 0, 0);
+#menu1,
+#menu2,
+#menu3 {
+    flex-wrap: wrap;
 }
-DECALE LES MODALS VERS LA DROITE
-*/
+
+.modal-content {
+    margin-top: 50px;
+}

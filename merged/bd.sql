@@ -15,7 +15,10 @@ drop table if exists sauces cascade;
 drop table if exists livreur cascade; 
 drop table if exists fromages cascade; 
 drop table if exists legumes cascade; 
-drop table if exists pizza_c cascade; 
+drop table if exists pizza_cp cascade; 
+drop table if exists commande cascade; 
+
+
 
 
 
@@ -167,25 +170,22 @@ create table livreur (
 
 insert into livreur values (1, 'jihed','jihed@gamil.com','jiji123');
 
-/*
-creat table commande ( 
-    num_cmd varchar(20)  primary key
-    
-    is_delivred Number(1) , 
-    CONSTRAINT ck_testbool_ischk CHECK (is_delivred IN (1,0))
+
+create table commande ( 
+    name_cmd varchar(10) ,
+    is_delivred varchar(3) ,
+    adresse varchar(20) ,
+    cmd_info varchar(100)
 
 
-)*/
-create table pizza_c (
-    id integer primary key,
-    vd_id integer not null , 
-    lg_id integer not null, 
-    fg_id integer not null,
-    sc_id integer not null, 
-    foreign key (vd_id) references  viandes(v_id), 
-    foreign key (lg_id) references legumes(leg_id),
-    foreign key (sc_id) references sauces (sc_id),
-    foreign key (fg_id) references fromages(f_id)
-); 
+);
+insert into commande values ('john','OUI','avenue XXX','pizza neputne ,nuggets ');
 
-insert into pizza_c values (1,1,1,1,1);
+create table pizza_cp (
+    id integer primary key , 
+    ingred text[]
+
+);
+
+
+insert into pizza_cp values (1 ,ARRAY['A','N']);

@@ -1,14 +1,13 @@
 const express = require('express');
 const { Pool } = require('pg');
 const bodyParser = require("body-parser");
-
 const router = express.Router();
 
 const pool = new Pool();
 const config = require("dotenv").config()
 const { acceptsEncodings } = require('express/lib/request');
 let app = express();
-const port = 8888;
+const port = 3030;
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
@@ -27,8 +26,11 @@ let legumes;
 let sauces;
 let fromages;
 let pizza_composee;
+let commande;
+let sc;
 
-app.get('/', async function (req, res) {
+
+app.get('/', async function(req, res) {
 
     const client = await pool.connect();
     try {
@@ -37,15 +39,20 @@ app.get('/', async function (req, res) {
         const entre_text = 'select * from Entre'
         const pizza_text = 'select * from Pizza'
         const boisson_text = 'select * from boisson'
+        const sauces_text = 'select * from sauces'
+
 
         const result1 = await client.query(entre_text);
         const result2 = await client.query(pizza_text);
         const result3 = await client.query(boisson_text);
+        const result10 = await client.query(sauces_text);
+
 
         let all = {
             entre: result1.rows,
             Pizza: result2.rows,
             boisson: result3.rows,
+            sc: result10.rows
 
 
         }
@@ -68,7 +75,7 @@ app.get('/', async function (req, res) {
 
 
 
-app.get('/compose', async function (req, res) {
+app.get('/compose', async function(req, res) {
 
     const client = await pool.connect();
     try {
@@ -85,8 +92,7 @@ app.get('/compose', async function (req, res) {
         const result6 = await client.query(sauces_text);
         const result7 = await client.query(fromage_text);
 
-        const pc = 'select * from pizza_c';
-        const r = await client.query(pc);
+
 
 
         let all = {
@@ -95,7 +101,6 @@ app.get('/compose', async function (req, res) {
             legumes: result5.rows,
             sauces: result6.rows,
             fromages: result7.rows,
-            pizza_composee: r
 
 
         }
@@ -119,19 +124,51 @@ app.get('/compose', async function (req, res) {
 
 
 
-app.get('/livraison', async function (req, res, next) {
+
+app.get('/livraison', async function(req, res, next) {
     res.render('livraison.ejs', '');
 });
 
 
 
-app.get('/compose', async function (req, res, next) {
+app.get('/compose', async function(req, res, next) {
     res.render('compose.ejs', '');
+
 });
 
 
 
-app.post('/livraison', async function (req, res) {
+
+
+var name;
+var addr;
+var is = "NON";
+var cmd_info = "";
+var info = [];
+
+app.post("/", (req, res) => {
+    res.json({
+        name: req.body.name,
+        addr: req.body.addr,
+        cmd_info: req.body.cmd_info
+    });
+    info.push(req.body.name);
+    info.push(is);
+    info.push(req.body.addr);
+    info.push(req.body.cmd_info);
+
+
+
+
+});
+
+
+
+
+
+
+
+app.post('/livraison', async function(req, res) {
 
     const L_name = req.body.username;
     const L_pwd = req.body.pwdl;
@@ -140,27 +177,39 @@ app.post('/livraison', async function (req, res) {
     const S_mail = req.body.sign_mail;
     const S_pwd = req.body.sign_pwd;
     const S_cpwd = req.body.sign_pwd1;
-    const i = 2;
+
+
+
 
 
     const liv = await pool.connect();
     try {
         await liv.query('BEGIN');
-        var sql = 'SELECT * FROM livreur WHERE nom =$1 AND pwd =$2';
-        // var sign = 'insert into livreur (id,nom,mail,pwd) values ($1,$2,$3,$4)  ';
-        const con = await liv.query(sql, [L_name, L_pwd]);
-        //const si = await liv.query(sign, [i, S_name, S_mail, S_pwd]);
+        var sql1 = 'SELECT * FROM livreur WHERE nom =$1 AND pwd =$2';
+        const commandes_text = 'select * from commande'
+        var sql2 = 'INSERT INTO  commande(name_cmd,is_delivred,adresse,cmd_info) VALUES ($1,$2,$3,$4)';
 
+        // var sign = 'insert into livreur (id,nom,mail,pwd) values ($1,$2,$3,$4)  ';
+        const con = await liv.query(sql1, [L_name, L_pwd]);
+        const con1 = await liv.query(sql2, [info[0], info[1], info[2], info[3]]);
+        info = []
+
+        const commande = await liv.query(commandes_text);
+
+        let all = {
+                commande: commande.rows
+            }
+            //const si = await liv.query(sign, [i, S_name, S_mail, S_pwd]);
 
 
         // var test = "INSERT INTO livreur(id,nom,mail, pwd) VALUES (2,'jiji','jiji@gmail.com', 'azerty4')";
 
 
 
-        if (con.rows.length == 0) {
+        if (con.rows.length == 0 || con1.rows.length) {
             res.render('livraison.ejs', { root: 'root-liv' });
         } else {
-            res.render('commande.ejs', { root: 'root-liv' });
+            res.render('commande.ejs', all);
 
         }
     } catch (e) {
@@ -171,12 +220,23 @@ app.post('/livraison', async function (req, res) {
     }
 
 });
+/** 
+app.post('/compose', async function(req, res) {
+    $('#cpm').click(async function() {
+        const liv = await pool.connect();
+
+        var c = 'insert into pizza_cp (id,ingred) values ($1,$2)';
+        const con = await liv.query(c, [0, cmd]);
+        console.log(cmd);
+
+    });
+
+
+});**/
 
 app.listen(port, '127.0.0.1', () => {
     console.log(`App running on port ${port}.`)
 })
-
-
 
 
 /* configuration*/
@@ -218,4 +278,5 @@ app.listen(port, '127.0.0.1', () => {
 
 });
 module.exports = router;
+
 */

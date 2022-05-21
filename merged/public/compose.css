@@ -8,16 +8,6 @@ body {
     background-color: #0c0a0a;
 }
 
-.scrolled-down {
-    transform: translateY(-100%);
-    transition: all 0.3s ease-in-out;
-}
-
-.scrolled-up {
-    transform: translateY(0);
-    transition: all 0.3s ease-in-out;
-}
-
 .autohide {
     position: fixed;
     top: 0;
@@ -25,22 +15,6 @@ body {
     left: 0;
     width: 100%;
     z-index: 9999;
-}
-
-.carouselMenus {
-    width: 700px;
-    height: 600px;
-    margin: 0 auto;
-    margin-top: 120px;
-}
-
-.carousel-item img {
-    width: auto;
-    height: auto;
-}
-
-.cartdiv {
-    min-width: 400px;
 }
 
 h1,
@@ -57,16 +31,6 @@ h6 {
     letter-spacing: 3px;
 }
 
-hr {
-    max-width: 400px;
-    border-color: #e1e50a;
-}
-
-.brand,
-.address-bar {
-    display: none;
-}
-
 .navbar-brand {
     text-transform: uppercase;
     font-weight: 900;
@@ -81,52 +45,6 @@ hr {
 
 .dropdown-menu {
     opacity: 0.9;
-}
-
-.img {
-    min-width: 500%;
-}
-
-#all {
-    width: 200%;
-}
-
-.brand-before,
-.brand-name {
-    text-transform: capitalize;
-}
-
-.brand-before {
-    margin: 15px 0;
-}
-
-.brand-name {
-    margin: 0;
-    font-size: 4em;
-}
-
-.tagline-divider {
-    margin: 15px auto 3px;
-    max-width: 250px;
-    border-color: #999999;
-}
-
-.intro-text {
-    text-transform: uppercase;
-    font-size: 1.25em;
-    font-weight: 400;
-    letter-spacing: 1px;
-}
-
-.img-border {
-    float: none;
-    margin: 0 auto 0;
-    border: #999999 solid 1px;
-}
-
-.img-left {
-    float: none;
-    margin: 0 auto 0;
 }
 
 @media screen and (min-width:768px) {
@@ -289,17 +207,7 @@ h2,
 label {
     font-weight: bold;
     font-size: 35px;
-    color: #999999
-}
-
-.boxs {
-    width: 120px;
-    height: 30px;
-    border: 1px solid #999;
-    font-size: 18px;
-    color: #bbc91c;
-    background-color: #eee;
-    border-radius: 5px;
+    color: #f3efef
 }
 
 
@@ -314,7 +222,7 @@ label {
 .text-content div {
     display: flex;
     height: 150px;
-    width: 150px;
+    width: 200px;
     cursor: pointer;
     overflow: hidden;
     flex-wrap: wrap;
@@ -337,8 +245,7 @@ label {
     width: 100%;
 }
 
-#select1,
-#select2 {
+#select {
     color: rgb(229, 233, 9);
     background-color: rgb(15, 14, 14);
     margin-left: 150px;
@@ -353,7 +260,7 @@ label {
 /*****/
 
 .bg-warning {
-    background-color: #f5ff07!important;
+    background-color: #f5ff07 !important;
 }
 
 .btn-danger {
@@ -365,4 +272,51 @@ label {
 p {
     color: #fff;
     font-size: medium;
+}
+
+.container_fluid {
+    border: 3px solid;
+}
+
+.bordureJaune {
+    border: 3px solid yellow;
+    padding: 10px;
+}
+
+#cm {
+    margin-left: 900px;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.wrap {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#cpm {
+    background-color: #fff000;
+    border-radius: 12px;
+    color: #000;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px 15px;
+    text-align: center;
+    transition: 200ms;
+    width: 100%;
+    box-sizing: border-box;
+    border: 0;
+    font-size: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+label {
+    font-size: small;
 }

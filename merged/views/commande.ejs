@@ -74,35 +74,27 @@
                 <span class="cell primary">Numéro</span>
                 <span class="cell">Adresse</span>
                 <span class="cell">livré(oui/non)</span>
+                <span class="cell">Info</span>
+
 
             </div>
-            <div class="row">
-                <input type="radio" name="expand">
-                <span class="cell primary" data-label="Vehicle">AB45</span>
-                <span class="cell" data-label="Exterior">AAAAAA</span>
-                <span class="cell" data-label="Interior">OUI</span>
+            <% let i; for (i=0; i < commande.length; i++) { %>
 
-            </div>
-            <div class="row">
-                <input type="radio" name="expand">
-                <span class="cell primary" data-label="Vehicle">FG75</span>
-                <span class="cell" data-label="Exterior">BBBBBBB</span>
-                <span class="cell" data-label="Interior">NON</span>
-            </div>
-            <div class="row">
-                <input type="radio" name="expand">
-                <span class="cell primary" data-label="Vehicle">45G6</span>
-                <span class="cell" data-label="Exterior">CCCCCC</span>
-                <span class="cell" data-label="Interior">NON</span>
+                <div class="row">
+                    <input type="radio" name="expand">
+                    <span class="cell primary" data-label="cmd"><%= commande[i].name_cmd %> </span>
+                    <span class="cell" data-label="Exterior"><%= commande[i].is_delivred %></span>
+                    <span class="cell" data-label="Interior"><%= commande[i].adresse %></span>
+                    <span class="cell" data-label="Interior"><%= commande[i].cmd_info %></span>
 
-            </div>
+                </div>
+                <% } %>
+
 
 
         </div>
 
-        <style>
 
-        </style>
 
 
 
