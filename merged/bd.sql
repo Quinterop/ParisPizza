@@ -36,8 +36,8 @@ link_img varchar(50)
 );
 insert into Entre values (1, 'Salade César',7,'img/salade.jpg');
 insert into Entre values (2, 'Croque',3,'img/bread.png');
-insert into Entre values (3, 'chicken Wings',3,'img/wings.jpg');
-insert into Entre values (4, 'Omlette',3,'img/omlette.jpg'); 
+insert into Entre values (3, 'Chicken Wings',3,'img/wings.jpg');
+insert into Entre values (4, 'Omelette',3,'img/omlette.jpg'); 
 
 
 /******************************************************************************************************************/
@@ -50,13 +50,13 @@ link_img varchar(50)
 );
 
                                     /* il faut changer les descriptions */
-insert into Pizza values (1, 'Pizza Orientale',11,'Raclette de Savoie, potatoes, bacon, oignons sur une base de crème fraîche légère et mozzarella.
+insert into Pizza values (1, 'Pizza Orientale',11,'Sauce tomate,mozzarella,Merguez,Poivron,Harissa
 ','img/slide1.jpg');
-insert into Pizza values (2, 'Pizza Hawaeinne',11,'Raclette de Savoie, potatoes, bacon, oignons sur une base de crème fraîche légère et mozzarella.
+insert into Pizza values (2, 'Pizza Hawaienne',11,'Sauce tomate,roquefort,Piment Rouge,Tenders
 ','img/slide1.jpg');
-insert into Pizza values (3, 'Pizza Parisienne',11,'Raclette de Savoie, potatoes, bacon, oignons sur une base de crème fraîche légère et mozzarella.
+insert into Pizza values (3, 'Pizza Parisienne',11,'Crème fraiche,burrata,Champignons,Basilic,Piment Rouge
 ','img/slide1.jpg');
-insert into Pizza values (4, 'Pizza Curry',11,'Raclette de Savoie, potatoes, bacon, oignons sur une base de crème fraîche légère et mozzarella.
+insert into Pizza values (4, 'Pizza Curry',11,'Sauce curry,mozzarella,Poulet,Poivron,champignons
 ','img/slide1.jpg');
 
 
@@ -88,7 +88,7 @@ create table viandes(
 
 
 
-insert into viandes values (1, 'Nugguets',1,'img/nuggets.jpg');
+insert into viandes values (1, 'Nuggets',1,'img/nuggets.jpg');
 insert into viandes values (2, 'Poulet',1,'img/poulet.jpg');
 insert into viandes values (3, 'Tenders',1,'img/poulet.jpg');
 insert into viandes  values (4, 'Merguez',1,'img/merguez.jpg');
@@ -107,7 +107,7 @@ create table legumes(
 insert into legumes values (1, 'Basilic',1,'img/basilic.jpg');
 insert into legumes values (2, 'Poivron',1,'img/poivrons.jpg');
 insert into legumes values (3, 'Piment Rouge',1,'img/piment.jpg');
-insert into legumes  values (4, 'Champignons',1,'img/champ.jpg');
+insert into legumes  values (4, 'champignons',1,'img/champ.jpg');
 
 
 create table sauces(
@@ -120,13 +120,15 @@ create table sauces(
 
 
 
-insert into sauces values (1, 'Harrissa',1,'img/harissa.jpg');
-insert into sauces values (2, 'Curry',1,'img/curry.jpg');
+insert into sauces values (1, 'Harissa',1,'img/harissa.jpg');
+insert into sauces values (2, 'Sauce curry',1,'img/curry.jpg');
 insert into sauces values (3, 'Mayonaise',1,'img/mayo.jpg');
 insert into sauces  values (4, 'Ketchup',1,'img/ketchup.jpg');
 insert into sauces  values (5, 'Moutard',1,'img/moutard.jpg');
 insert into sauces  values (6, 'Samourai',1,'img/samourai.jpg');
 insert into sauces  values (7, 'Chinoise',1,'img/chinoise.jpg');
+insert into sauces  values (8, 'Sauce tomate',1,'img/tomate.jpg');
+insert into sauces  values (9, 'Crème fraiche',1,'img/poulet.jpg');
 
 
 create table fromages(

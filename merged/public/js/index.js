@@ -3,7 +3,8 @@ var autoScrolledTimer = 0;
 var emptyCart = true;
 var cmd = [];
 var pizza_cpr = "";
-
+var SAVED = "";
+var ingredList = [];
 
 //$('body').scrollspy({ target: '#navspied' }); TODO FIX
 
@@ -16,7 +17,7 @@ function clickScroll(n) {
 
 function carouselClick(c) {
     if (c != null) {
-        //alert(c);
+        ////alert(c);
         mod = document.getElementById(c);
 
         let myModal = new bootstrap.Modal(document.getElementById(c), {});
@@ -28,7 +29,40 @@ function carouselClick(c) {
 
 
 document.addEventListener("DOMContentLoaded", function () {
+    var preIngreds = null;
     el_autohide = document.querySelector('.autohide');
+    if (window.location.pathname.includes('compose')) {
+        ////alert('compose');
+        var saved = shoppingCart.getCustomPizza();
+        console.log(saved);
+        SAVED = saved;
+        //console.log(SAVED);
+
+        var defPizzArr = SAVED.split(',');
+        for (var i = 0; i < defPizzArr.length; i++) {
+            console.log(defPizzArr[i]);
+            var ing = document.getElementById(defPizzArr[i]);
+            if (ing != null) {
+                console.log(ing.id);
+                ing.value = 1;
+            } else {
+                console.log(ing);
+            }
+        }
+        //when any input changes, update the total
+        document.querySelectorAll('.ingred').forEach(function (el) {
+            el.addEventListener('change', function () {
+                updateTotal();
+                //console.log(el.id);
+            });
+        });
+
+        updateTotal();
+    }
+
+
+
+
 
     navbar_height = document.querySelector('.navbar').offsetHeight;
     document.body.style.paddingTop = navbar_height + 'px';
@@ -60,9 +94,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             if (amount == null) {
-                alert("amount nulle");
+                //alert("amount nulle");
             }
-            //alert(name + " " + price + " " + amount);
+            ////alert(name + " " + price + " " + amount);
             if (amount == 0) {
                 amount = 1;
             }
@@ -85,6 +119,18 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             displayCart();
             console.log('click');
+        });
+    }
+
+    var customElements = document.getElementsByClassName("addCustom");
+    for (var i = 0; i < customElements.length; i++) {
+        customElements[i].addEventListener('click', function () {
+            var content = $(this).data('content');
+            shoppingCart.defPizz = content;
+            //console.log(shoppingCart.defPizz);
+            shoppingCart.saveCart(content);
+            console.log(content);
+            console.log(shoppingCart.defPizz);
         });
     }
 
@@ -125,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var elements_cp = document.getElementsByClassName("add-to-cart_cp");
     for (var i = 0; i < elements_cp.length; i++) {
         elements_cp[i].addEventListener('click', function () {
-            document.getElementById("cpm").disabled = false;
+
 
             var name = $(this).data('name');
 
@@ -134,15 +180,22 @@ document.addEventListener("DOMContentLoaded", function () {
         })
     }
     $('#cpm').click(function () {
-        var m = new pizza_cp(id, ingred);
+        // alert('click');
+        //var m = new pizza_cp(id, ingred);
+        //var p = new Item
+        //cmd.push(m);
+        //id++;
+        var elems = ingredList;
+        //elems.unshift(document.querySelector('input[name="sauce"]:checked').value);
+        console.log(elems);
 
-        cmd.push(m);
-        id++;
-
-        ingred = [];
-        console.log(cmd);
-
-
+        var price = updateTotal();
+        //var size = document.getElementById('taille' + name).value;
+        var taille = document.querySelector('input[name="taille"]:checked').value
+        var pate = document.querySelector('input[name="pate"]:checked').value
+        //GET PATE
+        //var item = new Item("Pizza Custom", price, 1, taille, pate, null);
+        shoppingCart.addItemToCart("Pizza Custom", price, 1, taille, pate, null, elems);
     });
 
 
@@ -178,19 +231,58 @@ document.addEventListener("DOMContentLoaded", function () {
         displayCart();
         displayCartModal();
     });
+    //add listeners to elements with class "addmenu"
+    $('.addmenu').click(function () {
+
+        var elements = [];
+        var nom = document.getElementById("menuNom").textContent;
+        var prix = document.getElementById("menuPrix").textContent;
+        var pizz = document.getElementById("menuPizz");
+        var boisson = document.getElementById("menuBoisson");
+        var entree = document.getElementById("menuEntree");
+        //elements.push(pizz.value);
+        //elements.push(boisson.value);
+        //elements.push(entree.value);
+        console.log(nom);
+        //remove last char of prix
+        prix = prix.substring(0, prix.length - 1);
+        console.log(prix);
+        console.log(elements);
+        shoppingCart.addItemToCart(nom, prix, 1, null, null, elements);
+    });
+
     $('#addmenu').click(function () {
+
         var elements = [];
         var nom = document.getElementById("menuNom").textContent;
         var prix = document.getElementById("menuPrix").textContent;
         elements.push(document.getElementById("menuPizz").value);
         elements.push(document.getElementById("menuBoisson").value);
         elements.push(document.getElementById("menuEntree").value);
-        // console.log(nom);
-        // console.log(prix);
-        //console.log(elements);
+        console.log(nom);
+        console.log(prix);
+        console.log(elements);
         shoppingCart.addItemToCart(nom, prix, 1, null, null, elements);
     });
 
+
+    $('.minus').click(function () {
+        var $input = $(this).parent().find('input');
+        var count = parseInt($input.val()) - 1;
+        count = count < 1 ? 1 : count;
+        $input.val(count);
+        $input.change();
+        return false;
+    });
+    $('.plus').click(function () {
+        var $input = $(this).parent().find('input');
+        $input.val(parseInt($input.val()) + 1);
+        $input.change();
+        return false;
+    });
+
+
+    displayCart();
 });
 // DOMContentLoaded 
 
@@ -207,6 +299,36 @@ $(document).ready(function () {
 function onclick(e) {
     entree.set(e,);
 }
+
+function updateTotal() {
+    allIngreds = document.getElementsByClassName('ingred');
+
+    totalPrice = 8;
+    if (document.querySelector('input[name="taille"]:checked').value == "Large") {
+        totalPrice += 2;
+    }
+    if (document.querySelector('input[name="pate"]:checked').value == "Fine") {
+        totalPrice -= 1;
+    }
+    for (var i = 0; i < allIngreds.length; i++) {
+        nbingreds = allIngreds[i].value;
+        if (allIngreds[i].value > 0) {
+            ingredList.push(allIngreds[i].value + " " + allIngreds[i].id);
+            //TODO REMOVE PREVIOUS ENTRY IN LIST
+            totalPrice += Number(allIngreds[i].dataset.price) * allIngreds[i].value;
+            //console.log(allIngreds[i].dataset.price);
+            console.log(allIngreds[i].id + " " + allIngreds[i].value + "x" + Number(allIngreds[i].dataset.price));
+            // Number($(this).data('price'));
+        }
+
+    }
+    console.log("total = " + totalPrice);
+    document.getElementById('total').innerHTML = totalPrice;
+    return totalPrice;
+
+}
+
+
 
 
 /*
@@ -244,23 +366,37 @@ var shoppingCart = (function () {
     // =============================
     cart = [];
 
+    defPizz = null;
+
     // Constructor
-    function Item(name, price, count, size, pate, menu) {
+    function Item(name, price, count, size, pate, menu, elems) {
         this.name = name;
         this.price = price;
         this.count = count;
         this.size = size;
         this.pate = pate;
         this.menu = menu;
-        console.log(this.menu);
-        console.log(this.name);
+        this.elems = elems;
     }
+
+
 
 
 
     // Save cart
     function saveCart() {
         sessionStorage.setItem('shoppingCart', JSON.stringify(cart));
+    }
+
+    function setCustomPizza(p) {
+        console.log("setting custom" + p)
+        defPizz = p;
+        saveCustomPizza();
+    }
+
+    function saveCustomPizza() {
+        console.log("saved :" + defPizz);
+        sessionStorage.setItem('customPizza', JSON.stringify(defPizz));
     }
 
     // Load cart
@@ -272,6 +408,17 @@ var shoppingCart = (function () {
         loadCart();
     }
 
+    // Load custom pizza
+    function loadCustomPizza() {
+        console.log("loading custom");
+        defPizz = JSON.parse(sessionStorage.getItem('customPizza'));
+        //alert(defPizz + "hahaha");
+        return JSON.parse(sessionStorage.getItem('customPizza'));
+    }
+    if (sessionStorage.getItem("customPizza") != null) {
+        loadCustomPizza();
+    }
+
 
     // =============================
     // Public methods and propeties
@@ -279,7 +426,7 @@ var shoppingCart = (function () {
     var obj = {};
 
     // Add to cart
-    obj.addItemToCart = function (name, price, count, size, pate, menu) {
+    obj.addItemToCart = function (name, price, count, size, pate, menu, elems) {
         emptyCart = false;
         for (var item in cart) {
             if (cart[item].name === name) {
@@ -288,7 +435,7 @@ var shoppingCart = (function () {
                 return;
             }
         }
-        var item = new Item(name, price, count, size, pate, menu);
+        var item = new Item(name, price, count, size, pate, menu, elems);
         cart.push(item);
         //push autre chose
         saveCart();
@@ -374,6 +521,17 @@ var shoppingCart = (function () {
         return cartCopy;
     }
 
+    obj.saveCart = function (p) {
+        setCustomPizza(p);
+
+        saveCustomPizza();
+    }
+
+    obj.getCustomPizza = function () {
+        return loadCustomPizza();
+        //return defPizz;
+    }
+
     // cart : Array
     // Item : Object/Class
     // addItemToCart : Function
@@ -431,13 +589,24 @@ function displayCartModal() {
     var cartArray = shoppingCart.listCart();
     console.log(cartArray);
     var output = "";
-    var menuContent = "";
+
+
 
     for (var i in cartArray) {
+        var elemss = "";
+        var menuContent = "";
         for (var j in cartArray[i].menu) {
             menuContent += cartArray[i].menu[j] + ", ";
         }
-        console.log(cartArray[i].menu);
+        //group elems elements with same name
+
+        //put all elems in one string
+        for (var k in cartArray[i].elems) {
+            elemss += cartArray[i].elems[k] + ", ";
+        }
+        console.log(elemss)
+
+        //console.log(cartArray[i].menu);
         if (cartArray[i].menu != null) {
             output += "<tr class =\"disCart\">" +
                 "<td>" + cartArray[i].name + "+</td>" +
@@ -463,6 +632,22 @@ function displayCartModal() {
                 "<td>" + cartArray[i].total + "</td>" +
                 "</tr>";
         } else {
+            /*
+            if (cartArray[i].name.includes('Custom')) {
+                output += "<tr class =\"disCart\">" +
+                    "<td>" + cartArray[i].name + "</td>" +
+                    "<td class='croutaille'>" + cartArray[i].pate + ", " + cartArray[i].size + "</td>" +
+                    "<td>(" + elemss + ")</td>" +
+                    "<td>(" + cartArray[i].price + "£)</td>" +
+                    "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name='" + cartArray[i].name + "'>-</button>" +
+                    "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>" +
+                    "<button class='plus-item btn btn-primary input-group-addon' data-name='" + cartArray[i].name + "'>+</button></div></td>" +
+                    "<td><button class='delete-item btn btn-danger' data-name='" + cartArray[i].name + "'>X</button></td>" +
+                    " = " +
+                    "<td>" + cartArray[i].total + "</td>" +
+                    "</tr>";
+            } else
+            */
             output += "<tr class =\"disCart\">" +
                 "<td>" + cartArray[i].name + "</td>" +
                 "<td class='croutaille'>" + cartArray[i].pate + ", " + cartArray[i].size + "</td>" +
@@ -600,3 +785,11 @@ $(document).ready(function () {
             });
     });
 });
+
+
+
+function defaultPizza(p) {
+    shoppingCart.setCustomPizza(p);
+    //defPizza = p;
+    //alert(p);
+}

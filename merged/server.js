@@ -30,7 +30,7 @@ let commande;
 let sc;
 
 
-app.get('/', async function(req, res) {
+app.get('/', async function (req, res) {
 
     const client = await pool.connect();
     try {
@@ -75,7 +75,7 @@ app.get('/', async function(req, res) {
 
 
 
-app.get('/compose', async function(req, res) {
+app.get('/compose', async function (req, res) {
 
     const client = await pool.connect();
     try {
@@ -125,13 +125,13 @@ app.get('/compose', async function(req, res) {
 
 
 
-app.get('/livraison', async function(req, res, next) {
+app.get('/livraison', async function (req, res, next) {
     res.render('livraison.ejs', '');
 });
 
 
 
-app.get('/compose', async function(req, res, next) {
+app.get('/compose', async function (req, res, next) {
     res.render('compose.ejs', '');
 
 });
@@ -168,7 +168,7 @@ app.post("/", (req, res) => {
 
 
 
-app.post('/livraison', async function(req, res) {
+app.post('/livraison', async function (req, res) {
 
     const L_name = req.body.username;
     const L_pwd = req.body.pwdl;
@@ -197,9 +197,9 @@ app.post('/livraison', async function(req, res) {
         const commande = await liv.query(commandes_text);
 
         let all = {
-                commande: commande.rows
-            }
-            //const si = await liv.query(sign, [i, S_name, S_mail, S_pwd]);
+            commande: commande.rows
+        }
+        //const si = await liv.query(sign, [i, S_name, S_mail, S_pwd]);
 
 
         // var test = "INSERT INTO livreur(id,nom,mail, pwd) VALUES (2,'jiji','jiji@gmail.com', 'azerty4')";

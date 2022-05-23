@@ -104,22 +104,23 @@
         <div class="carousel-inner" onclick="carouselClick()">
 
             <div class="carousel-item active" onclick="carouselClick('menu1')">
-                <img src="img/solo.jpg" class="d-block img-fluid">
+                <img src="img/menuFull.jpg" class="d-block img-fluid">
                 <div class="carousel-caption d-none d-md-block">
+                    <h3>Pour les grosses faims</h3>
                 </div>
             </div>
 
             <div class="carousel-item" onclick="carouselClick('menu2')">
-                <img src="img/duo.jpg" class="d-block img-fluid">
+                <img src="img/menuDuo.jpg" class="d-block img-fluid">
                 <div class="carousel-caption d-none d-md-block">
-
+                    <h3>A partager</h3>
                 </div>
             </div>
 
             <div class="carousel-item" onclick="carouselClick('menu3')">
-                <img src="img/duo.jpg" class="d-block img-fluid">
+                <img src="img/menuClasico.jpg" class="d-block img-fluid">
                 <div class="carousel-caption d-none d-md-block">
-
+                    <h3>Comme d'hab</h3>
                 </div>
 
             </div>
@@ -169,13 +170,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Menu Full</h5>
+                    <h5 class="modal-title" id="menuPrix">15£</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h3>1 pizza,1 entrée,1 boisson</h3>
-                    <label for="pizza">Choisir pizza</label>
+                    <h5>choisir Pizza</h5>
+
                     <select name="pizza">
                         <% for(var h=0;h<Pizza.length;h++){ %>
 
@@ -186,7 +188,7 @@
                             <% } %>
                     </select>
 
-                    <label for="entre">Choisir entre</label>
+                    <h5>Choisir entrée</h5>
                     <select name="entre">
                         <% for(var h=0;h<entre.length;h++){ %>
 
@@ -197,7 +199,7 @@
                             <% } %>
                     </select>
 
-                    <label for="pizza">Choisir pizza</label>
+                    <h5>Choisir boisson</h5>
                     <select name="pizza">
                         <% for(var h=0;h<boisson.length;h++){ %>
 
@@ -217,19 +219,19 @@
     </div>
 
 
-    <div id="menu3" class="modal fade" tabindex="-1" role="dialog">
+    <div id="menu2" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="menuNom">Menu Full</h5>
-                    <h5 class="modal-title" id="menuPrix">20</h5>
+                    <h5 class="modal-title" id="menuNom">Menu Duo</h5>
+                    <h5 class="modal-title" id="menuPrix">17£</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h3>1 pizza large, 1 entrée,1 boisson</h3>
-                    <label for="pizza">Choisir pizza</label>
+                    <h5>Choisir vos pizzas</h5>
+
                     <select name="pizza" id="menuPizz">
                         <% for(var h=0;h<Pizza.length;h++){ %>
 
@@ -240,18 +242,73 @@
                             <% } %>
                     </select>
 
-                    <label for="entre">Choisir entre</label>
-                    <select name="entre" id="menuEntree">
-                        <% for(var h=0;h<entre.length;h++){ %>
 
-                            <option value="<%= entre[h].entre_name %>">
-                                <%= entre[h].entre_name %>
+
+                    <select name="pizza2" id="menuPizz2">
+                        <% for(var h=0;h<Pizza.length;h++){ %>
+
+                            <option value="<%= Pizza[h].pizza_name %>">
+                                <%= Pizza[h].pizza_name %>
                             </option>
 
                             <% } %>
                     </select>
 
-                    <label for="pizza">Choisir boisson</label>
+                    <h5>Choisir vos boissons</h5>
+
+                    <select name="boisson" id="menuBoisson">
+                        <% for(var h=0;h<boisson.length;h++){ %>
+
+                            <option value="<%= boisson[h].b_name %>">
+                                <%= boisson[h].b_name %>
+                            </option>
+
+                            <% } %>
+                    </select>
+
+                    <select name="boisson2" id="menuBoisson2">
+                        <% for(var h=0;h<boisson.length;h++){ %>
+
+                            <option value="<%= boisson[h].b_name %>">
+                                <%= boisson[h].b_name %>
+                            </option>
+
+                            <% } %>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">fermer</button>
+                    <button type="button" class="btn btn-primary addmenu" data-dismiss="modal"
+                        id="addmenu">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="menu3" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="menuNom">Menu Clasico</h5>
+                    <h5 class="modal-title" id="menuPrix">10£</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <h5>Choisir pizza</h5>
+                    <select name="pizza" id="menuPizz">
+                        <% for(var h=0;h<Pizza.length;h++){ %>
+
+                            <option value="<%= Pizza[h].pizza_name %>">
+                                <%= Pizza[h].pizza_name %>
+                            </option>
+
+                            <% } %>
+                    </select>
+
+                    <h5>Choisir boisson</h5>
                     <select name="pizza" id="menuBoisson">
                         <% for(var h=0;h<boisson.length;h++){ %>
 
@@ -297,7 +354,6 @@
                     </div>
                     <% } %>
 
-
             </div>
 
         </div>
@@ -314,7 +370,6 @@
             <div class="row">
                 <% let j; for (j=0; j < entre.length; j++) { %>
                     <div class="col-sm-3 bordureJaune">
-
 
                         <img src="img/slide-1.jpg " id="all" width="100% ">
 
@@ -336,12 +391,14 @@
                             <option value="classique">Classique</option>
                             <option value="fine" selected>Fine</option>
                         </select>
-                        <input type="number" min="0" max="500" id="<%= Pizza[j].pizza_name %>">
+                        <input type="number" min="0" max="500" id="<%= Pizza[j].pizza_name %>" value="1">
+
                         <a href="#" data-name="<%=Pizza[j].pizza_name%>" data-price="<%= Pizza[j].pizza_prix %>"
                             class="add-to-cart btn btn-info">Ajouter</a>
+                        <a class="btn btn-info addCustom" type="button" data-content="<%= Pizza[j].pizza_desc %>"
+                            href="/compose">Customiser</a>
                     </div>
                     <% } %>
-
 
 
             </div>
@@ -362,7 +419,7 @@
                         </p>
                         <input type="number " min="0 " max="500" id="<%=boisson[k].b_name%>">
                         <a href="# " data-name="<%=boisson[k].b_name%>" data-price="
-                                            <%= boisson[k].b_prix %>"
+                                                                <%= boisson[k].b_prix %>"
                             class="add-to-cart btn btn-info <%=boisson[k].b_name%>">Ajouter</a>
                     </div>
                     <% } %>
