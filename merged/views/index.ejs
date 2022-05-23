@@ -10,17 +10,10 @@
     <!-- Bootstrap CSS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
 
@@ -30,10 +23,8 @@
     <link rel="stylesheet" href="index.css">
 
     <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
-    <link
-        href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic">
 
     <script src="js/jquery.js"></script>
 </head>
@@ -48,29 +39,24 @@
 
             <a class="navbar-brand" href="#">Pizza Paris</a>
 
-            <button class="navbar-toggler" type="button color" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button color" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse navspied" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" type="button" href="#entrees"
-                        onclick="clickScroll('entree')">entrees<span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" type="button" href="#entrees" onclick="clickScroll('entree')">entrees<span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" type="button" onclick="clickScroll('pizza')">pizzas</a>
                     <a class="nav-item nav-link" type="button" onclick="clickScroll('boisson')">boissons</a>
                     <a class="nav-item nav-link" type="button" href="/compose">compose ta pizza</a>
 
                     <div class="dropdown"></div>
-                    <button onclick="window.location.href='http://127.0.0.1:5152/livraison';" type="button"
-                        class="btn btn-danger" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
+                    <button onclick="window.location.href='http://127.0.0.1:5152/livraison';" type="button" class="btn btn-danger" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Livreur
                     </button>
                     <div class="dropdown float-right cart">
 
-                        <button class="btn  btn-danger dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn  btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Panier
                         </button>
                         <div class="dropdown-menu cartdiv">
@@ -78,8 +64,7 @@
 
                             </ul>
                             <div class="dropdown-divider"></div>
-                            <a href="#panier" data-toggle="modal" data-target="#cart"
-                                onclick="displayCartModal()">Panier(<span
+                            <a href="#panier" data-toggle="modal" data-target="#cart" onclick="displayCartModal()">Panier(<span
                                     class="total-count btn btn-info cart"></span>)</a>
                         </div>
                     </div>
@@ -138,8 +123,7 @@
 
 
     </div>
-    <div class="modal fade right" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade right" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -156,8 +140,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addressModal"
-                        data-dismiss="modal">Order now</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addressModal" data-dismiss="modal">Order now</button>
                 </div>
             </div>
         </div>
@@ -264,8 +247,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">fermer</button>
-                    <button type="button" class="btn btn-primary addmenu" data-dismiss="modal"
-                        id="addmenu">Ajouter</button>
+                    <button type="button" class="btn btn-primary addmenu" data-dismiss="modal" id="addmenu">Ajouter</button>
                 </div>
             </div>
         </div>
@@ -288,12 +270,18 @@
                         <p>
                             <%= entre[i].entre_prix %>$
                         </p>
+                        <select name="sauce" id="sauce">
+                            <option value="">--Choisissez une sauce:--</option>
+                            <% let s; for (s=0; s < sc.length; s++) { %>
 
+                            <option value="sc"><%= sc[s].sc_name %></option>
+                            <% } %>
+
+                        </select>
                         <input type="number" min="0" max="500" id="<%= entre[i].entre_name %>"><br>
 
 
-                        <a href="#" data-name="<%=entre[i].entre_name%>" data-price="<%= entre[i].entre_prix %>"
-                            class="add-to-cart btn btn-info">Ajouter</a>
+                        <a href="#" data-name="<%=entre[i].entre_name%>" data-price="<%= entre[i].entre_prix %>" class="add-to-cart btn btn-info">Ajouter</a>
                     </div>
                     <% } %>
 
@@ -337,8 +325,7 @@
                             <option value="fine" selected>Fine</option>
                         </select>
                         <input type="number" min="0" max="500" id="<%= Pizza[j].pizza_name %>">
-                        <a href="#" data-name="<%=Pizza[j].pizza_name%>" data-price="<%= Pizza[j].pizza_prix %>"
-                            class="add-to-cart btn btn-info">Ajouter</a>
+                        <a href="#" data-name="<%=Pizza[j].pizza_name%>" data-price="<%= Pizza[j].pizza_prix %>" class="add-to-cart btn btn-info">Ajouter</a>
                     </div>
                     <% } %>
 
@@ -362,8 +349,7 @@
                         </p>
                         <input type="number " min="0 " max="500" id="<%=boisson[k].b_name%>">
                         <a href="# " data-name="<%=boisson[k].b_name%>" data-price="
-                                            <%= boisson[k].b_prix %>"
-                            class="add-to-cart btn btn-info <%=boisson[k].b_name%>">Ajouter</a>
+                                            <%= boisson[k].b_prix %>" class="add-to-cart btn btn-info <%=boisson[k].b_name%>">Ajouter</a>
                     </div>
                     <% } %>
 
@@ -400,8 +386,7 @@
         </div>
     </div>
 
-    <div class="modal fade right" id="addressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade right" id="addressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -412,16 +397,17 @@
                 </div>
                 <div class="modal-body">
                     <!--input name and surname-->
-                    <form>
+                    <form id="infos">
                         <div class="form-row">
                             <div class="field col-md-6">
                                 <label for="text">Prénom</label>
-                                <input type="text" class="form-control" id="prenom" placeholder="Prénom">
+                                <input type="text" class="form-control input required-contact-field" required="true" name="prenom" required class="input required-contact-field" autocomplete='name' id="prenom" placeholder="Prénom">
+                                <p id="demo"></p>
+
                             </div>
                             <div class="field col-md-6">
                                 <label for="inputPassword4" style="color: black;">Nom</label>
-                                <input type="text" class="form-control" id="name_of_client" name="name_of_client"
-                                    placeholder="Nom ">
+                                <input type="text" class="form-control input required-contact-field" required="true" id="name_of_client" name="name_of_client" placeholder="Nom ">
                             </div>
                         </div>
 
@@ -444,15 +430,14 @@
 
                             <div class="field col-md-6 ">
                                 <label for="inputRue ">Nom de la voie</label>
-                                <input type="text " class="form-control " id="inputRue">
+                                <input type="text " class="form-control input required-contact-field" required="true" id="inputRue">
                             </div>
 
                         </div>
 
                         <div class="form-group ">
                             <label for="inputAddress2 ">Détails d'adresse</label>
-                            <input type="text " class="form-control " id="inputAddress2 "
-                                placeholder="Code, étage, porte ">
+                            <input type="text " class="form-control " id="inputAddress2 " placeholder="Code, étage, porte ">
                         </div>
 
                         <div class="form-row ">
@@ -463,35 +448,58 @@
 
                             <div class="field col-md-3 ">
                                 <label for="inputZip ">Code postal</label>
-                                <input type="text " class="form-control " id="inputZip">
+                                <input type="text " class="form-controlinput required-contact-field" required="true" id="inputZip">
                             </div>
                             <div class="field col-md-3 ">
                                 <label for="inputZip ">Heure de livraison</label>
-                                <input type="time" id="heure" name="appt" min="09:00" max="18:00">
-                            </div>
+                                <input type="time" id="heure" name="appt" min="09:00" max="18:00" class="input required-contact-field" required="true"> </div>
                         </div>
+                        <div class="modal-footer ">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                            <button type="submit" value="submit" class="button save button--disabled" class="btn btn-success" id="submit" data-target="#creditCardModal">Save</button>
+                        </div>
+                    </form>
+                    <script>
+                        $(document).ready(function() {
+                            var disable_form_submit = function() {
+
+                                var contactNameField = '.required-contact-field';
+
+                                $(contactNameField).keyup(function() {
+                                    var empty = false;
+                                    $(contactNameField).each(function() {
+                                        if ($(this).val() == '') {
+                                            empty = true;
+                                        }
+                                    });
+                                    if (empty) {
+                                        $('#submit').attr('disabled', 'disabled');
+                                    } else {
+                                        $('#submit').removeAttr('disabled').addClass('button--primary');
+                                        $(".save").attr("data-toggle", "modal");
+
+
+
+                                    }
+                                });
+                            };
+
+                            $(disable_form_submit);
+                        });
+                    </script>
                 </div>
-                <div class="modal-footer ">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                    <div class='actions'>
-                        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#creditCardModal"
-                            data-dismiss="modal">Continuer</button>
-                    </div>
-                </div>
-                </form>
             </div>
+
+            <!-- credit card details modal-->
+
+
+
+
+
         </div>
-
-        <!-- credit card details modal-->
-
-
-
-
-
     </div>
 
-    <div class="modal fade right " id="creditCardModal" tabindex="-1 " role="dialog "
-        aria-labelledby="exampleModalLabel " aria-hidden="true ">
+    <div class="modal fade right " id="creditCardModal" tabindex="-1 " role="dialog " aria-labelledby="exampleModalLabel " aria-hidden="true ">
         <div class="modal-dialog " role="document ">
             <div class="modal-content ">
                 <div class="modal-header ">
@@ -510,20 +518,17 @@
                         <div class="form-group ">
                             <p class="text-muted text-sm mb-0 ">Numéro de carte</p>
                             <div class="row px-3 ">
-                                <input type="text " name="card-num " placeholder="0000 0000 0000 0000 " size="18 "
-                                    id="cr_no " minlength="19 " maxlength="19 ">
+                                <input type="text " name="card-num " placeholder="0000 0000 0000 0000 " size="18 " id="cr_no " minlength="19 " maxlength="19 ">
 
                             </div>
                         </div>
                         <div class="form-group ">
                             <p class="text-muted text-sm mb-0 ">Date d'expiration</p>
-                            <input type="text " name="exp " placeholder="MM/YY " size="6 " id="exp " minlength="5 "
-                                maxlength="5 ">
+                            <input type="text " name="exp " placeholder="MM/YY " size="6 " id="exp " minlength="5 " maxlength="5 ">
                         </div>
                         <div class="form-group ">
                             <p class="text-muted text-sm mb-0 ">CVV/CVC</p>
-                            <input type="password " name="cvv " placeholder="000 " size="1 " minlength="3 "
-                                maxlength="3 ">
+                            <input type="password " name="cvv " placeholder="000 " size="1 " minlength="3 " maxlength="3 ">
                         </div>
 
                     </div>
