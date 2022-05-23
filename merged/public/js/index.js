@@ -1,3 +1,4 @@
+
 var autoScrolledTimer = 0;
 var emptyCart = true;
 var cmd = [];
@@ -26,7 +27,7 @@ function carouselClick(c) {
 
 
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     el_autohide = document.querySelector('.autohide');
 
     navbar_height = document.querySelector('.navbar').offsetHeight;
@@ -34,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (el_autohide) {
         var last_scroll_top = 0;
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             let scroll_top = window.scrollY;
             if (scroll_top < last_scroll_top) {
                 el_autohide.classList.remove('scrolled-down');
@@ -51,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var elements = document.getElementsByClassName("add-to-cart");
 
     for (var i = 0; i < elements.length; i++) {
-        elements[i].addEventListener('click', function() {
+        elements[i].addEventListener('click', function () {
             event.preventDefault();
             var name = $(this).data('name');
             var price = Number($(this).data('price'));
@@ -67,17 +68,17 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             if (name.includes("Pizza")) {
                 var taille = document.getElementById('taille' + name).value;
-                var croute = document.getElementById('croute' + name).value;
-                console.log(croute);
-                console.log('croute' + name);
+                var pate = document.getElementById('pate' + name).value;
+                console.log(pate);
+                console.log('pate' + name);
                 console.log(name);
                 if (taille.includes("large")) {
                     price = Math.round(price * 1.5);
                 }
-                if (croute.includes("fine")) {
+                if (pate.includes("fine")) {
                     price = Math.round(price * 0.9);
                 }
-                shoppingCart.addItemToCart(name, price, amount, taille, croute);
+                shoppingCart.addItemToCart(name, price, amount, taille, pate);
 
             } else {
                 shoppingCart.addItemToCart(name, price, amount, null, null);
@@ -95,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var elements_cp = document.getElementsByClassName("add-to-cart_cp");
     for (var i = 0; i < elements_cp.length; i++) {
-        elements_cp[i].addEventListener('click', function() {
+        elements_cp[i].addEventListener('click', function () {
             nb++;
             event.preventDefault();
             var name = $(this).data('name');
@@ -114,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function() {
     /*function ing(name, price) {
         this.name = name;
         this.price = price;
-
+        
     }*/
 
 
@@ -123,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var ingred = [];
     var elements_cp = document.getElementsByClassName("add-to-cart_cp");
     for (var i = 0; i < elements_cp.length; i++) {
-        elements_cp[i].addEventListener('click', function() {
+        elements_cp[i].addEventListener('click', function () {
             document.getElementById("cpm").disabled = false;
 
             var name = $(this).data('name');
@@ -132,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         })
     }
-    $('#cpm').click(function() {
+    $('#cpm').click(function () {
         var m = new pizza_cp(id, ingred);
 
         cmd.push(m);
@@ -145,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 
-    $('.show-cart').on("click", ".delete-item", function(event) {
+    $('.show-cart').on("click", ".delete-item", function (event) {
         var name = $(this).data('name')
         shoppingCart.removeItemFromCartAll(name);
         displayCart();
@@ -154,14 +155,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     // -1
-    $('.show-cart').on("click", ".minus-item", function(event) {
-            var name = $(this).data('name');
-            shoppingCart.removeItemFromCart(name);
-            displayCart();
-            displayCartModal();
-        })
-        // +1
-    $('.show-cart').on("click", ".plus-item", function(event) {
+    $('.show-cart').on("click", ".minus-item", function (event) {
+        var name = $(this).data('name');
+        shoppingCart.removeItemFromCart(name);
+        displayCart();
+        displayCartModal();
+    })
+    // +1
+    $('.show-cart').on("click", ".plus-item", function (event) {
         console.log("plus");
         var name = $(this).data('name');
         shoppingCart.addItemToCart(name);
@@ -170,12 +171,24 @@ document.addEventListener("DOMContentLoaded", function() {
     })
 
     // Item count input
-    $('.show-cart').on("change", ".item-count", function(event) {
+    $('.show-cart').on("change", ".item-count", function (event) {
         var name = $(this).data('name');
         var count = Number($(this).val());
         shoppingCart.setCountForItem(name, count);
         displayCart();
         displayCartModal();
+    });
+    $('#addmenu').click(function () {
+        var elements = [];
+        var nom = document.getElementById("menuNom").textContent;
+        var prix = document.getElementById("menuPrix").textContent;
+        elements.push(document.getElementById("menuPizz").value);
+        elements.push(document.getElementById("menuBoisson").value);
+        elements.push(document.getElementById("menuEntree").value);
+        // console.log(nom);
+        // console.log(prix);
+        //console.log(elements);
+        shoppingCart.addItemToCart(nom, prix, 1, null, null, elements);
     });
 
 });
@@ -192,9 +205,8 @@ $(document).ready(function () {
 */ // TODO FIX
 
 function onclick(e) {
-    entree.set(e, );
+    entree.set(e,);
 }
-
 
 
 /*
@@ -226,19 +238,22 @@ $("#myNavbar a").on('click', function (event) {
 // Shopping Cart API
 // ************************************************
 
-var shoppingCart = (function() {
+var shoppingCart = (function () {
     // =============================
     // Private methods and propeties
     // =============================
     cart = [];
 
     // Constructor
-    function Item(name, price, count, size, croute) {
+    function Item(name, price, count, size, pate, menu) {
         this.name = name;
         this.price = price;
         this.count = count;
         this.size = size;
-        this.croute = croute;
+        this.pate = pate;
+        this.menu = menu;
+        console.log(this.menu);
+        console.log(this.name);
     }
 
 
@@ -264,7 +279,7 @@ var shoppingCart = (function() {
     var obj = {};
 
     // Add to cart
-    obj.addItemToCart = function(name, price, count, size, croute) {
+    obj.addItemToCart = function (name, price, count, size, pate, menu) {
         emptyCart = false;
         for (var item in cart) {
             if (cart[item].name === name) {
@@ -273,14 +288,15 @@ var shoppingCart = (function() {
                 return;
             }
         }
-        var item = new Item(name, price, count, size, croute);
+        var item = new Item(name, price, count, size, pate, menu);
         cart.push(item);
+        //push autre chose
         saveCart();
     }
 
 
     // Set count from item
-    obj.setCountForItem = function(name, count) {
+    obj.setCountForItem = function (name, count) {
         for (var i in cart) {
             if (cart[i].name === name) {
                 cart[i].count = count;
@@ -289,7 +305,7 @@ var shoppingCart = (function() {
         }
     };
     // Remove item from cart
-    obj.removeItemFromCart = function(name) {
+    obj.removeItemFromCart = function (name) {
         for (var item in cart) {
             if (cart[item].name === name) {
                 cart[item].count--;
@@ -303,7 +319,7 @@ var shoppingCart = (function() {
     }
 
     // Remove all items from cart
-    obj.removeItemFromCartAll = function(name) {
+    obj.removeItemFromCartAll = function (name) {
         for (var item in cart) {
             if (cart[item].name === name) {
                 cart.splice(item, 1);
@@ -314,14 +330,14 @@ var shoppingCart = (function() {
     }
 
     // Clear cart
-    obj.clearCart = function() {
+    obj.clearCart = function () {
         cart = [];
         saveCart();
         emptyCart = true;
     }
 
     // Count cart 
-    obj.totalCount = function() {
+    obj.totalCount = function () {
         var totalCount = 0;
         for (var item in cart) {
             totalCount += cart[item].count;
@@ -335,7 +351,7 @@ var shoppingCart = (function() {
     }
 
     // Total cart
-    obj.totalCart = function() {
+    obj.totalCart = function () {
         var totalCart = 0;
         for (var item in cart) {
             totalCart += cart[item].price * cart[item].count;
@@ -344,14 +360,13 @@ var shoppingCart = (function() {
     }
 
     // List cart
-    obj.listCart = function() {
+    obj.listCart = function () {
         var cartCopy = [];
         for (i in cart) {
             item = cart[i];
             itemCopy = {};
             for (p in item) {
                 itemCopy[p] = item[p];
-
             }
             itemCopy.total = Number(item.price * item.count).toFixed(2);
             cartCopy.push(itemCopy)
@@ -388,7 +403,7 @@ function addToCart() {
 
 
 // Clear items
-$('.clear-cart').click(function() {
+$('.clear-cart').click(function () {
     shoppingCart.clearCart();
     displayCart();
 });
@@ -416,11 +431,30 @@ function displayCartModal() {
     var cartArray = shoppingCart.listCart();
     console.log(cartArray);
     var output = "";
+    var menuContent = "";
+
     for (var i in cartArray) {
-        if (cartArray[i].croute == null) {
+        for (var j in cartArray[i].menu) {
+            menuContent += cartArray[i].menu[j] + ", ";
+        }
+        console.log(cartArray[i].menu);
+        if (cartArray[i].menu != null) {
+            output += "<tr class =\"disCart\">" +
+                "<td>" + cartArray[i].name + "+</td>" +
+                "<td>(" + cartArray[i].price + ")</td>" +
+                "<td>(" + menuContent + ")</td>" +
+                "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name='" + cartArray[i].name + "'>-</button>" +
+                "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>" +
+                "<button class='plus-item btn btn-primary input-group-addon' data-name='" + cartArray[i].name + "'>+</button></div></td>" +
+                "<td><button class='delete-item btn btn-danger' data-name='" + cartArray[i].name + "'>X</button></td>" +
+                " = " +
+                "<td>" + cartArray[i].total + "</td>" +
+                "</tr>";
+        }
+        else if (cartArray[i].pate == null) {
             output += "<tr class =\"disCart\">" +
                 "<td>" + cartArray[i].name + "</td>" +
-                "<td>(" + cartArray[i].price + ")</td>" +
+                "<td>(" + cartArray[i].price + "£)</td>" +
                 "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name='" + cartArray[i].name + "'>-</button>" +
                 "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>" +
                 "<button class='plus-item btn btn-primary input-group-addon' data-name='" + cartArray[i].name + "'>+</button></div></td>" +
@@ -431,8 +465,8 @@ function displayCartModal() {
         } else {
             output += "<tr class =\"disCart\">" +
                 "<td>" + cartArray[i].name + "</td>" +
-                "<td class='croutaille'>" + cartArray[i].croute + " " + cartArray[i].size + "</td>" +
-                "<td>(" + cartArray[i].price + ")</td>" +
+                "<td class='croutaille'>" + cartArray[i].pate + ", " + cartArray[i].size + "</td>" +
+                "<td>(" + cartArray[i].price + "£)</td>" +
                 "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name='" + cartArray[i].name + "'>-</button>" +
                 "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>" +
                 "<button class='plus-item btn btn-primary input-group-addon' data-name='" + cartArray[i].name + "'>+</button></div></td>" +
@@ -458,7 +492,7 @@ function displayCartModal() {
 
 // Delete item button
 
-$('.show-cart').on("click", ".delete-item", function(event) {
+$('.show-cart').on("click", ".delete-item", function (event) {
     var name = $(this).data('name')
     shoppingCart.removeItemFromCartAll(name);
     displayCart();
@@ -467,20 +501,20 @@ $('.show-cart').on("click", ".delete-item", function(event) {
 
 
 // -1
-$('.show-cart').on("click", ".minus-item", function(event) {
-        var name = $(this).data('name')
-        shoppingCart.removeItemFromCart(name);
-        displayCart();
-    })
-    // +1
-$('.show-cart').on("click", ".plus-item", function(event) {
+$('.show-cart').on("click", ".minus-item", function (event) {
+    var name = $(this).data('name')
+    shoppingCart.removeItemFromCart(name);
+    displayCart();
+})
+// +1
+$('.show-cart').on("click", ".plus-item", function (event) {
     var name = $(this).data('name')
     shoppingCart.addItemToCart(name);
     displayCart();
 })
 
 // Item count input
-$('.show-cart').on("change", ".item-count", function(event) {
+$('.show-cart').on("change", ".item-count", function (event) {
     var name = $(this).data('name');
     var count = Number($(this).val());
     shoppingCart.setCountForItem(name, count);
@@ -490,11 +524,11 @@ $('.show-cart').on("change", ".item-count", function(event) {
 displayCart();
 
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     //For Card Number formatted input
     var cardNum = document.getElementById('cr_no');
-    cardNum.onkeyup = function(e) {
+    cardNum.onkeyup = function (e) {
         if (this.value == this.lastValue) return;
         var caretPosition = this.selectionStart;
         var sanitizedValue = this.value.replace(/[^0-9]/gi, '');
@@ -518,7 +552,7 @@ $(document).ready(function() {
 
     //For Date formatted input
     var expDate = document.getElementById('exp');
-    expDate.onkeyup = function(e) {
+    expDate.onkeyup = function (e) {
         if (this.value == this.lastValue) return;
         var caretPosition = this.selectionStart;
         var sanitizedValue = this.value.replace(/[^0-9]/gi, '');
@@ -542,8 +576,8 @@ $(document).ready(function() {
 
 });
 
-$(document).ready(function() {
-    $("#finish").click(function() {
+$(document).ready(function () {
+    $("#finish").click(function () {
         var name = document.getElementById('name_of_client').value;
         var addr = document.getElementById('inputRue').value;
         var cmd_info = "";
@@ -557,11 +591,11 @@ $(document).ready(function() {
 
         $.post("/", {
 
-                name: name,
-                addr: addr,
-                cmd_info: cmd_info
-            },
-            function(data, status) {
+            name: name,
+            addr: addr,
+            cmd_info: cmd_info
+        },
+            function (data, status) {
                 console.log(data);
             });
     });

@@ -17,6 +17,16 @@ body {
     z-index: 9999;
 }
 
+.scrolled-down {
+    transform: translateY(-100%);
+    transition: all 0.3s ease-in-out;
+}
+
+.scrolled-up {
+    transform: translateY(0);
+    transition: all 0.3s ease-in-out;
+}
+
 .carousel-item img {
     width: auto;
     height: auto;
@@ -117,13 +127,16 @@ h6 {
         line-height: normal;
         color: #fff;
     }
+
     .top-divider {
         margin-top: 0;
     }
+
     .img-left {
         float: right;
         margin-right: 25px;
     }
+
     .address-bar {
         display: inherit;
         margin: 0;
@@ -136,27 +149,34 @@ h6 {
         letter-spacing: 3px;
         color: #fff;
     }
+
     .navbar {
         border-radius: 0;
     }
+
     .navbar-header {
         display: none;
     }
+
     .navbar {
         min-height: 0;
     }
+
     .navbar-default {
         border: none;
         background: #fff;
         background: rgb(165, 16, 16);
     }
+
     .nav>li>a {
         padding: 35px;
         color: #e1e50a;
     }
+
     .navbar-nav>li>a {
         line-height: normal;
     }
+
     .navbar-nav {
         /*display: table;*/
         float: none;
