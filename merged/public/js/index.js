@@ -31,21 +31,28 @@ document.addEventListener("DOMContentLoaded", function() {
     var preIngreds = null;
     el_autohide = document.querySelector('.autohide');
     if (window.location.pathname.includes('compose')) {
+        ////alert('compose');
         var saved = shoppingCart.getCustomPizza();
+        console.log(saved);
         SAVED = saved;
+        //console.log(SAVED);
 
         var defPizzArr = SAVED.split(',');
         for (var i = 0; i < defPizzArr.length; i++) {
+            console.log(defPizzArr[i]);
             var ing = document.getElementById(defPizzArr[i]);
             if (ing != null) {
+                console.log(ing.id);
                 ing.value = 1;
-            } else {}
+            } else {
+                console.log(ing);
+            }
         }
         //when any input changes, update the total
         document.querySelectorAll('.ingred').forEach(function(el) {
             el.addEventListener('change', function() {
                 updateTotal();
-
+                //console.log(el.id);
             });
         });
 
@@ -86,44 +93,43 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
             if (amount == null) {
-                alert("amount nulle");
+                //alert("amount nulle");
             }
-            //alert(name + " " + price + " " + amount);
+            ////alert(name + " " + price + " " + amount);
             if (amount == 0) {
                 amount = 1;
             }
             if (name.includes("Pizza")) {
                 var taille = document.getElementById('taille' + name).value;
                 var pate = document.getElementById('pate' + name).value;
-
+                console.log(pate);
+                console.log('pate' + name);
+                console.log(name);
                 if (taille.includes("large")) {
                     price = Math.round(price * 1.5);
-
                 }
                 if (pate.includes("fine")) {
                     price = Math.round(price * 0.9);
-
                 }
-                shoppingCart.addItemToCart(name, price, amount, taille, pate, null, null);
-
-            } else if (name.includes("Salade") || name.includes("Croque") || name.includes("Wings") || name.includes("Om")) {
-                var sauce = $("#elementId :selected").text();
-
-                shoppingCart.addItemToCart(name, price, amount, null, null, null, null, sauce);
-
+                shoppingCart.addItemToCart(name, price, amount, taille, pate);
 
             } else {
-                shoppingCart.addItemToCart(name, price, amount, null, null, null, null, null);
+                shoppingCart.addItemToCart(name, price, amount, null, null);
             }
             displayCart();
+            console.log('click');
         });
     }
+
     var customElements = document.getElementsByClassName("addCustom");
     for (var i = 0; i < customElements.length; i++) {
         customElements[i].addEventListener('click', function() {
             var content = $(this).data('content');
             shoppingCart.defPizz = content;
-
+            //console.log(shoppingCart.defPizz);
+            shoppingCart.saveCart(content);
+            console.log(content);
+            console.log(shoppingCart.defPizz);
         });
     }
 
@@ -180,6 +186,7 @@ document.addEventListener("DOMContentLoaded", function() {
         //id++;
         var elems = ingredList;
         //elems.unshift(document.querySelector('input[name="sauce"]:checked').value);
+        console.log(elems);
 
         var price = updateTotal();
         //var size = document.getElementById('taille' + name).value;
@@ -187,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var pate = document.querySelector('input[name="pate"]:checked').value
             //GET PATE
             //var item = new Item("Pizza Custom", price, 1, taille, pate, null);
-        shoppingCart.addItemToCart("Pizza Custom", price, 1, taille, pate, null, elems, null);
+        shoppingCart.addItemToCart("Pizza Custom", price, 1, taille, pate, null, elems);
     });
 
 
@@ -208,6 +215,7 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         // +1
     $('.show-cart').on("click", ".plus-item", function(event) {
+        console.log("plus");
         var name = $(this).data('name');
         shoppingCart.addItemToCart(name);
         displayCart();
@@ -234,10 +242,12 @@ document.addEventListener("DOMContentLoaded", function() {
         //elements.push(pizz.value);
         //elements.push(boisson.value);
         //elements.push(entree.value);
+        console.log(nom);
         //remove last char of prix
         prix = prix.substring(0, prix.length - 1);
-
-        shoppingCart.addItemToCart(nom, prix, 1, null, null, elements, null);
+        console.log(prix);
+        console.log(elements);
+        shoppingCart.addItemToCart(nom, prix, 1, null, null, elements);
     });
 
     $('#addmenu').click(function() {
@@ -248,8 +258,10 @@ document.addEventListener("DOMContentLoaded", function() {
         elements.push(document.getElementById("menuPizz").value);
         elements.push(document.getElementById("menuBoisson").value);
         elements.push(document.getElementById("menuEntree").value);
-
-        shoppingCart.addItemToCart(nom, prix, 1, null, null, elements, null);
+        console.log(nom);
+        console.log(prix);
+        console.log(elements);
+        shoppingCart.addItemToCart(nom, prix, 1, null, null, elements);
     });
 
 
@@ -304,10 +316,12 @@ function updateTotal() {
             //TODO REMOVE PREVIOUS ENTRY IN LIST
             totalPrice += Number(allIngreds[i].dataset.price) * allIngreds[i].value;
             //console.log(allIngreds[i].dataset.price);
+            console.log(allIngreds[i].id + " " + allIngreds[i].value + "x" + Number(allIngreds[i].dataset.price));
             // Number($(this).data('price'));
         }
 
     }
+    console.log("total = " + totalPrice);
     document.getElementById('total').innerHTML = totalPrice;
     return totalPrice;
 
@@ -316,7 +330,30 @@ function updateTotal() {
 
 
 
-
+/*
+// Add smooth scrolling on all links inside the navbar
+$("#myNavbar a").on('click', function (event) {
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+        // Prevent default anchor click behavior
+        event.preventDefault();
+        
+        // Store hash
+        var hash = this.hash;
+        
+        // Using jQuery's animate() method to add smooth page scroll
+        // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+        $('html, body').animate({
+            scrollTop: $(hash).offset().top
+        }, 800, function () {
+            
+            // Add hash (#) to URL when done scrolling (default click behavior)
+            window.location.hash = hash;
+        });
+    }
+});
+});
+*/
 
 // ************************************************
 // Shopping Cart API
@@ -331,7 +368,7 @@ var shoppingCart = (function() {
     defPizz = null;
 
     // Constructor
-    function Item(name, price, count, size, pate, menu, elems, sauce) {
+    function Item(name, price, count, size, pate, menu, elems) {
         this.name = name;
         this.price = price;
         this.count = count;
@@ -339,7 +376,6 @@ var shoppingCart = (function() {
         this.pate = pate;
         this.menu = menu;
         this.elems = elems;
-        this.sauce = sauce;
     }
 
 
@@ -352,11 +388,13 @@ var shoppingCart = (function() {
     }
 
     function setCustomPizza(p) {
+        console.log("setting custom" + p)
         defPizz = p;
         saveCustomPizza();
     }
 
     function saveCustomPizza() {
+        console.log("saved :" + defPizz);
         sessionStorage.setItem('customPizza', JSON.stringify(defPizz));
     }
 
@@ -371,6 +409,7 @@ var shoppingCart = (function() {
 
     // Load custom pizza
     function loadCustomPizza() {
+        console.log("loading custom");
         defPizz = JSON.parse(sessionStorage.getItem('customPizza'));
         //alert(defPizz + "hahaha");
         return JSON.parse(sessionStorage.getItem('customPizza'));
@@ -386,7 +425,7 @@ var shoppingCart = (function() {
     var obj = {};
 
     // Add to cart
-    obj.addItemToCart = function(name, price, count, size, pate, menu, elems, sauce) {
+    obj.addItemToCart = function(name, price, count, size, pate, menu, elems) {
         emptyCart = false;
         for (var item in cart) {
             if (cart[item].name === name) {
@@ -395,7 +434,7 @@ var shoppingCart = (function() {
                 return;
             }
         }
-        var item = new Item(name, price, count, size, pate, menu, elems, sauce);
+        var item = new Item(name, price, count, size, pate, menu, elems);
         cart.push(item);
         //push autre chose
         saveCart();
@@ -547,6 +586,7 @@ function displayCart() {
 
 function displayCartModal() {
     var cartArray = shoppingCart.listCart();
+    console.log(cartArray);
     var output = "";
 
 
@@ -563,28 +603,39 @@ function displayCartModal() {
         for (var k in cartArray[i].elems) {
             elemss += cartArray[i].elems[k] + ", ";
         }
+        console.log(elemss)
 
         //console.log(cartArray[i].menu);
-        for (var i in cartArray) {
-            for (var j in cartArray[i].menu) {
-                menuContent += cartArray[i].menu[j] + ", ";
-            }
-            if (cartArray[i].menu != null) {
-                output += "<tr class =\"disCart\">" +
-                    "<td>" + cartArray[i].name + "+</td>" +
-                    "<td>(" + cartArray[i].price + ")</td>" +
-                    "<td>(" + menuContent + ")</td>" +
-                    "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name='" + cartArray[i].name + "'>-</button>" +
-                    "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>" +
-                    "<button class='plus-item btn btn-primary input-group-addon' data-name='" + cartArray[i].name + "'>+</button></div></td>" +
-                    "<td><button class='delete-item btn btn-danger' data-name='" + cartArray[i].name + "'>X</button></td>" +
-                    " = " +
-                    "<td>" + cartArray[i].total + "</td>" +
-                    "</tr>";
-            } else if (cartArray[i].pate != null) {
+        if (cartArray[i].menu != null) {
+            output += "<tr class =\"disCart\">" +
+                "<td>" + cartArray[i].name + "+</td>" +
+                "<td>(" + cartArray[i].price + ")</td>" +
+                "<td>(" + menuContent + ")</td>" +
+                "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name='" + cartArray[i].name + "'>-</button>" +
+                "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>" +
+                "<button class='plus-item btn btn-primary input-group-addon' data-name='" + cartArray[i].name + "'>+</button></div></td>" +
+                "<td><button class='delete-item btn btn-danger' data-name='" + cartArray[i].name + "'>X</button></td>" +
+                " = " +
+                "<td>" + cartArray[i].total + "</td>" +
+                "</tr>";
+        } else if (cartArray[i].pate == null) {
+            output += "<tr class =\"disCart\">" +
+                "<td>" + cartArray[i].name + "</td>" +
+                "<td>(" + cartArray[i].price + "£)</td>" +
+                "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name='" + cartArray[i].name + "'>-</button>" +
+                "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>" +
+                "<button class='plus-item btn btn-primary input-group-addon' data-name='" + cartArray[i].name + "'>+</button></div></td>" +
+                "<td><button class='delete-item btn btn-danger' data-name='" + cartArray[i].name + "'>X</button></td>" +
+                " = " +
+                "<td>" + cartArray[i].total + "</td>" +
+                "</tr>";
+        } else {
+            /*
+            if (cartArray[i].name.includes('Custom')) {
                 output += "<tr class =\"disCart\">" +
                     "<td>" + cartArray[i].name + "</td>" +
                     "<td class='croutaille'>" + cartArray[i].pate + ", " + cartArray[i].size + "</td>" +
+                    "<td>(" + elemss + ")</td>" +
                     "<td>(" + cartArray[i].price + "£)</td>" +
                     "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name='" + cartArray[i].name + "'>-</button>" +
                     "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>" +
@@ -593,32 +644,19 @@ function displayCartModal() {
                     " = " +
                     "<td>" + cartArray[i].total + "</td>" +
                     "</tr>";
-
-            } else if (cartArray[i].sauce != null) {
-                output += "<tr class =\"disCart\">" +
-                    "<td>" + cartArray[i].name + "</td>" +
-                    "<td>" + cartArray[i].sauce + "</td>" +
-                    "<td>(" + cartArray[i].price + ")</td>" +
-                    +")</td>" +
-                    "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name='" + cartArray[i].name + "'>-</button>" +
-                    "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>" +
-                    "<button class='plus-item btn btn-primary input-group-addon' data-name='" + cartArray[i].name + "'>+</button></div></td>" +
-                    "<td><button class='delete-item btn btn-danger' data-name='" + cartArray[i].name + "'>X</button></td>" +
-                    " = " +
-                    "<td>" + cartArray[i].total + "</td>" +
-                    "</tr>";
-            } else {
-                output += "<tr class =\"disCart\">" +
-                    "<td>" + cartArray[i].name + "</td>" +
-                    "<td>(" + cartArray[i].price + "£)</td>" +
-                    "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name='" + cartArray[i].name + "'>-</button>" +
-                    "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>" +
-                    "<button class='plus-item btn btn-primary input-group-addon' data-name='" + cartArray[i].name + "'>+</button></div></td>" +
-                    "<td><button class='delete-item btn btn-danger' data-name='" + cartArray[i].name + "'>X</button></td>" +
-                    " = " +
-                    "<td>" + cartArray[i].total + "</td>" +
-                    "</tr>";
-            }
+            } else
+            */
+            output += "<tr class =\"disCart\">" +
+                "<td>" + cartArray[i].name + "</td>" +
+                "<td class='croutaille'>" + cartArray[i].pate + ", " + cartArray[i].size + "</td>" +
+                "<td>(" + cartArray[i].price + "£)</td>" +
+                "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name='" + cartArray[i].name + "'>-</button>" +
+                "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>" +
+                "<button class='plus-item btn btn-primary input-group-addon' data-name='" + cartArray[i].name + "'>+</button></div></td>" +
+                "<td><button class='delete-item btn btn-danger' data-name='" + cartArray[i].name + "'>X</button></td>" +
+                " = " +
+                "<td>" + cartArray[i].total + "</td>" +
+                "</tr>";
         }
     }
 
@@ -633,8 +671,6 @@ function displayCartModal() {
 
     $('.total-cart').html(shoppingCart.totalCart());
     $('.total-count').html(shoppingCart.totalCount());
-    $('.total').html(shoppingCart.totalCart());
-
 }
 
 // Delete item button
@@ -669,18 +705,6 @@ $('.show-cart').on("change", ".item-count", function(event) {
 });
 
 displayCart();
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 $(document).ready(function() {
@@ -743,14 +767,3 @@ function defaultPizza(p) {
     //defPizza = p;
     //alert(p);
 }
-
-$(document).ready(function() {
-    $('select').on('change', function() {
-        if (this.value === 'normale') {
-            $('.prix_pizza').html(15);
-        } else {
-            $('.prix_pizza').html(20);
-
-        }
-    });
-});

@@ -47,11 +47,6 @@ body {
     text-align: left;
 }
 
-input[type="radio"],
-input[type="checkbox"] {
-    display: none;
-}
-
 @media only screen and (max-width: 760px) {
     body {
         padding: 0;
@@ -103,7 +98,6 @@ input[type="checkbox"] {
     }
     input[type="radio"],
     input[type="checkbox"] {
-        display: block;
         position: absolute;
         z-index: 1;
         width: 99%;
@@ -116,7 +110,6 @@ input[type="checkbox"] {
     }
     input[type="radio"]:checked~.cell,
     input[type="checkbox"]:checked~.cell {
-        display: block;
         border-bottom: 1px solid #eee;
     }
     input[type="radio"]:checked~.cell:nth-of-type(n+2),
@@ -126,7 +119,6 @@ input[type="checkbox"] {
     input[type="radio"]:checked~.cell:nth-of-type(n+2):before,
     input[type="checkbox"]:checked~.cell:nth-of-type(n+2):before {
         content: attr(data-label);
-        display: inline-block;
         width: 60px;
         background: #999;
         border-radius: 10px;
