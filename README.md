@@ -1,11 +1,11 @@
-**ZENKRI Jihed
+**ZENKRI Jihed ,
 SY Alassane**
 
 
 
 Pour démarrer,configurer le fichier.env, lancer psql, faire \i bd.sql puis quitter et faire node server.js <<port>> (4545 par défaut)  
 
-**.env:
+**.env:**
 config .env : PGUSER > nom d'utilisateur PGPASSWORD > mdp psql PGHOST > localhost PGPORT > 5432 par défaut PGDATABASE > nom d'utilisateur**
 
 
@@ -16,7 +16,7 @@ Pour accéder au page livreur :** 127.0.0.1:4545/livraison**
 
 <---------------------------------------------------------------->
 
-**répartition des taches :**
+**Répartition des taches :**
 Jihed : gestion du serveur, implémentation de la bdd, 1ere instance du panier, livraisons
 Alassane : pizza composable, navbar, modals, implémentation menus, carousel, 
 
