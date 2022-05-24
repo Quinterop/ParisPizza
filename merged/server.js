@@ -7,7 +7,7 @@ const pool = new Pool();
 const config = require("dotenv").config()
 const { acceptsEncodings } = require('express/lib/request');
 let app = express();
-const port = 5555;
+const port = 4545;
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 

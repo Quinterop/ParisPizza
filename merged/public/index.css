@@ -203,6 +203,18 @@ h6 {
     border-color: #05090e;
 }
 
+#all {
+    width: 350px;
+    height: 200px;
+    margin: auto;
+}
+
+#all1 {
+    width: 250px;
+    height: 150px;
+    margin: auto;
+}
+
 .btn-primary {
     color: #fff;
     background-color: #000000;
