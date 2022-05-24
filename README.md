@@ -3,7 +3,7 @@ SY Alassane**
 
 
 
-Pour démarrer,configurer le fichier.env, lancer psql, faire \i bd.sql puis quitter et faire node server.js <<port>> (4545 par défaut)  
+Pour démarrer,configurer le fichier.env, lancer psql, faire \i bd.sql puis quitter et faire node server.js port (4545 par défaut)  
 
 **.env:**
 config .env : PGUSER > nom d'utilisateur PGPASSWORD > mdp psql PGHOST > localhost PGPORT > 5432 par défaut PGDATABASE > nom d'utilisateur**
