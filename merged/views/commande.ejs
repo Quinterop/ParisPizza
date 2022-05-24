@@ -21,6 +21,7 @@
 
 
     <script src="js/index.js"></script>
+
     <title>paris pizza</title>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="cmd.css">
@@ -69,32 +70,96 @@
         </nav>
 
         <div class="caption">Commande</div>
-        <div id="table">
-            <div class="header-row row">
-                <span class="cell primary">Numéro</span>
-                <span class="cell">Adresse</span>
-                <span class="cell">livré(oui/non)</span>
-                <span class="cell">Info</span>
 
+        <table id="table" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>prenom</th>
+                    <th>Livré(oui/non)</th>
+                    <th>Adresse</th>
+                    <th>Code</th>
 
-            </div>
-            <% let i; for (i=0; i < commande.length; i++) { %>
+                    <th>Info</th>
+                    <th>Heure</th>
 
-                <div class="row">
-                    <input type="radio" name="expand">
-                    <span class="cell primary" data-label="cmd"><%= commande[i].name_cmd %> </span>
-                    <span class="cell" data-label="Exterior"><%= commande[i].is_delivred %></span>
-                    <span class="cell" data-label="Interior"><%= commande[i].adresse %></span>
-                    <span class="cell" data-label="Interior"><%= commande[i].cmd_info %></span>
+                    <th>Email</th>
 
-                </div>
-                <% } %>
+                    <th>Tel</th>
 
 
 
-        </div>
+
+                    <th>go livrer</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% let i; for (i=0; i< commande.length; i++) { %>
+
+                    <tr id="tr">
+                        <td id="td1">
+                            <%= commande[i].name_cmd %>
+                        </td>
+                        <td id="td1">
+                            <%= commande[i].prenom_cmd %>
+                        </td>
+                        <td>
+                            <%= commande[i].is_delivred %>
+                        </td>
+                        <td>
+                            <%= commande[i].adresse %>
+                        </td>
+                        <td>
+                            <%= commande[i].code %>
+                        </td>
+                        <td>
+                            <%= commande[i].cmd_info %>
+                        </td>
+                        <td>
+                            <%= commande[i].date_cmd %>
+                        </td>
+                        <td>
+                            <%= commande[i].email %>
+                        </td>
+                        <td>
+                            <%= commande[i].tel %>
+                        </td>
+                        <td> <input type="checkbox" id="check" />
+                            <% } %>
 
 
+                                <script>
+                                    $(document).ready(function() {
+                                        $('table#table > tbody > tr').not(':first').hide();
+
+                                        $("#suivant").on('click', function() {
+                                            if ($("#check").is(":checked")) {
+
+
+
+                                                $('#table tr:eq(1)').remove();
+                                                alert("commande livrée !")
+                                                $('table tr').slice(1, -1).show();
+
+                                                sql3 = "delete from commande where name_cmd='$1'";
+                                                var currentRow = $(this).closest("tr");
+
+                                                var id = currentRow.find("td:eq(0)").html();
+
+
+                                            }
+
+                                        });
+                                    });
+                                </script>
+                    </tr>
+
+
+
+            </tbody>
+        </table>
+
+        <td> <button type="button" id="suivant">Suivant</button>
 
 
 

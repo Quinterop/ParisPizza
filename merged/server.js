@@ -7,7 +7,7 @@ const pool = new Pool();
 const config = require("dotenv").config()
 const { acceptsEncodings } = require('express/lib/request');
 let app = express();
-const port = 3030;
+const port = 4444;
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
@@ -30,7 +30,7 @@ let commande;
 let sc;
 
 
-app.get('/', async function (req, res) {
+app.get('/', async function(req, res) {
 
     const client = await pool.connect();
     try {
@@ -75,7 +75,7 @@ app.get('/', async function (req, res) {
 
 
 
-app.get('/compose', async function (req, res) {
+app.get('/compose', async function(req, res) {
 
     const client = await pool.connect();
     try {
@@ -108,7 +108,6 @@ app.get('/compose', async function (req, res) {
             res.render("./compose.ejs", { root: 'root-client' });
         } else {
             res.render('compose.ejs', all);
-            //res.render('compose.ejs', all);
 
         }
         await client.query('COMMIT')
@@ -125,13 +124,13 @@ app.get('/compose', async function (req, res) {
 
 
 
-app.get('/livraison', async function (req, res, next) {
+app.get('/livraison', async function(req, res, next) {
     res.render('livraison.ejs', '');
 });
 
 
 
-app.get('/compose', async function (req, res, next) {
+app.get('/compose', async function(req, res, next) {
     res.render('compose.ejs', '');
 
 });
@@ -145,38 +144,28 @@ var addr;
 var is = "NON";
 var cmd_info = "";
 var info = [];
+var name_change = "";
+var date = "";
 
-app.post("/", (req, res) => {
-    res.json({
-        name: req.body.name,
-        addr: req.body.addr,
-        cmd_info: req.body.cmd_info
-    });
-    info.push(req.body.name);
+
+
+
+
+
+app.post('/livraison', async function(req, res) {
+
+
+
+
+    info.push(req.body.name_of_client);
+    info.push(req.body.prenom)
     info.push(is);
     info.push(req.body.addr);
     info.push(req.body.cmd_info);
-
-
-
-
-});
-
-
-
-
-
-
-
-app.post('/livraison', async function (req, res) {
-
-    const L_name = req.body.username;
-    const L_pwd = req.body.pwdl;
-
-    const S_name = req.body.sign_name;
-    const S_mail = req.body.sign_mail;
-    const S_pwd = req.body.sign_pwd;
-    const S_cpwd = req.body.sign_pwd1;
+    info.push(req.body.heure);
+    info.push(req.body.email);
+    info.push(req.body.code);
+    info.push(req.body.tel);
 
 
 
@@ -185,54 +174,50 @@ app.post('/livraison', async function (req, res) {
     const liv = await pool.connect();
     try {
         await liv.query('BEGIN');
-        var sql1 = 'SELECT * FROM livreur WHERE nom =$1 AND pwd =$2';
-        const commandes_text = 'select * from commande'
-        var sql2 = 'INSERT INTO  commande(name_cmd,is_delivred,adresse,cmd_info) VALUES ($1,$2,$3,$4)';
+        var sql2 = 'INSERT INTO  commande(name_cmd,prenom_cmd,is_delivred,adresse,cmd_info,date_cmd,email,code,tel) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)';
+        const con1 = await liv.query(sql2, [...info]);
 
-        // var sign = 'insert into livreur (id,nom,mail,pwd) values ($1,$2,$3,$4)  ';
-        const con = await liv.query(sql1, [L_name, L_pwd]);
-        const con1 = await liv.query(sql2, [info[0], info[1], info[2], info[3]]);
-        info = []
+        await liv.query('COMMIT');
 
-        const commande = await liv.query(commandes_text);
-
-        let all = {
-            commande: commande.rows
-        }
-        //const si = await liv.query(sign, [i, S_name, S_mail, S_pwd]);
-
-
-        // var test = "INSERT INTO livreur(id,nom,mail, pwd) VALUES (2,'jiji','jiji@gmail.com', 'azerty4')";
-
-
-
-        if (con.rows.length == 0 || con1.rows.length) {
-            res.render('livraison.ejs', { root: 'root-liv' });
-        } else {
-            res.render('commande.ejs', all);
-
-        }
+        res.redirect('/');
     } catch (e) {
+
         await liv.query('ROLLBACK')
         throw e
     } finally {
         liv.release()
     }
-
+    console.log("finished")
 });
-/** 
-app.post('/compose', async function(req, res) {
-    $('#cpm').click(async function() {
+
+app.post('/login', async function(req, res) {
         const liv = await pool.connect();
+        const L_name = req.body.username;
+        const L_pwd = req.body.pwdl;
+        var sql1 = 'SELECT * FROM livreur WHERE nom =$1 AND pwd =$2';
+        const con = await liv.query(sql1, [L_name, L_pwd]);
+        const commandes_text = "select * from commande where is_delivred='NON' order by date_cmd ";
+        const commande = await liv.query(commandes_text);
 
-        var c = 'insert into pizza_cp (id,ingred) values ($1,$2)';
-        const con = await liv.query(c, [0, cmd]);
-        console.log(cmd);
+        let all = {
+            commande: commande.rows
+        }
+        res.render('commande.ejs', all)
+        liv.release()
+    })
+    /** 
+    app.post('/compose', async function(req, res) {
+        $('#cpm').click(async function() {
+            const liv = await pool.connect();
 
-    });
+            var c = 'insert into pizza_cp (id,ingred) values ($1,$2)';
+            const con = await liv.query(c, [0, cmd]);
+            console.log(cmd);
+
+        });
 
 
-});**/
+    });**/
 
 app.listen(port, '127.0.0.1', () => {
     console.log(`App running on port ${port}.`)

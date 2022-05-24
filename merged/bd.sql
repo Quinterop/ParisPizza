@@ -170,18 +170,20 @@ create table livreur (
     pwd  varchar(20) not NULL
 ); 
 
-insert into livreur values (1, 'jihed','jihed@gamil.com','jiji123');
+insert into livreur values (1, 'livreur','jihed@gamil.com','liv2022');
 
 
 create table commande ( 
-    name_cmd varchar(10) ,
+    name_cmd varchar(50) ,
+    prenom_cmd varchar(50) ,
     is_delivred varchar(3) ,
     adresse varchar(20) ,
-    cmd_info varchar(100)
-
-
+    cmd_info varchar(100) ,
+    date_cmd varchar(50), 
+    email varchar(50), 
+    code varchar(50),
+    tel varchar(50)
 );
-insert into commande values ('john','OUI','avenue XXX','pizza neputne ,nuggets ');
 
 create table pizza_cp (
     id integer primary key , 
