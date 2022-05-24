@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="index.css">
+
+
+
+
+    <script src="js/index.js"></script>
+    <title>paris pizza</title>
+    <link rel="stylesheet" href="compose.css">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic">
+
+    <script src="js/jquery.js"></script>
+</head>
+
+<body>
+    <div>
+        <nav class="autohide navbar navbar-light navbar-expand-lg bg-warning">
+
+            <a class="navbar-brand" href="#">Pizza Paris</a>
+
+            <button class="navbar-toggler" type="button color" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse navspied" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+
+                    <a class="nav-item nav-link" type="button" href="/">Menu</a>
+
+                    <div class="dropdown"></div>
+
+                    </button>
+                    <div class="dropdown float-right cart">
+
+                        <button class="btn  btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Panier
+                        </button>
+                        <div class="dropdown-menu cartdiv">
+                            <ul class="list-group show-cart-drop">
+
+                            </ul>
+                            <div class="dropdown-divider"></div>
+                            <a href="#panier" data-toggle="modal" data-target="#cart" onclick="displayCartModal()">Panier(<span
+                                    class="total-count btn btn-info cart"></span>)</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </nav>
+        <h1>Composer Ta Pizza !!</h1>
+
+
+
+        <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Panier</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="show-cart table">
+
+                        </table>
+                        <div>Total price: <span class="total-cart"></span> €</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Order now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+    <div id="ctp" class="content">
+        <div class="tailleBase component">
+            <div class="ribbon">
+                <h2>TAILLE &amp; BASE</h2>
+                <form id="price">
+                    <input type="radio" name="taille" value="Large" style="color:white" checked>Large (10£)<br>
+                    <input type="radio" name="taille" value="Medium" style="color:white">Medium (8£)<br>
+
+                    <input type="radio" name="pate" value="Normale" style="color:white" checked>Normale<br>
+                    <input type="radio" name="pate" value="Fine" style="color:white">Fine (-1£)<br>
+
+
+                </form>
+                <p id="responses">
+                </p>
+            </div>
+
+
+
+            <!-- Les ingredients -->
+
+            <div class="viande component ">
+                <div class="ribbon ">
+                    <h2>LES VIANDES</h2>
+
+
+                    <div class="text-content ">
+                        <% for (p=0 ; p < viandes.length; p++) { %>
+
+                            <div class="ingredients" id="viandes">
+                                <img class=" lazyloaded " id=" vd " width="100 " src=<%=viandes[p].link_img %> >
+                                <p>
+                                    <%= viandes[p].v_name %>
+                                </p>
+                                <p class="1" value="1 ">
+                                    <%= viandes[p].v_prix %>£
+                                </p>
+                                <!-- <div class="number">
+                                    <span class="minus">-</span>
+                                    <input type="text" id="<%= viandes[p].v_name %>" class="ingred" value="0"
+                                        data-price="<%= viandes[p].v_prix %>">
+                                    <span class="plus">+</span>
+                                </div> -->
+                                <input type="number" class="ingred" value="0" min="0" id="<%= viandes[p].v_name %>" data-price="<%= viandes[p].v_prix %>">
+
+
+                            </div>
+
+                            <% } %>
+
+
+
+
+                    </div>
+                </div>
+
+                <div class="veggie component ">
+                    <div class="ribbon ">
+                        <h2>LES LÉGUMES</h2>
+
+                        <div class="text-content ">
+                            <% for (p=0 ; p < legumes.length; p++) { %>
+                                <div class="ingredients ">
+                                    <img class=" lazyloaded " id="legumes " width="100 " src=<%=legumes[p].link_img %> >
+
+                                    <p>
+                                        <%= legumes[p].leg_name %>
+                                    </p>
+                                    <p>
+                                        <%= legumes[p].leg_prix %> £
+
+                                    </p>
+
+                                    <input type="number" class="ingred" value="0" min="0" id="<%= legumes[p].leg_name %>" data-price="<%= legumes[p].leg_prix %>">
+
+                                </div>
+
+                                <% } %>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="veggie component ">
+                        <div class="ribbon ">
+                            <h2>LES FROMAGES</h2>
+
+                            <div class="text-content ">
+                                <% for (p=0 ; p < fromages.length; p++) { %>
+                                    <div class="ingredients ">
+                                        <img class=" lazyloaded " id="legumes " width="100 " src=<%=fromages[p].link %> >
+
+                                        <p>
+                                            <%= fromages[p].f_name %>
+                                        </p>
+
+                                        <p>
+                                            <%= fromages[p].f_prix %> £
+                                        </p>
+
+                                        <input type="number" class="ingred" value="0" min="0" id="<%= fromages[p].f_name %>" data-price="<%= fromages[p].f_prix %>">
+                                    </div>
+
+                                    <% } %>
+
+
+
+
+                            </div>
+                        </div>
+                        <div class="veggie component ">
+                            <div class="ribbon ">
+                                <h2>LES SAUCES</h2>
+
+                                <div class="text-content ">
+                                    <% for (p=0 ; p < sauces.length; p++) { %>
+                                        <div class="ingredients ">
+                                            <img class=" lazyloaded " id="sauces" width="100 " src=<%=sauces[p].link_img %> >
+                                            <p>
+                                                <%= sauces[p].sc_name %>
+                                            </p>
+                                            <p>
+                                                <%= sauces[p].sc_prix %> £
+                                            </p>
+
+                                            <input type="number" class="ingred" value="0" min="0" id="<%=sauces[p].sc_name%>" data-price="<%= sauces[p].sc_prix %>">
+
+                                        </div>
+
+                                        <% } %>
+
+
+
+
+                                </div>
+                                <div class="cmd_cp ">
+                                    <div class="ribbon ">
+                                        <div class="inline">
+                                            <h2 id="total">0</h2>
+                                            <h2> £</h2>
+                                        </div>
+                                        <button class="button" id="cpm">Commander</button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+
+
+</body>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+
+
+    <script src="js/index.js"></script>
+
+    <title>paris pizza</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="cmd.css">
+
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic">
+
+    <script src="js/jquery.js"></script>
+</head>
+
+<body>
+    <div>
+        <nav class="autohide navbar navbar-light navbar-expand-lg bg-warning">
+
+            <a class="navbar-brand" href="#">Pizza Paris</a>
+
+            <button class="navbar-toggler" type="button color" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+            <div class="collapse navbar-collapse navspied" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+
+                    <a class="nav-item nav-link" type="button" href="/">Déconnexion</a>
+
+                    <div class="dropdown"></div>
+
+                    </button>
+                    <div class="dropdown float-right cart">
+
+
+                        <div class="dropdown-menu cartdiv">
+                            <ul class="list-group show-cart-drop">
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+        </nav>
+        <!-- Tableau des info -->
+
+        <div class="caption">Commande</div>
+
+        <table id="table" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>prenom</th>
+                    <th>Livré(oui/non)</th>
+                    <th>Adresse</th>
+                    <th>Code</th>
+
+                    <th>Info</th>
+                    <th>Heure</th>
+
+                    <th>Email</th>
+
+                    <th>Tel</th>
+
+
+
+
+                    <th>Go livrer</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% let i; for (i=0; i< commande.length; i++) { %>
+
+                    <tr id="tr">
+                        <td id="td1">
+                            <%= commande[i].name_cmd %>
+                        </td>
+                        <td id="td1">
+                            <%= commande[i].prenom_cmd %>
+                        </td>
+                        <td>
+                            <%= commande[i].is_delivred %>
+                        </td>
+                        <td>
+                            <%= commande[i].adresse %>
+                        </td>
+                        <td>
+                            <%= commande[i].code %>
+                        </td>
+                        <td>
+                            <%= commande[i].cmd_info %>
+                        </td>
+                        <td>
+                            <%= commande[i].date_cmd %>
+                        </td>
+                        <td>
+                            <%= commande[i].email %>
+                        </td>
+                        <td>
+                            <%= commande[i].tel %>
+                        </td>
+                        <td> <input type="checkbox" id="check" />
+                            <% } %>
+                    </tr>
+            </tbody>
+
+            <!-- Afficher les commandes non livrées une par une  -->
+
+            <script>
+                $(document).ready(function() {
+                    $('table#table > tbody > tr').not(':first').hide();
+
+                    $("#suivant").on('click', function() {
+                        if ($("#check").is(":checked")) {
+
+
+
+                            $('#table tr:eq(1)').remove();
+                            alert("commande livrée !")
+                            $('table tr').slice(1, -1).show();
+
+                            sql3 = "delete from commande where name_cmd='$1'";
+                            var currentRow = $(this).closest("tr");
+
+                            var id = currentRow.find("td:eq(0)").html();
+
+
+                        }
+
+                    });
+                });
+            </script>
+
+
+
+        </table>
+
+        <td> <button type="button" id="suivant">Suivant</button>
+
+
+
+
+
+</body>
