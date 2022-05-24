@@ -27,7 +27,7 @@ function carouselClick(c) {
 
 
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     var preIngreds = null;
     el_autohide = document.querySelector('.autohide');
     if (window.location.pathname.includes('compose')) {
@@ -49,8 +49,8 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
         //when any input changes, update the total
-        document.querySelectorAll('.ingred').forEach(function(el) {
-            el.addEventListener('change', function() {
+        document.querySelectorAll('.ingred').forEach(function (el) {
+            el.addEventListener('change', function () {
                 updateTotal();
                 //console.log(el.id);
             });
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (el_autohide) {
         var last_scroll_top = 0;
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             let scroll_top = window.scrollY;
             if (scroll_top < last_scroll_top) {
                 el_autohide.classList.remove('scrolled-down');
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var elements = document.getElementsByClassName("add-to-cart");
 
     for (var i = 0; i < elements.length; i++) {
-        elements[i].addEventListener('click', function() {
+        elements[i].addEventListener('click', function () {
             event.preventDefault();
             var name = $(this).data('name');
             var price = Number($(this).data('price'));
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function() {
     //Ajouter les pizzas composées
     var customElements = document.getElementsByClassName("addCustom");
     for (var i = 0; i < customElements.length; i++) {
-        customElements[i].addEventListener('click', function() {
+        customElements[i].addEventListener('click', function () {
             var content = $(this).data('content');
             shoppingCart.defPizz = content;
             //console.log(shoppingCart.defPizz);
@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function() {
     //
     var elements_cp = document.getElementsByClassName("add-to-cart_cp");
     for (var i = 0; i < elements_cp.length; i++) {
-        elements_cp[i].addEventListener('click', function() {
+        elements_cp[i].addEventListener('click', function () {
             nb++;
             event.preventDefault();
             var name = $(this).data('name');
@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var ingred = [];
     var elements_cp = document.getElementsByClassName("add-to-cart_cp");
     for (var i = 0; i < elements_cp.length; i++) {
-        elements_cp[i].addEventListener('click', function() {
+        elements_cp[i].addEventListener('click', function () {
 
 
             var name = $(this).data('name');
@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         })
     }
-    $('#cpm').click(function() {
+    $('#cpm').click(function () {
         // alert('click');
         //var m = new pizza_cp(id, ingred);
         //var p = new Item
@@ -194,14 +194,14 @@ document.addEventListener("DOMContentLoaded", function() {
         //var size = document.getElementById('taille' + name).value;
         var taille = document.querySelector('input[name="taille"]:checked').value
         var pate = document.querySelector('input[name="pate"]:checked').value
-            //GET PATE
-            //var item = new Item("Pizza Custom", price, 1, taille, pate, null);
+        //GET PATE
+        //var item = new Item("Pizza Custom", price, 1, taille, pate, null);
         shoppingCart.addItemToCart("Pizza Custom", price, 1, taille, pate, null, elems);
     });
 
 
     //Supprimer un item du panier
-    $('.show-cart').on("click", ".delete-item", function(event) {
+    $('.show-cart').on("click", ".delete-item", function (event) {
         var name = $(this).data('name')
         shoppingCart.removeItemFromCartAll(name);
         displayCart();
@@ -210,14 +210,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     // -1
-    $('.show-cart').on("click", ".minus-item", function(event) {
-            var name = $(this).data('name');
-            shoppingCart.removeItemFromCart(name);
-            displayCart();
-            displayCartModal();
-        })
-        // +1
-    $('.show-cart').on("click", ".plus-item", function(event) {
+    $('.show-cart').on("click", ".minus-item", function (event) {
+        var name = $(this).data('name');
+        shoppingCart.removeItemFromCart(name);
+        displayCart();
+        displayCartModal();
+    })
+    // +1
+    $('.show-cart').on("click", ".plus-item", function (event) {
         console.log("plus");
         var name = $(this).data('name');
         shoppingCart.addItemToCart(name);
@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function() {
     })
 
     // Compter le nombre d'un item
-    $('.show-cart').on("change", ".item-count", function(event) {
+    $('.show-cart').on("change", ".item-count", function (event) {
         var name = $(this).data('name');
         var count = Number($(this).val());
         shoppingCart.setCountForItem(name, count);
@@ -234,17 +234,34 @@ document.addEventListener("DOMContentLoaded", function() {
         displayCartModal();
     });
     //Ajouter les menus
-    $('.addmenu').click(function() {
+    $('.addmenu').click(function () {
 
         var elements = [];
         var nom = document.getElementById("menuNom").textContent;
         var prix = document.getElementById("menuPrix").textContent;
         var pizz = document.getElementById("menuPizz");
+        var pizz2 = document.getElementById("menuPizz2");
         var boisson = document.getElementById("menuBoisson");
+        var boisson2 = document.getElementById("menuBoisson2");
         var entree = document.getElementById("menuEntree");
-        //elements.push(pizz.value);
-        //elements.push(boisson.value);
-        //elements.push(entree.value);
+        if (pizz != null) {
+            elements.push(pizz.value);
+        }
+        if (pizz2 != null) {
+            elements.push(pizz2.value);
+        }
+        if (boisson != null) {
+            elements.push(boisson.value);
+        }
+        if (boisson2 != null) {
+            elements.push(boisson2.value);
+        }
+        if (entree != null) {
+            elements.push(entree.value);
+        }
+
+
+
         console.log(nom);
         //remove last char of prix
         prix = prix.substring(0, prix.length - 1);
@@ -253,7 +270,7 @@ document.addEventListener("DOMContentLoaded", function() {
         shoppingCart.addItemToCart(nom, prix, 1, null, null, elements);
     });
 
-    $('#addmenu').click(function() {
+    $('#addmenu').click(function () {
 
         var elements = [];
         var nom = document.getElementById("menuNom").textContent;
@@ -268,7 +285,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 
-    $('.minus').click(function() {
+    $('.minus').click(function () {
         var $input = $(this).parent().find('input');
         var count = parseInt($input.val()) - 1;
         count = count < 1 ? 1 : count;
@@ -276,7 +293,7 @@ document.addEventListener("DOMContentLoaded", function() {
         $input.change();
         return false;
     });
-    $('.plus').click(function() {
+    $('.plus').click(function () {
         var $input = $(this).parent().find('input');
         $input.val(parseInt($input.val()) + 1);
         $input.change();
@@ -299,7 +316,7 @@ $(document).ready(function () {
 */ // TODO FIX
 
 function onclick(e) {
-    entree.set(e, );
+    entree.set(e,);
 }
 //MAJ au prix total
 function updateTotal() {
@@ -335,10 +352,9 @@ function updateTotal() {
 
 
 // ************************************************
-// Shopping Cart API
-// ************************************************
 
-var shoppingCart = (function() {
+
+var shoppingCart = (function () {
     // =======================================================
     cart = [];
 
@@ -400,7 +416,7 @@ var shoppingCart = (function() {
     var obj = {};
 
     // Ajouter au panier 
-    obj.addItemToCart = function(name, price, count, size, pate, menu, elems) {
+    obj.addItemToCart = function (name, price, count, size, pate, menu, elems) {
         emptyCart = false;
         for (var item in cart) {
             if (cart[item].name === name) {
@@ -416,7 +432,7 @@ var shoppingCart = (function() {
 
 
     // MAJ le count d'un item
-    obj.setCountForItem = function(name, count) {
+    obj.setCountForItem = function (name, count) {
         for (var i in cart) {
             if (cart[i].name === name) {
                 cart[i].count = count;
@@ -425,7 +441,7 @@ var shoppingCart = (function() {
         }
     };
     // Supprimer du panier
-    obj.removeItemFromCart = function(name) {
+    obj.removeItemFromCart = function (name) {
         for (var item in cart) {
             if (cart[item].name === name) {
                 cart[item].count--;
@@ -439,7 +455,7 @@ var shoppingCart = (function() {
     }
 
     //Vide l'item specifié du panier
-    obj.removeItemFromCartAll = function(name) {
+    obj.removeItemFromCartAll = function (name) {
         for (var item in cart) {
             if (cart[item].name === name) {
                 cart.splice(item, 1);
@@ -450,14 +466,14 @@ var shoppingCart = (function() {
     }
 
     // vider le panier
-    obj.clearCart = function() {
+    obj.clearCart = function () {
         cart = [];
         saveCart();
         emptyCart = true;
     }
 
     // Compter
-    obj.totalCount = function() {
+    obj.totalCount = function () {
         var totalCount = 0;
         for (var item in cart) {
             totalCount += cart[item].count;
@@ -471,7 +487,7 @@ var shoppingCart = (function() {
     }
 
     // Total prix
-    obj.totalCart = function() {
+    obj.totalCart = function () {
         var totalCart = 0;
         for (var item in cart) {
             totalCart += cart[item].price * cart[item].count;
@@ -480,7 +496,7 @@ var shoppingCart = (function() {
     }
 
     // Lister le panier
-    obj.listCart = function() {
+    obj.listCart = function () {
         var cartCopy = [];
         for (i in cart) {
             item = cart[i];
@@ -494,13 +510,13 @@ var shoppingCart = (function() {
         return cartCopy;
     }
 
-    obj.saveCart = function(p) {
+    obj.saveCart = function (p) {
         setCustomPizza(p);
 
         saveCustomPizza();
     }
 
-    obj.getCustomPizza = function() {
+    obj.getCustomPizza = function () {
         return loadCustomPizza();
         //return defPizz;
     }
@@ -533,7 +549,7 @@ function addToCart() {
 }
 
 
-$('.clear-cart').click(function() {
+$('.clear-cart').click(function () {
     shoppingCart.clearCart();
     displayCart();
 });
@@ -606,17 +622,17 @@ function displayCartModal() {
             /*
             if (cartArray[i].name.includes('Custom')) {
                 output += "<tr class =\"disCart\">" +
-                    "<td>" + cartArray[i].name + "</td>" +
-                    "<td class='croutaille'>" + cartArray[i].pate + ", " + cartArray[i].size + "</td>" +
-                    "<td>(" + elemss + ")</td>" +
-                    "<td>(" + cartArray[i].price + "£)</td>" +
-                    "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name='" + cartArray[i].name + "'>-</button>" +
-                    "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>" +
-                    "<button class='plus-item btn btn-primary input-group-addon' data-name='" + cartArray[i].name + "'>+</button></div></td>" +
-                    "<td><button class='delete-item btn btn-danger' data-name='" + cartArray[i].name + "'>X</button></td>" +
-                    " = " +
-                    "<td>" + cartArray[i].total + "</td>" +
-                    "</tr>";
+                "<td>" + cartArray[i].name + "</td>" +
+                "<td class='croutaille'>" + cartArray[i].pate + ", " + cartArray[i].size + "</td>" +
+                "<td>(" + elemss + ")</td>" +
+                "<td>(" + cartArray[i].price + "£)</td>" +
+                "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name='" + cartArray[i].name + "'>-</button>" +
+                "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>" +
+                "<button class='plus-item btn btn-primary input-group-addon' data-name='" + cartArray[i].name + "'>+</button></div></td>" +
+                "<td><button class='delete-item btn btn-danger' data-name='" + cartArray[i].name + "'>X</button></td>" +
+                " = " +
+                "<td>" + cartArray[i].total + "</td>" +
+                "</tr>";
             } else
             */
             output += "<tr class =\"disCart\">" +
@@ -648,7 +664,7 @@ function displayCartModal() {
 
 // Delete item button
 
-$('.show-cart').on("click", ".delete-item", function(event) {
+$('.show-cart').on("click", ".delete-item", function (event) {
     var name = $(this).data('name')
     shoppingCart.removeItemFromCartAll(name);
     displayCart();
@@ -657,19 +673,19 @@ $('.show-cart').on("click", ".delete-item", function(event) {
 
 
 // -1
-$('.show-cart').on("click", ".minus-item", function(event) {
-        var name = $(this).data('name')
-        shoppingCart.removeItemFromCart(name);
-        displayCart();
-    })
-    // +1
-$('.show-cart').on("click", ".plus-item", function(event) {
+$('.show-cart').on("click", ".minus-item", function (event) {
+    var name = $(this).data('name')
+    shoppingCart.removeItemFromCart(name);
+    displayCart();
+})
+// +1
+$('.show-cart').on("click", ".plus-item", function (event) {
     var name = $(this).data('name')
     shoppingCart.addItemToCart(name);
     displayCart();
 })
 
-$('.show-cart').on("change", ".item-count", function(event) {
+$('.show-cart').on("change", ".item-count", function (event) {
     var name = $(this).data('name');
     var count = Number($(this).val());
     shoppingCart.setCountForItem(name, count);
@@ -691,8 +707,8 @@ function defaultPizza(p) {
 
 
 
-$('#suivant').click(function() {
-    $.get("/login", function(data) {
+$('#suivant').click(function () {
+    $.get("/login", function (data) {
 
     });
     location.reload(true);

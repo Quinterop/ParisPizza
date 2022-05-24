@@ -31,9 +31,9 @@ entre_prix integer NOT NULL ,
 link_img varchar(50)
 );
 insert into Entre values (1, 'Salade César',7,'img/salade.jpg');
-insert into Entre values (2, 'Croque',3,'img/bread.png');
+insert into Entre values (2, 'Croque',3,'img/croque.jpg');
 insert into Entre values (3, 'Chicken Wings',3,'img/wings.jpg');
-insert into Entre values (4, 'Omelette',3,'img/omlette.jpg'); 
+insert into Entre values (4, 'Omelette',3,'img/omlette.jpeg'); 
 
 
 /******************************************************************************************************************/
@@ -47,13 +47,13 @@ link_img varchar(50)
 
                                     /* il faut changer les descriptions */
 insert into Pizza values (1, 'Pizza Orientale',16,'Sauce tomate,mozzarella,Merguez,Poivron,Harissa
-','img/slide1.jpg');
+','img/slide-1.jpg');
 insert into Pizza values (2, 'Pizza Hawaienne',15,'Sauce tomate,roquefort,Piment Rouge,Tenders
-','img/slide1.jpg');
-insert into Pizza values (3, 'Pizza Parisienne',14,'Crème fraiche,burrata,Champignons,Basilic,Piment Rouge
-','img/slide1.jpg');
+','img/pizza-paris.jpg');
+insert into Pizza values (3, 'Pizza Parisienne',14,'Crème fraiche,Burrata,Champignons,Basilic,Piment Rouge
+','img/pizza-1.png');
 insert into Pizza values (4, 'Pizza Curry',16,'Sauce curry,mozzarella,Poulet,Poivron,champignons
-','img/slide1.jpg');
+','img/curry.jpeg');
 
 
 
@@ -67,9 +67,9 @@ link_img varchar(50)
 
 
 insert into boisson values (1, 'Coca Zero',2,'img/coca.png');
-insert into boisson values (2, 'Coca',2,'img/zero.png');
-insert into boisson values (3, 'Fanta',2,'img/fanta.png');
-insert into boisson values (4, 'IceTea',2,'img/coca.png');
+insert into boisson values (2, 'Coca',2,'img/Zero.jpg');
+insert into boisson values (3, 'Fanta',2,'img/Fanta.png');
+insert into boisson values (4, 'IceTea',2,'img/icetea.jpg');
 
 
 /***************************************************************************************/

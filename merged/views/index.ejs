@@ -10,10 +10,17 @@
     <!-- Bootstrap CSS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 
 
 
@@ -23,8 +30,10 @@
     <link rel="stylesheet" href="index.css">
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+    <link
+        href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic">
 
     <script src="js/jquery.js"></script>
 </head>
@@ -40,24 +49,29 @@
 
             <a class="navbar-brand" href="#">Pizza Paris</a>
 
-            <button class="navbar-toggler" type="button color" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button color" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse navspied" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" type="button" href="#entrees" onclick="clickScroll('entree')">entrees<span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" type="button" href="#entrees"
+                        onclick="clickScroll('entree')">entrees<span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" type="button" onclick="clickScroll('pizza')">pizzas</a>
                     <a class="nav-item nav-link" type="button" onclick="clickScroll('boisson')">boissons</a>
                     <a class="nav-item nav-link" type="button" href="/compose">compose ta pizza</a>
 
                     <div class="dropdown"></div>
-                    <button onclick="window.location.href='http://127.0.0.1:5555/livraison'" type="button" class="btn btn-danger" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button onclick="window.location.href='http://127.0.0.1:5555/livraison'" type="button"
+                        class="btn btn-danger" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
                         Livreur
                     </button>
                     <div class="dropdown float-right cart">
 
-                        <button class="btn  btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn  btn-danger dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Panier (<span class="total"></span>£)
 
                         </button>
@@ -66,7 +80,8 @@
 
                             </ul>
                             <div class="dropdown-divider"></div>
-                            <a href="#panier" data-toggle="modal" data-target="#cart" onclick="displayCartModal()">Panier(<span
+                            <a href="#panier" data-toggle="modal" data-target="#cart"
+                                onclick="displayCartModal()">Panier(<span
                                     class="total-count btn btn-info cart"></span>)</a>
                         </div>
                     </div>
@@ -81,7 +96,7 @@
 
     <!-- Le carousel des menus -->
 
-    <div id="carouselMenus" class="carousel slide " data-ride="carousel" data-interval="900">
+    <div id="carouselMenus" class="carousel slide " data-ride="carousel" data-interval="3000">
         <ol class="carousel-indicators">
             <li data-target="#carouselMenus" data-slide-to="0" class="active"></li>
             <li data-target="#carouselMenus" data-slide-to="1"></li>
@@ -129,7 +144,8 @@
     </div>
     <!-- Le panier(modal) -->
 
-    <div class="modal fade right" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade right" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -146,7 +162,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addressModal" data-dismiss="modal">Order now</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addressModal"
+                        data-dismiss="modal">Order now</button>
                 </div>
             </div>
         </div>
@@ -267,7 +284,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">fermer</button>
-                    <button type="button" class="btn btn-primary addmenu" data-dismiss="modal" id="addmenu">Ajouter</button>
+                    <button type="button" class="btn btn-primary addmenu" data-dismiss="modal"
+                        id="addmenu">Ajouter</button>
                 </div>
             </div>
         </div>
@@ -309,7 +327,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">fermer</button>
-                    <button type="button" class="btn btn-primary addmenu" data-dismiss="modal" id="addmenu">Ajouter</button>
+                    <button type="button" class="btn btn-primary addmenu" data-dismiss="modal"
+                        id="addmenu">Ajouter</button>
                 </div>
             </div>
         </div>
@@ -324,7 +343,7 @@
                 <% let i; for (i=0; i < entre.length; i++) { %>
                     <div class="col-lg-3 bordureJaune">
 
-                        <img src="img/salade.jpg " id="all" width="100% ">
+                        <img src="<%= entre[i].link_img %> " id="all" width="100% ">
 
                         <h1>
                             <%= entre[i].entre_name %>
@@ -332,19 +351,14 @@
                         <p>
                             <%= entre[i].entre_prix %>$
                         </p>
-                        <select name="sauce" id="sauce">
-                            <option value="">--Choisissez une sauce:--</option>
-                            <% let s; for (s=0; s < sc.length; s++) { %>
 
-                            <option value="sc"><%= sc[s].sc_name %></option>
-                            <% } %>
-
-                        </select>
-
-                        <input type="number" min="0" max="500" id="<%= entre[i].entre_name %>"><br>
+                        <div>
+                            <input type="number" min="0" max="500" id="<%= entre[i].entre_name %>"><br>
 
 
-                        <a href="#" data-name="<%=entre[i].entre_name%>" data-price="<%= entre[i].entre_prix %>" class="add-to-cart btn btn-info">Ajouter</a>
+                            <a href="#" data-name="<%=entre[i].entre_name%>" data-price="<%= entre[i].entre_prix %>"
+                                class="add-to-cart btn btn-info">Ajouter</a>
+                        </div>
                     </div>
                     <% } %>
 
@@ -365,12 +379,12 @@
                 <% let j; for (j=0; j < entre.length; j++) { %>
                     <div class="col-sm-3 bordureJaune">
 
-                        <img src="img/slide-1.jpg " id="all" width="100% ">
+                        <img src="<%= Pizza[j].link_img %> " id="all" width="100% ">
 
                         <h1>
                             <%= Pizza[j].pizza_name %>
                         </h1>
-                        <p>
+                        <p class="text-wrap">
                             <%= Pizza[j].pizza_desc %>
                         </p>
                         <p>
@@ -387,8 +401,10 @@
                         </select>
                         <input type="number" min="0" max="500" id="<%= Pizza[j].pizza_name %>" value="1">
 
-                        <a href="#" data-name="<%=Pizza[j].pizza_name%>" data-price="<%= Pizza[j].pizza_prix %>" class="add-to-cart btn btn-info">Ajouter</a>
-                        <a class="btn btn-info addCustom" type="button" data-content="<%= Pizza[j].pizza_desc %>" href="/compose">Customiser</a>
+                        <a href="#" data-name="<%=Pizza[j].pizza_name%>" data-price="<%= Pizza[j].pizza_prix %>"
+                            class="add-to-cart btn btn-info">Ajouter</a>
+                        <a class="btn btn-info addCustom" type="button" data-content="<%= Pizza[j].pizza_desc %>"
+                            href="/compose">Customiser</a>
                     </div>
                     <% } %>
 
@@ -402,7 +418,7 @@
             <div class="row ">
                 <% let k; for (k=0; k < boisson.length; k++) { %>
                     <div class="col-lg-3 bordureJaune ">
-                        <img src="img/coca.png " width="100% ">
+                        <img src="<%= boisson[k].link_img %> " width="100% ">
                         <h1>
                             <%= boisson[k].b_name %>
                         </h1>
@@ -411,7 +427,8 @@
                         </p>
                         <input type="number " min="0 " max="500" id="<%=boisson[k].b_name%>">
                         <a href="# " data-name="<%=boisson[k].b_name%>" data-price="
-                                                                <%= boisson[k].b_prix %>" class="add-to-cart btn btn-info <%=boisson[k].b_name%>">Ajouter</a>
+                                                                <%= boisson[k].b_prix %>"
+                            class="add-to-cart btn btn-info <%=boisson[k].b_name%>">Ajouter</a>
                     </div>
                     <% } %>
 
@@ -425,7 +442,8 @@
     </div>
     <!-- Modal des infos pour commander (nom,adresse....) -->
 
-    <div class="modal fade right" id="addressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade right" id="addressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -439,18 +457,22 @@
                         <div class="form-row">
                             <div class="field col-md-6">
                                 <label for="text" style="color:black">Prénom</label>
-                                <input type="text" class="form-control input required-contact-field" required="true" name="prenom" required class="input required-contact-field" autocomplete='name' id="prenom" placeholder="Prénom">
+                                <input type="text" class="form-control input required-contact-field" required="true"
+                                    name="prenom" required class="input required-contact-field" autocomplete='name'
+                                    id="prenom" placeholder="Prénom">
                                 <p id="demo"></p>
 
                             </div>
                             <div class="field col-md-6">
                                 <label for="inputPassword4" style="color: black;">Nom</label>
-                                <input type="text" class="form-control input required-contact-field" required="true" id="name_of_client" name="name_of_client" placeholder="Nom ">
+                                <input type="text" class="form-control input required-contact-field" required="true"
+                                    id="name_of_client" name="name_of_client" placeholder="Nom ">
                             </div>
                         </div>
                         <div class="field col-md-6">
                             <label for="inputPassword4" style="color: black;">Adresse</label>
-                            <input type="text" class="form-control input required-contact-field" required="true" id="addr" name="addr" placeholder="adresse ">
+                            <input type="text" class="form-control input required-contact-field" required="true"
+                                id="addr" name="addr" placeholder="adresse ">
                         </div>
                         <div class="field col-md-6">
                             <label for="inputPassword4" style="color: black;">Code (optionnel)</label>
@@ -458,32 +480,37 @@
                         </div>
                         <div class="field col-md-6">
                             <label for="inputPassword4" style="color: black;">Numéro portable</label>
-                            <input type="text" class="form-control input required-contact-field" id="tel" required="true" name="tel" placeholder="tel ">
+                            <input type="text" class="form-control input required-contact-field" id="tel"
+                                required="true" name="tel" placeholder="tel ">
                         </div>
                         <div class="field col-md-6">
                             <label for="inputPassword4" style="color: black;">Adresse-email</label>
-                            <input type="text" class="form-control input required-contact-field" id="email" name="email" required="true" placeholder="email ">
+                            <input type="text" class="form-control input required-contact-field" id="email" name="email"
+                                required="true" placeholder="email ">
                         </div>
 
                         <div class="field col-md-6 ">
                             <label for="inputZip" style="color: black;">Heure de livraison</label>
-                            <input type="time" id="heure" name="heure" min="09:00" max="18:00" class="form-control input required-contact-field" required="true"> </div>
+                            <input type="time" id="heure" name="heure" min="09:00" max="18:00"
+                                class="form-control input required-contact-field" required="true">
+                        </div>
                 </div>
                 <div class="modal-footer ">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                    <button type="submit" value="submit" id="finish" class="btn btn-success button--disabled">Commander</button>
+                    <button type="submit" value="submit" id="finish"
+                        class="btn btn-success button--disabled">Commander</button>
 
                 </div>
                 </form>
                 <script>
-                    $(document).ready(function() {
-                        var disable_form_submit = function() {
+                    $(document).ready(function () {
+                        var disable_form_submit = function () {
 
                             var contactNameField = '.required-contact-field';
 
-                            $(contactNameField).keyup(function() {
+                            $(contactNameField).keyup(function () {
                                 var empty = false;
-                                $(contactNameField).each(function() {
+                                $(contactNameField).each(function () {
                                     if ($(this).val() == '') {
                                         empty = true;
                                     }
