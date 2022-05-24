@@ -124,6 +124,7 @@
 
 
 
+            <!-- Les ingredients -->
 
             <div class="viande component ">
                 <div class="ribbon ">
@@ -258,52 +259,7 @@
 
 
 
-                        <script>
-                            var pizzaPrice = 0;
 
-                            function Pizza(size, sauce, pizzaPrice) {
-                                this.size = size;
-                                this.sauce = sauce;
-                                this.pizzaPrice = 0;
-                            }
-                            var error = "";
-                            Pizza.prototype.price = function() {
-                                if (this.sauce === "tomate" || this.sauce === "blanche") {
-                                    if (this.size === "Small") {
-                                        this.pizzaPrice += 2;
-                                    } else {
-                                        this.pizzaPrice += 3;
-                                    }
-                                }
-
-
-
-
-                                return this.pizzaPrice;
-                            }
-
-
-
-
-
-
-                            $(document).ready(function() {
-
-
-                                $("#sbt").click(function(event) {
-                                    event.preventDefault();
-
-                                    var size = $("input[type=radio][name=size]:checked").val();
-                                    var sauce = $("input[type=radio][name=sauce]:checked").val();
-                                    var newPizza = new Pizza(size, sauce, pizzaPrice);
-                                    pr = newPizza.price();
-                                    $("#responses").append("<p>" + "You ordered a " + newPizza.sauce + " " + newPizza.size + " " + ". Your total price is " + pr + "</p>");
-                                });
-
-
-
-                            });
-                        </script>
 
 
 

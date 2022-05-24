@@ -6,7 +6,7 @@ var SAVED = "";
 var ingredList = [];
 
 //$('body').scrollspy({ target: '#navspied' }); TODO FIX
-
+//le scroll de la page
 function clickScroll(n) {
     document.getElementById(n).scrollIntoView({
         behavior: 'smooth',
@@ -82,6 +82,8 @@ document.addEventListener("DOMContentLoaded", function() {
         // window.addEventListener
     }
     // if
+
+    //Ajouter au panier 
     var elements = document.getElementsByClassName("add-to-cart");
 
     for (var i = 0; i < elements.length; i++) {
@@ -120,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log('click');
         });
     }
-
+    //Ajouter les pizzas composées
     var customElements = document.getElementsByClassName("addCustom");
     for (var i = 0; i < customElements.length; i++) {
         customElements[i].addEventListener('click', function() {
@@ -138,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function() {
         this.ingred = ingred;
     }
 
-
+    //
     var elements_cp = document.getElementsByClassName("add-to-cart_cp");
     for (var i = 0; i < elements_cp.length; i++) {
         elements_cp[i].addEventListener('click', function() {
@@ -198,6 +200,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 
+    //Supprimer un item du panier
     $('.show-cart').on("click", ".delete-item", function(event) {
         var name = $(this).data('name')
         shoppingCart.removeItemFromCartAll(name);
@@ -222,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function() {
         displayCartModal();
     })
 
-    // Item count input
+    // Compter le nombre d'un item
     $('.show-cart').on("change", ".item-count", function(event) {
         var name = $(this).data('name');
         var count = Number($(this).val());
@@ -230,7 +233,7 @@ document.addEventListener("DOMContentLoaded", function() {
         displayCart();
         displayCartModal();
     });
-    //add listeners to elements with class "addmenu"
+    //Ajouter les menus
     $('.addmenu').click(function() {
 
         var elements = [];
@@ -298,7 +301,7 @@ $(document).ready(function () {
 function onclick(e) {
     entree.set(e, );
 }
-
+//MAJ au prix total
 function updateTotal() {
     allIngreds = document.getElementsByClassName('ingred');
 
@@ -330,39 +333,13 @@ function updateTotal() {
 
 
 
-/*
-// Add smooth scrolling on all links inside the navbar
-$("#myNavbar a").on('click', function (event) {
-    // Make sure this.hash has a value before overriding default behavior
-    if (this.hash !== "") {
-        // Prevent default anchor click behavior
-        event.preventDefault();
-        
-        // Store hash
-        var hash = this.hash;
-        
-        // Using jQuery's animate() method to add smooth page scroll
-        // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-        $('html, body').animate({
-            scrollTop: $(hash).offset().top
-        }, 800, function () {
-            
-            // Add hash (#) to URL when done scrolling (default click behavior)
-            window.location.hash = hash;
-        });
-    }
-});
-});
-*/
 
 // ************************************************
 // Shopping Cart API
 // ************************************************
 
 var shoppingCart = (function() {
-    // =============================
-    // Private methods and propeties
-    // =============================
+    // =======================================================
     cart = [];
 
     defPizz = null;
@@ -382,7 +359,7 @@ var shoppingCart = (function() {
 
 
 
-    // Save cart
+    // Sauvegarder
     function saveCart() {
         sessionStorage.setItem('shoppingCart', JSON.stringify(cart));
     }
@@ -398,7 +375,7 @@ var shoppingCart = (function() {
         sessionStorage.setItem('customPizza', JSON.stringify(defPizz));
     }
 
-    // Load cart
+    // Load le panier
     function loadCart() {
         cart = JSON.parse(sessionStorage.getItem('shoppingCart'));
         emptyCart = false;
@@ -407,7 +384,7 @@ var shoppingCart = (function() {
         loadCart();
     }
 
-    // Load custom pizza
+    // Load  le custom pizza
     function loadCustomPizza() {
         console.log("loading custom");
         defPizz = JSON.parse(sessionStorage.getItem('customPizza'));
@@ -419,12 +396,10 @@ var shoppingCart = (function() {
     }
 
 
-    // =============================
-    // Public methods and propeties
-    // =============================
+
     var obj = {};
 
-    // Add to cart
+    // Ajouter au panier 
     obj.addItemToCart = function(name, price, count, size, pate, menu, elems) {
         emptyCart = false;
         for (var item in cart) {
@@ -436,12 +411,11 @@ var shoppingCart = (function() {
         }
         var item = new Item(name, price, count, size, pate, menu, elems);
         cart.push(item);
-        //push autre chose
         saveCart();
     }
 
 
-    // Set count from item
+    // MAJ le count d'un item
     obj.setCountForItem = function(name, count) {
         for (var i in cart) {
             if (cart[i].name === name) {
@@ -450,7 +424,7 @@ var shoppingCart = (function() {
             }
         }
     };
-    // Remove item from cart
+    // Supprimer du panier
     obj.removeItemFromCart = function(name) {
         for (var item in cart) {
             if (cart[item].name === name) {
@@ -464,7 +438,7 @@ var shoppingCart = (function() {
         saveCart();
     }
 
-    // Remove all items from cart
+    //Vide l'item specifié du panier
     obj.removeItemFromCartAll = function(name) {
         for (var item in cart) {
             if (cart[item].name === name) {
@@ -475,14 +449,14 @@ var shoppingCart = (function() {
         saveCart();
     }
 
-    // Clear cart
+    // vider le panier
     obj.clearCart = function() {
         cart = [];
         saveCart();
         emptyCart = true;
     }
 
-    // Count cart 
+    // Compter
     obj.totalCount = function() {
         var totalCount = 0;
         for (var item in cart) {
@@ -496,7 +470,7 @@ var shoppingCart = (function() {
         return totalCount;
     }
 
-    // Total cart
+    // Total prix
     obj.totalCart = function() {
         var totalCart = 0;
         for (var item in cart) {
@@ -505,7 +479,7 @@ var shoppingCart = (function() {
         return Number(totalCart.toFixed(2));
     }
 
-    // List cart
+    // Lister le panier
     obj.listCart = function() {
         var cartCopy = [];
         for (i in cart) {
@@ -559,7 +533,6 @@ function addToCart() {
 }
 
 
-// Clear items
 $('.clear-cart').click(function() {
     shoppingCart.clearCart();
     displayCart();
@@ -696,7 +669,6 @@ $('.show-cart').on("click", ".plus-item", function(event) {
     displayCart();
 })
 
-// Item count input
 $('.show-cart').on("change", ".item-count", function(event) {
     var name = $(this).data('name');
     var count = Number($(this).val());
@@ -707,63 +679,23 @@ $('.show-cart').on("change", ".item-count", function(event) {
 displayCart();
 
 
-$(document).ready(function() {
 
-    //For Card Number formatted input
-    var cardNum = document.getElementById('cr_no');
-    cardNum.onkeyup = function(e) {
-        if (this.value == this.lastValue) return;
-        var caretPosition = this.selectionStart;
-        var sanitizedValue = this.value.replace(/[^0-9]/gi, '');
-        var parts = [];
-
-        for (var i = 0, len = sanitizedValue.length; i < len; i += 4) {
-            parts.push(sanitizedValue.substring(i, i + 4));
-        }
-
-        for (var i = caretPosition - 1; i >= 0; i--) {
-            var c = this.value[i];
-            if (c < '0' || c > '9') {
-                caretPosition--;
-            }
-        }
-        caretPosition += Math.floor(caretPosition / 4);
-
-        this.value = this.lastValue = parts.join(' ');
-        this.selectionStart = this.selectionEnd = caretPosition;
-    }
-
-    //For Date formatted input
-    var expDate = document.getElementById('exp');
-    expDate.onkeyup = function(e) {
-        if (this.value == this.lastValue) return;
-        var caretPosition = this.selectionStart;
-        var sanitizedValue = this.value.replace(/[^0-9]/gi, '');
-        var parts = [];
-
-        for (var i = 0, len = sanitizedValue.length; i < len; i += 2) {
-            parts.push(sanitizedValue.substring(i, i + 2));
-        }
-
-        for (var i = caretPosition - 1; i >= 0; i--) {
-            var c = this.value[i];
-            if (c < '0' || c > '9') {
-                caretPosition--;
-            }
-        }
-        caretPosition += Math.floor(caretPosition / 2);
-
-        this.value = this.lastValue = parts.join('/');
-        this.selectionStart = this.selectionEnd = caretPosition;
-    }
-
-});
 
 
 
 
 function defaultPizza(p) {
     shoppingCart.setCustomPizza(p);
-    //defPizza = p;
-    //alert(p);
+
 }
+
+
+
+$('#suivant').click(function() {
+    $.get("/login", function(data) {
+
+    });
+    location.reload(true);
+
+
+});

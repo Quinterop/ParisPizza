@@ -16,7 +16,6 @@ drop table if exists livreur cascade;
 drop table if exists fromages cascade; 
 drop table if exists legumes cascade; 
 drop table if exists pizza_cp cascade; 
-drop table if exists commande cascade; 
 
 
 
@@ -149,18 +148,7 @@ insert into fromages values (4, 'roquefort',1,'img/roquefort.jpg');
 
 
 
-/**********************************************************************************************/
-/*create table commande ( 
-    num integer primary key ,
-    nom varchar(20) not NULL, 
-    is_delivred NUMBER(1),
-    CONSTRAINT ck_testbool_ischk CHECK (is_checked IN (1,0))
 
-    
-);
-
-insert into commande values (1, 'jihed',0);
-insert into commande values (2, 'asma ',1);*/ 
 
 
 create table livreur (

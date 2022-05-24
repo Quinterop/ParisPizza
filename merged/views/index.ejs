@@ -32,6 +32,7 @@
 
 
 
+<!-- Le navbar de la page -->
 
 <body data-spy="scroll" data-target="#navspied" data-offset="0">
     <div>
@@ -51,7 +52,7 @@
                     <a class="nav-item nav-link" type="button" href="/compose">compose ta pizza</a>
 
                     <div class="dropdown"></div>
-                    <button onclick="window.location.href='http://127.0.0.1:4444/livraison'" type="button" class="btn btn-danger" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button onclick="window.location.href='http://127.0.0.1:2019/livraison'" type="button" class="btn btn-danger" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Livreur
                     </button>
                     <div class="dropdown float-right cart">
@@ -78,6 +79,7 @@
 
 
 
+    <!-- Le carousel des menus -->
 
     <div id="carouselMenus" class="carousel slide " data-ride="carousel" data-interval="900">
         <ol class="carousel-indicators">
@@ -125,6 +127,8 @@
 
 
     </div>
+    <!-- Le panier(modal) -->
+
     <div class="modal fade right" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -148,6 +152,7 @@
         </div>
     </div>
     </div>
+    <!-- menus -->
 
     <div id="menu1" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -415,33 +420,10 @@
 
         <div id="menu " class="container ">
 
-            <div class="row ">
-                <!--faire le menu -->
-                <div class="row ">
-                    <div class="col-lg-6 bordureJaune ">
-                        <img src="img/menu_pizza_boisson.jpg " id="all" style="max-height: 200px; ">
-                        <h1>Extra Menu </h1>
-                        <p>1 entrée, 1 pizza Médium, 1 boisson</p>
-                        <p>15,00 €</p>
 
-                        <button type="button " class="btn btn-info ">Ajouter</button>
-                    </div>
-                    <div class="col-lg-6 bordureJaune ">
-                        <img src="img/menu_pizza_boisson.jpg " id="all" style="max-height: 200px; ">
-                        <h1>Mega Menu</h1>
-                        <p>2 entrées, 2 pizzas Médium, 1 boisson d’au moins 1l</p>
-                        <button type="button " class="btn btn-info ">Ajouter</button>
-                    </div>
-                    <div class="clearfix " style="margin : 10px "></div>
-
-
-
-                </div>
-
-
-            </div>
         </div>
     </div>
+    <!-- Modal des infos pour commander (nom,adresse....) -->
 
     <div class="modal fade right" id="addressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -453,7 +435,6 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <!--input name and surname-->
                     <form id="infos" method="post" action="/livraison">
                         <div class="form-row">
                             <div class="field col-md-6">
@@ -524,7 +505,6 @@
             </div>
         </div>
 
-        <!-- credit card details modal-->
 
 
 

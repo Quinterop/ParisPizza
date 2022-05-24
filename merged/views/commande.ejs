@@ -68,6 +68,7 @@
 
 
         </nav>
+        <!-- Tableau des info -->
 
         <div class="caption">Commande</div>
 
@@ -126,37 +127,38 @@
                         </td>
                         <td> <input type="checkbox" id="check" />
                             <% } %>
-
-
-                                <script>
-                                    $(document).ready(function() {
-                                        $('table#table > tbody > tr').not(':first').hide();
-
-                                        $("#suivant").on('click', function() {
-                                            if ($("#check").is(":checked")) {
-
-
-
-                                                $('#table tr:eq(1)').remove();
-                                                alert("commande livrée !")
-                                                $('table tr').slice(1, -1).show();
-
-                                                sql3 = "delete from commande where name_cmd='$1'";
-                                                var currentRow = $(this).closest("tr");
-
-                                                var id = currentRow.find("td:eq(0)").html();
-
-
-                                            }
-
-                                        });
-                                    });
-                                </script>
                     </tr>
-
-
-
             </tbody>
+
+            <!-- Afficher les commandes non livrées une par une  -->
+
+            <script>
+                $(document).ready(function() {
+                    $('table#table > tbody > tr').not(':first').hide();
+
+                    $("#suivant").on('click', function() {
+                        if ($("#check").is(":checked")) {
+
+
+
+                            $('#table tr:eq(1)').remove();
+                            alert("commande livrée !")
+                            $('table tr').slice(1, -1).show();
+
+                            sql3 = "delete from commande where name_cmd='$1'";
+                            var currentRow = $(this).closest("tr");
+
+                            var id = currentRow.find("td:eq(0)").html();
+
+
+                        }
+
+                    });
+                });
+            </script>
+
+
+
         </table>
 
         <td> <button type="button" id="suivant">Suivant</button>
