@@ -4,7 +4,7 @@ body {
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
-    background-color: #0c0a0a;
+    background-color: #7a77728e !important;
 }
 
 h1,
@@ -35,23 +35,6 @@ p {
 hr {
     max-width: 400px;
     border-color: #e1e50a;
-}
-
-.brand,
-.address-bar {
-    display: none;
-}
-
-.navbar-brand {
-    text-transform: uppercase;
-    font-weight: 900;
-    letter-spacing: 2px;
-}
-
-.navbar-nav {
-    text-transform: uppercase;
-    font-weight: 400;
-    letter-spacing: 3px;
 }
 
 .dropdown-menu {
@@ -220,10 +203,11 @@ hr {
 }
 
 h1 {
-    color: #efef11;
+    color: #ac1111;
     text-indent: 50px;
-    text-align: justify;
+    text-align: center;
     letter-spacing: 3px;
+    margin-top: 200px;
 }
 
 .btn-info {
@@ -242,14 +226,11 @@ body {
 .container {
     position: static;
     color: #130606;
+    text-align: center;
 }
 
 .navbar-inverse .navbar-nav>li>a {
     color: #0c0a0a;
-}
-
-#img_div {
-    background-image: url("img/livreur.jpg");
 }
 
 .navbar-inverse {
@@ -260,7 +241,7 @@ h2,
 label {
     font-weight: bold;
     font-size: 35px;
-    color: #999999
+    color: #1726ac
 }
 
 .boxs {
@@ -325,4 +306,9 @@ label {
     flex-wrap: wrap;
     margin-right: -15px;
     margin-left: -15px;
+}
+
+.login-box {
+    text-align: center;
+    margin-left: 400px;
 }

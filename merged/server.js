@@ -7,7 +7,7 @@ const pool = new Pool();
 const config = require("dotenv").config()
 const { acceptsEncodings } = require('express/lib/request');
 let app = express();
-const port = 2022;
+const port = 5555;
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
@@ -29,7 +29,7 @@ let pizza_composee;
 let commande;
 let sc;
 
-
+//Avoir le menu 
 app.get('/', async function(req, res) {
 
     const client = await pool.connect();
@@ -74,7 +74,7 @@ app.get('/', async function(req, res) {
 });
 
 
-
+// Les ingredients pour la pizza composée
 app.get('/compose', async function(req, res) {
 
     const client = await pool.connect();
@@ -123,7 +123,7 @@ app.get('/compose', async function(req, res) {
 
 
 
-
+//la page pour se connecter
 app.get('/livraison', async function(req, res, next) {
     res.render('livraison.ejs', '');
 });
@@ -151,7 +151,7 @@ var date = "";
 
 
 
-
+//Inserer les infos du commande dans la bdd
 app.post('/livraison', async function(req, res) {
 
 
@@ -190,78 +190,48 @@ app.post('/livraison', async function(req, res) {
     console.log("finished")
 });
 
+//afficher les infos de la commande 
+
 app.post('/login', async function(req, res) {
-        const liv = await pool.connect();
-        const L_name = req.body.username;
-        const L_pwd = req.body.pwdl;
-        var sql1 = 'SELECT * FROM livreur WHERE nom =$1 AND pwd =$2';
-        const con = await liv.query(sql1, [L_name, L_pwd]);
-        const commandes_text = "select * from commande where is_delivred='NON' order by date_cmd ";
-        const commande = await liv.query(commandes_text);
+    const liv = await pool.connect();
+    const L_name = req.body.username;
+    const L_pwd = req.body.pwdl;
+    var sql1 = 'SELECT * FROM livreur WHERE nom =$1 AND pwd =$2';
+    const con = await liv.query(sql1, [L_name, L_pwd]);
+    const commandes_text = "select * from commande where is_delivred='NON' order by date_cmd ";
+    const commande = await liv.query(commandes_text);
 
-        let all = {
-            commande: commande.rows
-        }
-        res.render('commande.ejs', all)
-        liv.release()
-    })
-    /** 
-    app.post('/compose', async function(req, res) {
-        $('#cpm').click(async function() {
-            const liv = await pool.connect();
-
-            var c = 'insert into pizza_cp (id,ingred) values ($1,$2)';
-            const con = await liv.query(c, [0, cmd]);
-            console.log(cmd);
-
-        });
+    let all = {
+        commande: commande.rows
+    }
+    res.render('commande.ejs', all)
+    liv.release()
+})
 
 
-    });**/
+/*app.get('/login', async function(req, res) {
+    const liv = await pool.connect();
+
+    const commandes_text = "select * from commande where is_delivred='NON' order by date_cmd ";
+    const commande = await liv.query(commandes_text);
+
+    let all = {
+        commande: commande.rows[0]
+    }
+    let name = commande.rows[0].name;
+    res.render('commande.ejs', all);
+    let next = "delete from commande where name_cmd='$1'";
+
+    await client.query(next, [name]);
+    await liv.query('COMMIT');
+
+    liv.release()
+})*/
+
+
+
+
 
 app.listen(port, '127.0.0.1', () => {
     console.log(`App running on port ${port}.`)
 })
-
-
-/* configuration*/
-
-/*app.post('/livraison', async function(req, res) {
-
-    const name = body.sign_name;
-    const mail = body.sign_mail;
-    const pwd = body.sign_pwd;
-    const cpwd = body.sign_pwd1;
-
-    const liv = await pool.connect(); 
-    try
-    await liv.query('BEGIN')
-
-
-
-    // check unique email address
-    var sql = 'SELECT * FROM livreur WHERE mail=?';
-    await liv.query(sql, [inputData.mail], function(err, data, fields) {
-        if (err) { throw err }
-
-        if (data.length > 1) {
-            var msg = inputData.mail + "was already exist";
-        } else if (inputData.cpwd != inputData.pwd) {
-            var msg = "Password & Confirm Password is not Matched";
-        } else {
-
-            // save users data into database
-            var sql = 'INSERT INTO livreur SET ?';
-            await liv.query(sql, inputData, function(err, data) {
-                if (err) throw err;
-            });
-            var msg = "Your are successfully registered";
-        }
-        res.render('livraison.ejs', { alertMsg: msg });
-        console.log(msg);
-    })
-
-});
-module.exports = router;
-
-*/

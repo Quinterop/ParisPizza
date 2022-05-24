@@ -1,11 +1,12 @@
 body {
+    margin: 50px;
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
     position: relative;
-    background-color: #0c0a0a;
+    background-color: #7a77728e !important;
 }
 
 .autohide {
@@ -127,16 +128,13 @@ h6 {
         line-height: normal;
         color: #fff;
     }
-
     .top-divider {
         margin-top: 0;
     }
-
     .img-left {
         float: right;
         margin-right: 25px;
     }
-
     .address-bar {
         display: inherit;
         margin: 0;
@@ -149,34 +147,27 @@ h6 {
         letter-spacing: 3px;
         color: #fff;
     }
-
     .navbar {
         border-radius: 0;
     }
-
     .navbar-header {
         display: none;
     }
-
     .navbar {
         min-height: 0;
     }
-
     .navbar-default {
         border: none;
         background: #fff;
         background: rgb(165, 16, 16);
     }
-
     .nav>li>a {
         padding: 35px;
         color: #e1e50a;
     }
-
     .navbar-nav>li>a {
         line-height: normal;
     }
-
     .navbar-nav {
         /*display: table;*/
         float: none;
@@ -204,6 +195,18 @@ h6 {
     padding: 16px;
     font-size: 16px;
     border: none;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #a30b0b;
+    border-color: #05090e;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #000000;
+    border-color: #0e0d0d;
 }
 
 .dropdown {
@@ -240,15 +243,10 @@ h6 {
 }
 
 h1 {
-    color: #efef11;
+    color: #671d00;
     text-indent: 50px;
     text-align: justify;
     letter-spacing: 3px;
-}
-
-.btn-info {
-    color: #130606;
-    background-color: rgb(240, 233, 26);
 }
 
 .btn-danger {
@@ -269,7 +267,7 @@ body {
 }
 
 .navbar-inverse .navbar-nav>li>a {
-    color: #0c0a0a;
+    color: #000000;
 }
 
 #img_div {
@@ -284,7 +282,6 @@ h2,
 label {
     font-weight: bold;
     font-size: 35px;
-    color: #f3efef
 }
 
 
@@ -337,7 +334,7 @@ label {
 /*****/
 
 .bg-warning {
-    background-color: #f5ff07 !important;
+    background-color: #ad1111 !important;
 }
 
 .btn-danger {
@@ -347,7 +344,7 @@ label {
 }
 
 p {
-    color: #fff;
+    color: rgb(0, 0, 0);
     font-size: medium;
 }
 
@@ -356,8 +353,9 @@ p {
 }
 
 .bordureJaune {
-    border: 3px solid yellow;
+    border: 3px solid rgb(82, 26, 3);
     padding: 10px;
+    border-radius: 20px;
 }
 
 #cm {

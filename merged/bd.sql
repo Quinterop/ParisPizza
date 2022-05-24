@@ -1,21 +1,18 @@
 
-drop table if exists Entre cascade;
-drop table if exists Pizza cascade;
-drop table if exists viandes cascade;
-drop table if exists commande cascade; 
-drop table if exists boisson cascade; 
+
 
 
 drop table if exists Entre cascade;
 drop table if exists Pizza cascade;
 drop table if exists viandes cascade;
-drop table if exists commande cascade; 
 drop table if exists boisson cascade; 
 drop table if exists sauces cascade; 
 drop table if exists livreur cascade; 
 drop table if exists fromages cascade; 
 drop table if exists legumes cascade; 
 drop table if exists pizza_cp cascade; 
+drop table if exists commande cascade; 
+
 
 
 
@@ -49,13 +46,13 @@ link_img varchar(50)
 );
 
                                     /* il faut changer les descriptions */
-insert into Pizza values (1, 'Pizza Orientale',11,'Sauce tomate,mozzarella,Merguez,Poivron,Harissa
+insert into Pizza values (1, 'Pizza Orientale',16,'Sauce tomate,mozzarella,Merguez,Poivron,Harissa
 ','img/slide1.jpg');
-insert into Pizza values (2, 'Pizza Hawaienne',11,'Sauce tomate,roquefort,Piment Rouge,Tenders
+insert into Pizza values (2, 'Pizza Hawaienne',15,'Sauce tomate,roquefort,Piment Rouge,Tenders
 ','img/slide1.jpg');
-insert into Pizza values (3, 'Pizza Parisienne',11,'Crème fraiche,burrata,Champignons,Basilic,Piment Rouge
+insert into Pizza values (3, 'Pizza Parisienne',14,'Crème fraiche,burrata,Champignons,Basilic,Piment Rouge
 ','img/slide1.jpg');
-insert into Pizza values (4, 'Pizza Curry',11,'Sauce curry,mozzarella,Poulet,Poivron,champignons
+insert into Pizza values (4, 'Pizza Curry',16,'Sauce curry,mozzarella,Poulet,Poivron,champignons
 ','img/slide1.jpg');
 
 
@@ -87,10 +84,10 @@ create table viandes(
 
 
 
-insert into viandes values (1, 'Nuggets',1,'img/nuggets.jpg');
-insert into viandes values (2, 'Poulet',1,'img/poulet.jpg');
-insert into viandes values (3, 'Tenders',1,'img/poulet.jpg');
-insert into viandes  values (4, 'Merguez',1,'img/merguez.jpg');
+insert into viandes values (1, 'Nuggets',3,'img/nuggets.jpg');
+insert into viandes values (2, 'Poulet',3,'img/poulet.jpg');
+insert into viandes values (3, 'Tenders',3,'img/poulet.jpg');
+insert into viandes  values (4, 'Merguez',3,'img/merguez.jpg');
 
 
 
@@ -106,7 +103,7 @@ create table legumes(
 insert into legumes values (1, 'Basilic',1,'img/basilic.jpg');
 insert into legumes values (2, 'Poivron',1,'img/poivrons.jpg');
 insert into legumes values (3, 'Piment Rouge',1,'img/piment.jpg');
-insert into legumes  values (4, 'champignons',1,'img/champ.jpg');
+insert into legumes  values (4, 'Champignons',1,'img/champ.jpg');
 
 
 create table sauces(
@@ -140,10 +137,10 @@ create table fromages(
 
 
 
-insert into fromages values (1, 'parmesan',1,'img/parmesan.jpg'); 
-insert into fromages values (2, 'mozzarella',1,'img/mozza.jpg'); 
-insert into fromages values (3, 'burrata',1,'img/burrata.jpg');  
-insert into fromages values (4, 'roquefort',1,'img/roquefort.jpg');
+insert into fromages values (1, 'Parmesan',2,'img/parmesan.jpg'); 
+insert into fromages values (2, 'Mozzarella',2,'img/mozza.jpg'); 
+insert into fromages values (3, 'Burrata',2,'img/burrata.jpg');  
+insert into fromages values (4, 'Roquefort',2,'img/roquefort.jpg');
 
 
 
@@ -158,7 +155,7 @@ create table livreur (
     pwd  varchar(20) not NULL
 ); 
 
-insert into livreur values (1, 'livreur','jihed@gamil.com','liv2022');
+insert into livreur values (1, 'livreur','lir@liv.com.com','liv2022');
 
 
 create table commande ( 

@@ -9,7 +9,7 @@ body {
 #table {
     display: table;
     width: 100%;
-    background: rgb(205, 171, 2);
+    background: rgb(158, 156, 152);
     margin: 0;
     box-sizing: border-box;
 }
@@ -17,7 +17,7 @@ body {
 .caption {
     display: block;
     width: 100%;
-    background: #e6ef64;
+    background: #263ac1;
     height: 55px;
     padding-left: 10px;
     color: #fff;
